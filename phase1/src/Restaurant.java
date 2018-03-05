@@ -5,6 +5,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+
 public class Restaurant {
     // A HashMap representation of the inventory
     private static HashMap<String, InventoryItem> inventory;
@@ -31,6 +34,12 @@ public class Restaurant {
             }
         }
 
+        Gson gson = new Gson();
+
+        menu = gson.fromJson(new FileReader("menu.json"), menuType);
+        inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
+        System.out.println("Inventory: " + inventory);
+        System.out.println("Menu: " + menu);
     }
 
     /**
