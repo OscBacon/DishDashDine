@@ -40,6 +40,8 @@ public class Restaurant {
         inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
         System.out.println("Inventory: " + inventory);
         System.out.println("Menu: " + menu);
+
+        System.out.println(printInventory());
     }
 
     /**
@@ -73,7 +75,17 @@ public class Restaurant {
      * Prints a string representation of the inventory.
      * @return  A string representation of the inventory
      */
-    public String printInventory() {}
+    public static String printInventory() {
+        ArrayList<String> inventoryItems = new ArrayList<String>();
+        for (Object key: inventory.keySet()) {
+            InventoryItem inventoryItem = (InventoryItem) inventory.get(key);
+            inventoryItems.add(key + ": " + System.lineSeparator() +
+                    "\t quantity: " + inventoryItem.getQuantity() + System.lineSeparator() +
+                    "\t threshold: " + inventoryItem.getThreshold()
+            );
+        }
+        return "INVENTORY: " + System.lineSeparator() + String.join(System.lineSeparator(), inventoryItems);
+    }
 
     /**
      * Writes a request for the given item in requests.txt
