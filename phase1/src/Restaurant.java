@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Restaurant {
@@ -6,8 +11,21 @@ public class Restaurant {
 
     // A HashMap representation of the menu
     public static final HashMap menu;
+    public static void main(String[] args) throws IOException {
+        /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
+        File eventsFile = new File("events.txt");
+        File requestsFile = new File("requests.txt");
 
-    public static void main(String[] args) {
+        File menuFile = new File("menu.json");
+        File inventoryFile = new File("inventory.json");*/
+
+        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "inventory.json"};
+        for (String fileName : fileNames) {
+            File file = new File(fileName);
+            if (!file.isFile()) {
+                file.createNewFile();
+            }
+        }
 
     }
 
