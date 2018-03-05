@@ -1,0 +1,14 @@
+{
+  "chicken": {
+    "quantity": 10,
+    "threshold": 10
+  },
+  "salad": {
+    "quantity": 10,
+    "threshold": 10
+  },
+  "pineapple": {
+    "quantity": 10,
+    "threshold": 10
+  }
+}

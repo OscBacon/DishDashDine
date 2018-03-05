@@ -1,0 +1,11 @@
+{
+  "Kung Pao Chicken": {
+  "price": 10,
+  "ingredients": {
+    "chicken": 1,
+    "salad": 1,
+    "pineapple": 1
+  },
+  "allowedAdditions": ["salad", "pineapple"],
+  "allowedSubtractions": ["salad", "pineapple"]
+}
