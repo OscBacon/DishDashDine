@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Bill
 {
-    
+
     private int tableNumber;
     private Waiter server;
     private ArrayList<Dish> dishList;
-    private int FinalId;
+    private int billId;
     private static int numOfBills;
 
     public Bill(int tableNumber, Waiter server) {
@@ -22,12 +22,16 @@ public class Bill
         dishList.add(dish);
     }
 
-    public void removeDish(int dishID) {
+    public void removeDish(int currentDishID) {
         for(int i = 0; i < this.dishList.size(); i++) {
-            if (dishList.get(i).getID == dishID) {
-                dishList.remove(dishList[i]);
+            if (dishList.get(i).getDishId() == currentDishID) {
+                dishList.remove(i);
             }
         }
+    }
+
+    public int getbillId() {
+        return this.billId;
     }
 
 }
