@@ -1,14 +1,47 @@
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
 
 public class Restaurant {
     // A HashMap representation of the inventory
-    public static HashMap inventory;
+    private static HashMap<String, InventoryItem> inventory;
 
     // A HashMap representation of the menu
-    public static final HashMap menu;
+    private static HashMap<String, MenuItem> menu;
 
-    public static void main(String[] args) {
+    private static Type menuType = new TypeToken<HashMap<String,MenuItem>>() {}.getType();
+    private static Type inventoryType = new TypeToken<HashMap<String,InventoryItem>>() {}.getType();
 
+    public static void main(String[] args) throws IOException {
+        /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
+        File eventsFile = new File("events.txt");
+        File requestsFile = new File("requests.txt");
+
+        File menuFile = new File("menu.json");
+        File inventoryFile = new File("inventory.json");*/
+
+        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "inventory.json"};
+        for (String fileName : fileNames) {
+            File file = new File(fileName);
+            if (!file.isFile()) {
+                file.createNewFile();
+            }
+        }
+
+        Gson gson = new Gson();
+
+        menu = gson.fromJson(new FileReader("menu.json"), menuType);
+        inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
+        System.out.println("Inventory: " + inventory);
+        System.out.println("Menu: " + menu);
+
+        System.out.println(printInventory());
     }
 
     /**
@@ -42,7 +75,17 @@ public class Restaurant {
      * Prints a string representation of the inventory.
      * @return  A string representation of the inventory
      */
-    public String printInventory() {}
+    public static String printInventory() {
+        ArrayList<String> inventoryItems = new ArrayList<String>();
+        for (Object key: inventory.keySet()) {
+            InventoryItem inventoryItem = (InventoryItem) inventory.get(key);
+            inventoryItems.add(key + ": " + System.lineSeparator() +
+                    "\t quantity: " + inventoryItem.getQuantity() + System.lineSeparator() +
+                    "\t threshold: " + inventoryItem.getThreshold()
+            );
+        }
+        return "INVENTORY: " + System.lineSeparator() + String.join(System.lineSeparator(), inventoryItems);
+    }
 
     /**
      * Writes a request for the given item in requests.txt
