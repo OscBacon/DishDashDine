@@ -54,4 +54,17 @@ public class Dish {
     public HashMap getIngredients() {
         return ingredients;
     }
+
+    @Override
+    public String toString() {
+        String fullDish = this.name;
+        for (String addition : this.additions) {
+            fullDish += "+" + addition;
+        }
+        for (String eachSubtraction: this.substractions) {
+            fullDish += "-" + eachSubtraction;
+        }
+        return fullDish;
+    }
+
 }
