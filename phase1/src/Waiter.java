@@ -39,23 +39,19 @@ public class Waiter extends Listener{
 
         else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if (inputArray[0].trim().equals("requested bill")) {
-                this.showBill(Integer.valueOf(inputArray[1].trim()));
-            }
-
-            else if (inputArray[0].trim().equals("ordered"))
-            {
-                this.createDish(inputArray[1].trim());
-            }
-
-            else if (inputArray[0].trim().equals("delivered dish"))
-            {
-                this.confirmDishDelivery(Integer.valueOf(inputArray[1].trim()));
-            }
-
-            else if (inputArray[0].trim().equals("recalled dish"))
-            {
-                this.recallDish(Integer.valueOf(inputArray[1].trim()));
+            switch (inputArray[0].trim()){
+                case "requested bill":
+                    this.showBill(Integer.valueOf(inputArray[1].trim()));
+                    break;
+                case "ordered":
+                    this.createDish(inputArray[1].trim());
+                    break;
+                case "delivered dish":
+                    this.confirmDishDelivery(Integer.valueOf(inputArray[1].trim()));
+                    break;
+                case "recalled dish":
+                    this.recallDish(Integer.valueOf(inputArray[1].trim()));
+                    break;
             }
         }
     }
