@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Kitchen extends Listener {
@@ -62,6 +63,19 @@ public class Kitchen extends Listener {
     }
 
     /**
+     * This method allows to record which cook confirmed to cook the dish whose id is dishID.
+     *
+     * @param cook The cook that will cook the dish whose ID is dishID.
+     * @param dishID The ID of the dish.
+     */
+    private void acceptDish(String cook, String dishID)
+    {
+        Dish dish = dishList.get(dishID);
+
+        dish.setCook(cook);
+    }
+
+    /**
      * Makes calls to the appropriate functions in this Kitchen class depending on the input array of Strings.
      * @param inputArray The input to be handled, split into an array.
      */
@@ -77,6 +91,11 @@ public class Kitchen extends Listener {
             else if (inputArray[2].trim().equals("cancelled."))
             {
                 this.cancelDish(inputArray[1]);
+            }
+
+            else if (inputArray[1].trim().equals("has accepted dish"))
+            {
+                this.acceptDish(inputArray[0].trim(), inputArray[2].trim());
             }
         }
     }
