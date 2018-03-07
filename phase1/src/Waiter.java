@@ -33,7 +33,7 @@ public class Waiter extends Listener{
                 ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
                 ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
 
-                this.createDish(inputArray[1], add, sub);
+                this.createDish(inputArray[1].trim(), add, sub);
             }
         }
 
