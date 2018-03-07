@@ -29,13 +29,20 @@ public class Kitchen extends Listener {
 
     private void readyDish(int dishID)
     {
+        Dish dish = dishList.get(String.valueOf(dishID));
 
+        dish.getWaiter().printToScreen("Dish " + dish.getDishId() + " for table " +
+                dish.getTableNumber() + " is ready for pick-up.");
+
+        removeDish(dish);
     }
 
 
     private void cancelDish(int dishID)
     {
+        Dish dish = dishList.get(String.valueOf(dishID));
 
+        removeDish(dish);
     }
 
 
