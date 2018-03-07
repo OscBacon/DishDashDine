@@ -139,7 +139,7 @@ public class Restaurant {
      * If an inventory is under its threshold for reorder, a request for reorder is added to requests.txt
      * @return False if an item is under its threshold for reorder
      */
-    public static boolean checkInventory() throws IOException {
+    public static boolean checkInventory() {
         for (String key : inventory.keySet()) {
             InventoryItem item = inventory.get(key);
             if (item.getQuantity() < item.getThreshold()) {
@@ -153,7 +153,7 @@ public class Restaurant {
      * @param ingredients The ingredients to be checked and the quantities needed
      * @return True if all items have sufficient quantities available
      */
-    public static boolean checkInventory(HashMap<String,Integer> ingredients) throws IOException {
+    public static boolean checkInventory(HashMap<String,Integer> ingredients) {
         for (String key : ingredients.keySet()) {
             if (inventory.containsKey(key)) {
                 InventoryItem item = inventory.get(key);
@@ -189,11 +189,16 @@ public class Restaurant {
      * Writes a request for the given item in requests.txt
      * @param item The item to be requested
      */
-    private static void writeRequest(String item) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("requests.txt"));
-        writer.write(item.toUpperCase() + " is needed in 20 quantities.");
-        writer.newLine();
-        writer.close();
+    private static void writeRequest(String item) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("requests.txt"));
+            writer.write(item.toUpperCase() + " is needed in 20 quantities.");
+            writer.newLine();
+            writer.close();
+        }
+        catch (IOException e) {
+            System.out.println("requests.txt is busy, can't add request");
+        }
     }
 
     /**
