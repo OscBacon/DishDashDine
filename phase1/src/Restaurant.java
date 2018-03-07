@@ -1,10 +1,9 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -118,7 +117,12 @@ public class Restaurant {
      * Writes a request for the given item in requests.txt
      * @param item The item to be requested
      */
-    private void writeRequest(String item) {}
+    private void writeRequest(String item) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("requests.txt"));
+        writer.write(item.toUpperCase() + " is needed in 20 quantities.");
+        writer.newLine();
+        writer.close();
+    }
 
     /**
      * This reads through event.txt and handles input when needed
