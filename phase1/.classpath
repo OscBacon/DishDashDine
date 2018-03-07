@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/phase1/src"/>
+	<classpathentry kind="lib" path="/phase1/lib/gson-2.8.2.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.google.code.gson:gson:2.8.2"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
