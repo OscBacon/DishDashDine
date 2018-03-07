@@ -135,7 +135,7 @@ public class Restaurant {
      * Prints a string representation of the inventory.
      * @return  A string representation of the inventory
      */
-    public static String printInventory() {
+    private static String printInventory() {
         ArrayList<String> inventoryItems = new ArrayList<String>();
         for (Object key: inventory.keySet()) {
             InventoryItem inventoryItem = inventory.get(key);
