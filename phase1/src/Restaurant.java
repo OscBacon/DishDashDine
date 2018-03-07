@@ -53,7 +53,10 @@ public class Restaurant {
         Gson gson = new Gson();
 
         menu = gson.fromJson(new FileReader("menu.json"), menuType);
+
         inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
+        // Checks inventory on launch to send out reorder requests ASAP
+        checkInventory();
 
         // Initialize all of the waiters on waiters.txt and add them to waitersList
         BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
@@ -136,14 +139,35 @@ public class Restaurant {
      * If an inventory is under its threshold for reorder, a request for reorder is added to requests.txt
      * @return False if an item is under its threshold for reorder
      */
-    public boolean checkInventory() {return false;}
+    public static boolean checkInventory() throws IOException {
+        for (String key : inventory.keySet()) {
+            InventoryItem item = inventory.get(key);
+            if (item.getQuantity() < item.getThreshold()) {
+                writeRequest(key);
+            }
+        }
+    }
 
     /**
      * Check in the inventory whether or not there are sufficient quantities of each items.
      * @param ingredients The ingredients to be checked and the quantities needed
      * @return True if all items have sufficient quantities available
      */
-    public boolean checkInventory(HashMap ingredients) {return false;}
+    public static boolean checkInventory(HashMap<String,Integer> ingredients) throws IOException {
+        for (String key : ingredients.keySet()) {
+            if (inventory.containsKey(key)) {
+                InventoryItem item = inventory.get(key);
+                Integer quantityNeeded = ingredients.get(key);
+
+                if (quantityNeeded > item.getQuantity()) {
+                    return false;
+                }
+            }
+            else {
+                writeRequest(key);
+            }
+        }
+    }
 
     /**
      * Prints a string representation of the inventory.
