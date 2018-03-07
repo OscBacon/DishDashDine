@@ -50,7 +50,7 @@ public class Waiter extends Listener{
     }
 
     // Precondition: <item> is on the menu
-    public void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions){
+    private void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions){
         MenuItem menuItem = Restaurant.getMenu().get(item);
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         ingredients = makeSubstitutions(menuItem, ingredients, additions, subtractions);
@@ -69,7 +69,7 @@ public class Waiter extends Listener{
     }
 
     // Precondition: <item> is on the menu
-    public void createDish(String item){
+    private void createDish(String item){
         MenuItem menuItem = Restaurant.getMenu().get(item);
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         if (Restaurant.checkInventory(ingredients)){
