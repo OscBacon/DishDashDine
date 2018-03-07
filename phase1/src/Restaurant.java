@@ -26,6 +26,14 @@ public class Restaurant {
     // An attribute to keep track of whether or not this Restaurant is running
     private static boolean running = true;
 
+    // Keeps track of whether or not menu was modified since start
+    private static boolean menuModified;
+    // Keeps track of whether or not inventory was modified since start
+    private static boolean inventoryModified;
+    // Keeps track of whether or not waiterList was modified since start
+    private static boolean waiterListModified;
+
+
     public static void main(String[] args) throws IOException {
         /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
         File eventsFile = new File("events.txt");
@@ -61,7 +69,8 @@ public class Restaurant {
         System.out.println(printInventory());
 
         run();
-
+        System.out.println("Saving...");
+        save();
         System.out.println("Stopping...");
     }
 
@@ -107,6 +116,8 @@ public class Restaurant {
         else {
             inventory.put(ingredient, new InventoryItem(quantity));
         }
+
+        inventoryModified = true;
     }
 
     /**
@@ -197,5 +208,35 @@ public class Restaurant {
             }
 
         }
+    }
+
+    /**
+     * Saves the current state of menu, inventory, and waiters to their respective .json files.
+     * Flushes events.txt
+     */
+    private static void save() throws IOException {
+        Gson gson = new Gson();
+
+        if (inventoryModified) {
+            FileWriter writer = new FileWriter("inventory.json");
+            gson.toJson(inventory, writer);
+            writer.close();
+        }
+
+        if(menuModified) {
+            FileWriter writer = new FileWriter("menu.json");
+            gson.toJson(menu, writer);
+            writer.close();
+        }
+
+        if(waiterListModified) {
+            FileWriter writer = new FileWriter("waiters.txt");
+            writer.write(String.join(",", waiterNameList));
+            writer.close();
+        }
+
+        FileWriter eventsFile = new FileWriter("events.txt");
+        eventsFile.flush();
+        eventsFile.close();
     }
 }
