@@ -53,9 +53,33 @@ public class Restaurant {
 
     }
 
-    private static void addToInventory(HashMap<String, Integer> items) {}
+    /**
+     * Adds the given quantity of an ingredient to the inventory.
+     * If the ingredient is not the inventory, a new key is created for it.
+     * @param ingredient The ingredient to be added
+     * @param quantity The quantity of the ingredient to be added
+     */
+    private static void addToInventory(String ingredient, Integer quantity) {
+        if (inventory.containsKey(ingredient)) {
+            InventoryItem inventoryItem = inventory.get(ingredient);
+            int currQuantity = inventoryItem.getQuantity();
+            inventory.get(ingredient).setQuantity(currQuantity + quantity);
+        }
+        else {
+            inventory.put(ingredient, new InventoryItem(quantity));
+        }
+    }
 
-    private static void removeFromInventory(HashMap<String, Integer> items) {}
+    /**
+     * Removes the given quantity of an ingredient to the inventory.
+     * @param ingredient The ingredient to be added
+     * @param quantity The quantity of the ingredient to be added
+     */
+    private static void removeFromInventory(String ingredient, Integer quantity) {
+        if (inventory.containsKey(ingredient) && inventory.get(ingredient).getQuantity() >=quantity) {
+            addToInventory(ingredient, -quantity);
+        }
+    }
 
     /**
      * Check the inventory to see if there are enough of each items.
