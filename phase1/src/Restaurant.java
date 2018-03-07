@@ -61,19 +61,24 @@ public class Restaurant {
      * The input is separated by pipe symbols, and is appropriately spliced.
      * @param input The event input
      */
-    public void handleInput(String input) {
-        String[] inputArray = input.split("|");
+    private static void handleInput(String input) {
+        String[] inputArray = input.split("(|)?");
 
-        if (inputArray[0].equals("Restaurant")) {
-            if (inputArray[1].equals("addToInventory")) {
-                // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
-                addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
-            }
-        }
-        else {
-            Listener calledListener = listenerList.get(inputArray[0]);
-            // Calls the concerned Listener's handleEvent method
-            calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1,inputArray.length - 1));
+        switch (inputArray[0]) {
+            case "Restaurant":
+                if (inputArray[1].equals("addToInventory")) {
+                    // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
+                    addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
+                }
+                break;
+            case "Stop":
+                running = false;
+                break;
+            default:
+                Listener calledListener = listenerList.get(inputArray[0]);
+                // Calls the concerned Listener's handleEvent method
+                calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length - 1));
+                break;
         }
     }
 
