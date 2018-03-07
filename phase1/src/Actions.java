@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 /*
     This class makes simulating input much easier by writing lines to events.txt according to the specified template.
  */
