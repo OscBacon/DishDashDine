@@ -27,9 +27,9 @@ public class Kitchen extends Listener {
     }
 
 
-    private void readyDish(int dishID)
+    private void readyDish(String dishID)
     {
-        Dish dish = dishList.get(String.valueOf(dishID));
+        Dish dish = dishList.get(dishID);
 
         dish.getWaiter().printToScreen("Dish " + dish.getDishId() + " for table " +
                 dish.getTableNumber() + " is ready for pick-up.");
@@ -38,9 +38,9 @@ public class Kitchen extends Listener {
     }
 
 
-    private void cancelDish(int dishID)
+    private void cancelDish(String dishID)
     {
-        Dish dish = dishList.get(String.valueOf(dishID));
+        Dish dish = dishList.get(dishID);
 
         removeDish(dish);
     }
@@ -48,7 +48,18 @@ public class Kitchen extends Listener {
 
     @Override
     public void handleEvent(String[] inputArray) {
+        if (inputArray.length >= 3) {
 
+            if (inputArray[2].trim().equals("is ready."))
+            {
+                this.readyDish(inputArray[1]);
+            }
+
+            else if (inputArray[2].trim().equals("cancelled."))
+            {
+                this.cancelDish(inputArray[1]);
+            }
+        }
     }
 
 
