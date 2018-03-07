@@ -51,12 +51,27 @@ public class Waiter extends Listener{
 
     // Precondition: <item> is on the menu
     public void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions){
+        MenuItem menuItem = Restaurant.getMenu().get(item);
+        HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
+        ingredients = makeSubstitutions(menuItem, ingredients, additions, subtractions);
+
+        if (Restaurant.checkInventory(ingredients)){
+            Dish dish = new Dish(item, additions, subtractions);
+            Kitchen.addDish(dish);
+            for(String ingredient: ingredients.keySet()){
+                Integer quantity = ingredients.get(ingredient);
+                Restaurant.removeFromInventory(ingredient, quantity);
+            }
+        }
+        else {
+            printToScreen("Can't order dish: ingredients missing");
+        }
     }
 
     // Precondition: <item> is on the menu
     public void createDish(String item){
         MenuItem menuItem = Restaurant.getMenu().get(item);
-        HashMap<String, Integer> ingredients = new HashMap<String, Integer>(menuItem.getIngredients());
+        HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         if (Restaurant.checkInventory(ingredients)){
             Dish dish = new Dish(item);
             Kitchen.addDish(dish);
