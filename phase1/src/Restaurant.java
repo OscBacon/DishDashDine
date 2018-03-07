@@ -78,7 +78,7 @@ public class Restaurant {
     public static String printInventory() {
         ArrayList<String> inventoryItems = new ArrayList<String>();
         for (Object key: inventory.keySet()) {
-            InventoryItem inventoryItem = (InventoryItem) inventory.get(key);
+            InventoryItem inventoryItem = inventory.get(key);
             inventoryItems.add(key + ": " + System.lineSeparator() +
                     "\t quantity: " + inventoryItem.getQuantity() + System.lineSeparator() +
                     "\t threshold: " + inventoryItem.getThreshold()
