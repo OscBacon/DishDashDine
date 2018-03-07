@@ -20,6 +20,9 @@ public class Restaurant {
     // A list of all objects that can listen to events
     private static HashMap<String,Listener> listenerList = new HashMap<>();
 
+    // An attribute to keep track of whether or not this Restaurant is running
+    private static boolean running = true;
+
     public static void main(String[] args) throws IOException {
         /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
         File eventsFile = new File("events.txt");
@@ -53,6 +56,10 @@ public class Restaurant {
         System.out.println("Menu: " + menu);
 
         System.out.println(printInventory());
+
+        run();
+
+        System.out.println("Stopping...");
     }
 
     /**
@@ -152,7 +159,40 @@ public class Restaurant {
     }
 
     /**
-     * This reads through event.txt and handles input when needed
+     * This reads through events.txt and handles input when a new line is added to the file.
      */
-    private void run() {}
+    private static void run() {
+        File eventsFile = new File("events.txt");
+        long lastModified = eventsFile.lastModified();
+        String savedLastLine = "";
+        while (running) {
+            if (eventsFile.lastModified() != lastModified) {
+                String lastLine = "";
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader("events.txt"));
+
+
+                    String currLine = reader.readLine();
+                    while (currLine != null) {
+                        lastLine = currLine;
+                        currLine = reader.readLine();
+                    }
+                    reader.close();
+                    System.out.println(lastLine);
+
+                }
+                catch (IOException e){
+                    System.out.println("events.txt is busy, looping again");
+                }
+                catch (NullPointerException ignore) {}
+
+                if (!lastLine.equals(savedLastLine)) {
+                    lastModified = eventsFile.lastModified();
+                    savedLastLine = lastLine;
+                    handleInput(lastLine);
+                }
+            }
+
+        }
+    }
 }
