@@ -1,10 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  */
-public class Waiter { //implements Listener{ TODO: Listener interface not yet created
-
+public class Waiter extends Listener{
     // all paid and unpaid Bills
     private ArrayList<Bill> billList;
 
@@ -21,10 +21,40 @@ public class Waiter { //implements Listener{ TODO: Listener interface not yet cr
     public void handleInput(String input){
     }
 
-    public void createDish(String item){
+    // helper for .createDish, alters Ingredients based on additions and subtractions
+    private HashMap<String, Integer> makeSubstitutions(MenuItem menuItem, HashMap<String, Integer> ingredients,
+                                                ArrayList<String> additions, ArrayList<String> subtractions) {
+        for (String addition: additions){
+            if (menuItem.getAllowedAdditions().contains(addition)) {
+                if (ingredients.containsKey(addition)){
+                    ingredients.put(addition, ingredients.get(addition) + 1);
+                }
+                else {
+                    ingredients.put(addition, 1);
+                }
+            }
+            else {
+                this.printToScreen("You can't add " + addition);
+            }
+        }
+        // removing <subtractions> from <ingredients>
+        for (String subtraction: subtractions){
+            if (menuItem.getAllowedSubtractions().contains(subtraction)){
+                ingredients.remove(subtraction);
+            }
+            else {
+                this.printToScreen("You can't remove " + subtraction);
+            }
+        }
+        return ingredients;
     }
 
+    // Precondition: <item> is on the menu
     public void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions){
+    }
+
+    // Precondition: <item> is on the menu
+    public void createDish(String item){
     }
 
     private void confirmDishDelivery(int dishID){
