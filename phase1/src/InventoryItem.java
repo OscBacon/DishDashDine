@@ -2,6 +2,11 @@ public class InventoryItem {
     private int quantity;
     private int threshold;
 
+    public InventoryItem(int quantity, int threshold) {
+        this.quantity = quantity;
+        this.threshold = threshold;
+    }
+
     public int getQuantity() {
         return quantity;
     }

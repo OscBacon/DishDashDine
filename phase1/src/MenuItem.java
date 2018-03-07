@@ -7,6 +7,13 @@ public class MenuItem {
     private final ArrayList<String> allowedAdditions;
     private final ArrayList<String> allowedSubtractions;
 
+    public MenuItem(int price, HashMap<String, Integer> ingredients, ArrayList<String> allowedAdditions, ArrayList<String> allowedSubtractions) {
+        this.price = price;
+        this.ingredients = ingredients;
+        this.allowedAdditions = allowedAdditions;
+        this.allowedSubtractions = allowedSubtractions;
+    }
+
     public int getPrice() {
         return price;
     }
