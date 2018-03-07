@@ -9,6 +9,7 @@ public class Dish {
     private ArrayList<String> subtractions;
     private int tableNumber;
     private Waiter waiter;
+    private String cook;
     private double price;
     private int dishId;
     private static int numOfDishes;
@@ -47,6 +48,10 @@ public class Dish {
         return waiter;
     }
 
+    public String getCook() {
+        return cook;
+    }
+
     public double getPrice() {
         return price;
     }
@@ -61,6 +66,11 @@ public class Dish {
 
     public HashMap getIngredients() {
         return ingredients;
+    }
+
+    // One setter, for the cook attribute
+    public void setCook(String cook) {
+        this.cook = cook;
     }
 
     @Override
