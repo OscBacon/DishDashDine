@@ -34,48 +34,48 @@ public abstract class Actions
     // Kitchen inputs:
 
 
-    public void acceptDish(String dishID)
+    public void acceptDish(String cookName, String dishID)
     {
-
+        eventWriter("Kitchen | " + cookName + " | has accepted dish | " + dishID);
     }
 
 
-    public void finishDish(String server, String dishID)
+    public void finishDish(String dishID)
     {
-
+        eventWriter("Kitchen | Dish | " + dishID + " | is ready.");
     }
 
 
     // Server inputs:
 
 
-    public void requestBill(String server, String billNumber)
+    public void requestBill(String waiter, String billNumber)
     {
-
+        eventWriter(waiter + " | requested bill | " + billNumber);
     }
 
 
-    public void cancelDish(String server, String dishID)
+    public void cancelDish(String dishID)
     {
-
+        eventWriter("Kitchen | Dish | " + dishID + " | cancelled.");
     }
 
 
-    public void orderDish(String server, String dishID)
+    public void orderDish(String waiter, String itemName, String additions, String subtractions)
     {
-
+        eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions);
     }
 
 
-    public void confirmDelivery(String server, String dishID)
+    public void confirmDelivery(String waiter, String dishID)
     {
-
+        eventWriter(waiter + " | delivered dish | " + dishID);
     }
 
 
-    public void dishRecall(String server, String dishID)
+    public void dishRecall(String waiter, String dishID)
     {
-
+        eventWriter(waiter + " | recalled dish | " + dishID);
     }
 
 
@@ -84,7 +84,7 @@ public abstract class Actions
 
     public void addToInventory(String ingredient, String quantity)
     {
-
+        eventWriter("Restaurant | addToInventory | " + ingredient + " | " + quantity);
     }
 
 }
