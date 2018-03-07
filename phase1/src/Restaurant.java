@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -217,10 +216,6 @@ public class Restaurant {
     /**
      * This reads through events.txt and handles input when a new line is added to the file.
      */
-<<<<<<< HEAD
-    private void run() {}
-}
-=======
     private static void run() {
         File eventsFile = new File("events.txt");
         long lastModified = eventsFile.lastModified();
@@ -302,4 +297,3 @@ public class Restaurant {
         return menu;
     }
 }
->>>>>>> b6254045c0eb2bf264dcc7b2745ddb730f21a1b3
