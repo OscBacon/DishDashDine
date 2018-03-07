@@ -189,7 +189,7 @@ public class Restaurant {
      * Writes a request for the given item in requests.txt
      * @param item The item to be requested
      */
-    private void writeRequest(String item) throws IOException {
+    private static void writeRequest(String item) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("requests.txt"));
         writer.write(item.toUpperCase() + " is needed in 20 quantities.");
         writer.newLine();
