@@ -62,6 +62,12 @@ public abstract class Actions
     }
 
 
+    public void orderDish(String waiter, String itemName)
+    {
+        eventWriter(waiter + " | ordered | " + itemName);
+    }
+
+
     public void orderDish(String waiter, String itemName, String additions, String subtractions)
     {
         eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions);
