@@ -18,6 +18,9 @@ public class Restaurant {
     private static Type menuType = new TypeToken<HashMap<String,MenuItem>>() {}.getType();
     private static Type inventoryType = new TypeToken<HashMap<String,InventoryItem>>() {}.getType();
 
+    // An list of all objects that can listen to events
+    private ArrayList<Listener> listenerList = new ArrayList<Listener>();
+
     public static void main(String[] args) throws IOException {
         /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
         File eventsFile = new File("events.txt");
