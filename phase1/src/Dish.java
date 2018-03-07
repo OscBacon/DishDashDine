@@ -8,19 +8,22 @@ public class Dish {
     private ArrayList<String> additions;
     private ArrayList<String> subtractions;
     private int tableNumber;
+    private Waiter waiter;
     private double price;
     private int dishId;
     private static int numOfDishes;
     private HashMap ingredients;
 
-    public Dish(String dishName) {
+    public Dish(String dishName, Waiter waiter) {
         this.name = dishName;
+        this.waiter = waiter;
     }
 
-    public Dish(String name, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions) {
+    public Dish(String name, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter) {
         this.name = name;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
+        this.waiter = waiter;
     }
 
     // Getters for all variables
@@ -38,6 +41,10 @@ public class Dish {
 
     public int getTableNumber() {
         return tableNumber;
+    }
+
+    public Waiter getWaiter(){
+        return waiter;
     }
 
     public double getPrice() {
