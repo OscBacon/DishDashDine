@@ -1,12 +1,12 @@
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
 
 public class Restaurant {
     // A HashMap representation of the inventory
@@ -22,7 +22,6 @@ public class Restaurant {
         /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
         File eventsFile = new File("events.txt");
         File requestsFile = new File("requests.txt");
-
         File menuFile = new File("menu.json");
         File inventoryFile = new File("inventory.json");*/
 
@@ -78,7 +77,7 @@ public class Restaurant {
     public static String printInventory() {
         ArrayList<String> inventoryItems = new ArrayList<String>();
         for (Object key: inventory.keySet()) {
-            InventoryItem inventoryItem = (InventoryItem) inventory.get(key);
+            InventoryItem inventoryItem = inventory.get(key);
             inventoryItems.add(key + ": " + System.lineSeparator() +
                     "\t quantity: " + inventoryItem.getQuantity() + System.lineSeparator() +
                     "\t threshold: " + inventoryItem.getThreshold()
