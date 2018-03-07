@@ -96,6 +96,7 @@ public class Waiter extends Listener{
 
         if (Restaurant.checkInventory(ingredients)){
             Dish dish = new Dish(item, additions, subtractions, this);
+            dishList.add(dish);
             Kitchen.addDish(dish);
             for(String ingredient: ingredients.keySet()){
                 Integer quantity = ingredients.get(ingredient);
@@ -113,6 +114,7 @@ public class Waiter extends Listener{
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         if (Restaurant.checkInventory(ingredients)){
             Dish dish = new Dish(item, this);
+            dishList.add(dish);
             Kitchen.addDish(dish);
             for(String ingredient: ingredients.keySet()) {
                 Integer quantity = ingredients.get(ingredient);
