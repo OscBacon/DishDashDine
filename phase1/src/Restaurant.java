@@ -128,7 +128,7 @@ public class Restaurant {
      * @param ingredient The ingredient to be added
      * @param quantity The quantity of the ingredient to be added
      */
-    private static void removeFromInventory(String ingredient, Integer quantity) {
+    public static void removeFromInventory(String ingredient, Integer quantity) {
         if (inventory.containsKey(ingredient) && inventory.get(ingredient).getQuantity() >=quantity) {
             addToInventory(ingredient, -quantity);
         }
