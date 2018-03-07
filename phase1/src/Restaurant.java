@@ -5,6 +5,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.Buffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Restaurant {
@@ -49,10 +50,23 @@ public class Restaurant {
     /**
      * Handles the input from a new event in event.txt.
      * This sends the input to be handled to the appropriate Class or Object.
+     * The input is separated by pipe symbols, and is appropriately spliced.
      * @param input The event input
      */
     public void handleInput(String input) {
+        String[] inputArray = input.split("|");
 
+        if (inputArray[0].equals("Restaurant")) {
+            if (inputArray[1].equals("addToInventory")) {
+                // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
+                addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
+            }
+        }
+        else {
+            Listener calledListener = listenerList.get(inputArray[0]);
+            // Calls the concerned Listener's handleEvent method
+            calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1,inputArray.length - 1));
+        }
     }
 
     /**
