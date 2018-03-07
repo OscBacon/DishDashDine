@@ -239,4 +239,20 @@ public class Restaurant {
         eventsFile.flush();
         eventsFile.close();
     }
+
+    /**
+     * Getter for inventory
+     * @return inventory
+     */
+    public static HashMap<String, InventoryItem> getInventory() {
+        return inventory;
+    }
+
+    /**
+     * Getter for menu
+     * @return menu
+     */
+    public static HashMap<String, MenuItem> getMenu() {
+        return menu;
+    }
 }
