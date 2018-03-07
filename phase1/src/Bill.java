@@ -34,7 +34,7 @@ public class Bill
         }
     }
 
-    public int getbillId() {
+    public int getBillId() {
         return this.billId;
     }
 

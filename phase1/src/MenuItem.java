@@ -1,11 +1,18 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MenuItem {
     private int price;
     private HashMap<String, Integer> ingredients;
-    private String[] allowedAdditions = {};
-    private String[] allowedSubstractions = {};
+    private final ArrayList<String> allowedAdditions;
+    private final ArrayList<String> allowedSubtractions;
+
+    public MenuItem(int price, HashMap<String, Integer> ingredients, ArrayList<String> allowedAdditions, ArrayList<String> allowedSubtractions) {
+        this.price = price;
+        this.ingredients = ingredients;
+        this.allowedAdditions = allowedAdditions;
+        this.allowedSubtractions = allowedSubtractions;
+    }
 
     public int getPrice() {
         return price;
@@ -15,12 +22,12 @@ public class MenuItem {
         return ingredients;
     }
 
-    public String[] getAllowedAdditions() {
+    public ArrayList<String> getAllowedAdditions() {
         return allowedAdditions;
     }
 
-    public String[] getAllowedSubstractions() {
-        return allowedSubstractions;
+    public ArrayList<String> getAllowedSubtractions() {
+        return allowedSubtractions;
     }
 
     @Override
@@ -28,8 +35,8 @@ public class MenuItem {
         return "{" +
                 "price=" + price +
                 ", ingredients=" + ingredients +
-                ", allowedAdditions=" + Arrays.toString(allowedAdditions) +
-                ", allowedSubstractions=" + Arrays.toString(allowedSubstractions) +
+                ", allowedAdditions=" + allowedAdditions.toString() +
+                ", allowedSubstractions=" + allowedSubtractions.toString() +
                 '}';
     }
 }
