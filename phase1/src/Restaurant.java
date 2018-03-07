@@ -41,6 +41,15 @@ public class Restaurant {
 
         menu = gson.fromJson(new FileReader("menu.json"), menuType);
         inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
+
+        // Initialize all of the waiters on waiters.txt and add them to waitersList
+        BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
+        String[] waitersList = reader.readLine().split(",[ ]*");
+        for (String waiterName : waitersList) listenerList.put(waiterName, new Waiter(waiterName));
+
+        // Adds an instance of Kitchen to be used
+        listenerList.put("Kitchen", new Kitchen());
+
         System.out.println("Inventory: " + inventory);
         System.out.println("Menu: " + menu);
 
