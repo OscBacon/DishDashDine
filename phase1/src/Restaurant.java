@@ -99,7 +99,7 @@ public class Restaurant {
             default:
                 Listener calledListener = listenerList.get(inputArray[0]);
                 // Calls the concerned Listener's handleEvent method
-                calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length - 1));
+                calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
                 break;
         }
     }
