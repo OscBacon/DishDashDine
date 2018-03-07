@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class Waiter extends Listener{
     // all paid and unpaid Bills
-    private ArrayList<Bill> billList;
+    private HashMap<Integer, Bill> billList;
 
     // all dishes ever ordered
     private ArrayList<Dish> dishList;
@@ -130,13 +130,7 @@ public class Waiter extends Listener{
 
     private void showBill(int billID)
     {
-        for (Bill bill : this.billList) // Searches for a bill with billID in this server's billList
-        {
-            if (bill.getBillId() == billID)
-            {
-                printToScreen(bill.toString());
-            }
-        }
+        printToScreen(billList.get(billID).toString());
     }
 
     public void printToScreen(String output){
