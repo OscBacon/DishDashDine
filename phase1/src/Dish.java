@@ -33,29 +33,10 @@ public class Dish {
     private int dishId;
 
     /**
-     * Constructor for Dish object, each dish is initialised with a name, a waiter who adds that dish and tableNumber.
-     * @param dishName The particular name of the dish from the menu.
-     * @param waiter The waiter who assigned the dish.
-     * @param tableNumber The tableNumber that this dish belongs to.
-     * Preconditions: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
-     */
-    Dish(String dishName, Waiter waiter, int tableNumber) {
-        this.name = dishName;
-        this.waiter = waiter;
-        this.additions = new ArrayList<String>();
-        this.subtractions = new ArrayList<String>();
-        this.price = Restaurant.getMenu().get(dishName).getPrice();
-        this.dishId = numOfDishes;
-        this.tableNumber = tableNumber;
-        this.ingredients = new HashMap<>();
-        numOfDishes++;
-    }
-
-    /**
      * Constructor for Dish object including allowed Additions and Subtractions.
      * @param dishName The particular name of the dish from the menu.
-     * @param dishAdditions All Dish Additions allowed.
-     * @param dishSubtractions All Dish subtractions asked by the client.
+     * @param dishAdditions Dish additions requested by the customer.
+     * @param dishSubtractions Dish subtractions requested by the customer.
      * @param waiter The waiter who assigned this Dish.
      * @param tableNumber The tableNumber that this dish belongs to.
      * Precondition: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
