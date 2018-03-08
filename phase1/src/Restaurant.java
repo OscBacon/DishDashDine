@@ -9,31 +9,55 @@ import java.util.HashMap;
 
 
 public class Restaurant {
-    // A HashMap representation of the inventory
+    /**
+     * A HashMap representation of the inventory.
+     */
     private static HashMap<String, InventoryItem> inventory;
 
-    // A HashMap representation of the menu
+    /**
+     * A HashMap representation of the menu.
+     */
     private static HashMap<String, MenuItem> menu;
 
-    // An Array of the Waiters' names
+    /**
+     * An Array of the Waiters' names.
+     */
     private static ArrayList<String> waiterNameList;
 
+    /**
+     * The Type of menu.
+     * This is used when parsing menu.json.
+     */
     private static Type menuType = new TypeToken<HashMap<String, MenuItem>>() {
     }.getType();
+    /**
+     * The Type of inventory.
+     * This is used when parsing inventory.json.
+     */
     private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {
     }.getType();
 
-    // A list of all objects that can listen to events
+    /**
+     * A list of all objects that can listen to events.
+     */
     private static HashMap<String, Listener> listenerList = new HashMap<>();
 
-    // An attribute to keep track of whether or not this Restaurant is running
+    /**
+     * An attribute to keep track of whether or not this Restaurant is running.
+     */
     private static boolean running = true;
 
-    // Keeps track of whether or not menu was modified since start
+    /**
+     * Keeps track of whether or not menu was modified since start.
+     */
     private static boolean menuModified;
-    // Keeps track of whether or not inventory was modified since start
+    /**
+     * Keeps track of whether or not inventory was modified since start.
+     */
     private static boolean inventoryModified;
-    // Keeps track of whether or not waiterList was modified since start
+    /**
+     * Keeps track of whether or not waiterList was modified since start.
+     */
     private static boolean waiterListModified;
 
 
