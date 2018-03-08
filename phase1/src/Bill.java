@@ -81,13 +81,12 @@ public class Bill {
      * @return String
      */
     public String toString() {
-        String currentBill = "Thank you for joining us today. Your Waiter today was " + this.waiter.getName() + "\n" +
-                "TABLE NUMBER: " + this.tableNumber +"\n";
+        String currentBill = "\nThank you for joining us today. Your Waiter today was " + this.waiter.getName() + "\n" +
+                "TABLE NUMBER: " + this.tableNumber + "\n";
         for (Integer key : dishList.keySet()) {
-            currentBill += "[" + dishList.get(key) + ": " + dishList.get(key).getPrice() + "]" + "\n";
+            currentBill += "  " + dishList.get(key) + ": $" + dishList.get(key).getPrice() + "\n";
         }
-        currentBill += "TOTAL PRICE: " + getTotalBillPrice();
+        currentBill += "TOTAL PRICE: $" + getTotalBillPrice();
         return currentBill;
     }
-
 }

@@ -152,10 +152,10 @@ public class Dish {
     public String toString() {
         String fullDish = this.name;
         for (String addition : this.additions) {
-            fullDish += "+" + addition;
+            fullDish += " +" + addition;
         }
         for (String eachSubtraction : this.subtractions) {
-            fullDish += "-" + eachSubtraction;
+            fullDish += " -" + eachSubtraction;
         }
         return fullDish;
     }
