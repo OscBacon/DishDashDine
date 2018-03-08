@@ -237,6 +237,7 @@ public class Restaurant {
             writer.write(item.toUpperCase() + " is needed in 20 quantities.");
             writer.newLine();
             writer.close();
+            System.out.println("Wrote request for " + item);
         } catch (IOException e) {
             System.out.println("requests.txt is busy, can't add request");
         }
