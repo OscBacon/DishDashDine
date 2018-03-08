@@ -133,8 +133,16 @@ public class Waiter extends Listener {
         bill.addDish(dish);
     }
 
-    private void recallDish(int dishID) {
+    private void removeDish(int dishID){
+        Dish dish = dishList.get(dishID);
+        Bill bill = billList.get(dish.getTableNumber());
+        bill.removeDish(dishID);
+    }
 
+    private void recallDish(int dishID) {
+        removeDish(dishID);
+        Dish dish = dishList.get(dishID);
+        createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions());
     }
 
     private void showBill(int billID) {
