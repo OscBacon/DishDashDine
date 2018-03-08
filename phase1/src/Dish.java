@@ -15,6 +15,7 @@ public class Dish {
     private int dishId;
     private HashMap ingredients;
 
+
     public Dish(String dishName, Waiter waiter) {
         this.name = dishName;
         this.waiter = waiter;
