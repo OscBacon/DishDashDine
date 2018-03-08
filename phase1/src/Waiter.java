@@ -7,7 +7,7 @@ public class Waiter extends Listener {
     private HashMap<Integer, Bill> billList;
 
     // all dishes ever ordered
-    private ArrayList<Dish> dishList;
+    private HashMap<Integer, Dish> dishList;
 
     private String name;
 
@@ -89,7 +89,7 @@ public class Waiter extends Listener {
 
         if (Restaurant.checkInventory(ingredients)) {
             Dish dish = new Dish(item, additions, subtractions, this);
-            dishList.add(dish);
+            dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
             for (String ingredient : ingredients.keySet()) {
                 Integer quantity = ingredients.get(ingredient);
@@ -106,7 +106,7 @@ public class Waiter extends Listener {
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         if (Restaurant.checkInventory(ingredients)) {
             Dish dish = new Dish(item, this);
-            dishList.add(dish);
+            dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
             for (String ingredient : ingredients.keySet()) {
                 Integer quantity = ingredients.get(ingredient);
@@ -126,9 +126,13 @@ public class Waiter extends Listener {
     }
 
     private void confirmDishDelivery(int dishID) {
+        Dish dish = dishList.get(dishID);
+        Bill bill = billList.get(dish.getTableNumber());
+        bill.addDish(dish);
     }
 
     private void recallDish(int dishID) {
+
     }
 
     private void showBill(int billID) {
