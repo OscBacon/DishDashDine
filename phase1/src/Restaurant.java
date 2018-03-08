@@ -130,15 +130,11 @@ public class Restaurant {
                 running = false;
                 break;
             default:
-                if (listenerList.get(in) != null)
-                {
+                if (listenerList.get(in) != null) {
                     Listener calledListener = listenerList.get(in);
                     // Calls the concerned Listener's handleEvent method
                     calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
-                }
-
-                else
-                {
+                } else {
                     System.out.println("Sorry, a line in events.txt has been written incorrectly, and the program " +
                             "could not process the input. Worry not, though! Everything is under control.");
                 }
@@ -350,4 +346,5 @@ public class Restaurant {
         waiterListModified = true;
         System.out.println("Waiter " + name + " removed.");
     }
+
 }

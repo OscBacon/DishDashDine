@@ -24,7 +24,10 @@ Notes:
     A dish may be cancelled only before some cook confirms it. Once confirmed by a cook, the server can at most remove
     the dish, but the ingredients that were to be used for the dish are not recovered - they're considered gone.
 
-    We have included several dishes in our Menu but
+    We have included several dishes in our Menu but to try a more extensive list, feel free to follow the menu.json
+    format and add dishes that you would like to order. Duly note however that you might have to update the inventory to
+    include a wider range of ingredients!
+
 Input format to events.txt:
 
     *** Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a
