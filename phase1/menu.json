@@ -18,16 +18,17 @@
   "Pasta": {
     "price": 5,
     "ingredients": {
-    "pasta": 11,
+      "pasta": 11,
       "Red Sauce": 9,
-      "Salt": 1,
+      "Salt": 1
     },
     "allowedAdditions": [
-      "mushrooms", "pineapple"
+      "mushrooms",
+      "pineapple"
     ],
     "allowedSubtractions": [
-      "Salt", "Red Sauce"
+      "Salt",
+      "Red Sauce"
     ]
-
   }
 }
