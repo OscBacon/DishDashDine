@@ -16,6 +16,11 @@ public class Waiter implements Listener {
     // all dishes ever ordered
     private HashMap<Integer, Dish> dishList;
 
+    /**
+     * All the Bills that have been paid, accessible with the Bill id.
+     */
+    private HashMap<Integer,Bill> archivedBillList;
+
     private String name;
 
     public Waiter(String name) {
