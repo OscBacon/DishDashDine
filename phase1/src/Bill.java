@@ -1,10 +1,21 @@
 import java.util.ArrayList;
 
 public class Bill {
-
+    /**
+     * The current number of bills.
+     */
     private static int numOfBills;
+    /**
+     * This Bill's table.
+     */
     private int tableNumber;
+    /**
+     * This Bill's Waiter.
+     */
     private Waiter waiter;
+    /**
+     * An ArrayList of this Bill's Dishes.
+     */
     private ArrayList<Dish> dishList;
 
     public Bill(int tableNumber, Waiter waiter) {
