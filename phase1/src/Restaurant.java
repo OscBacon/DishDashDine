@@ -50,10 +50,6 @@ public class Restaurant {
     /**
      * Keeps track of whether or not menu was modified since start.
      */
-    private static boolean menuModified;
-    /**
-     * Keeps track of whether or not inventory was modified since start.
-     */
     private static boolean inventoryModified;
     /**
      * Keeps track of whether or not waiterList was modified since start.
@@ -293,12 +289,6 @@ public class Restaurant {
         if (inventoryModified) {
             FileWriter writer = new FileWriter("inventory.json");
             gson.toJson(inventory, writer);
-            writer.close();
-        }
-
-        if (menuModified) {
-            FileWriter writer = new FileWriter("menu.json");
-            gson.toJson(menu, writer);
             writer.close();
         }
 
