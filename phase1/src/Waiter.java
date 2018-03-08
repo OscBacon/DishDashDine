@@ -201,28 +201,8 @@ public class Waiter implements Listener {
      * @param tableNumber The number of the table that this dish is to be served to.
      */
     private void createDish(String item, String tableNumber) {
-        //Item is in the Menu
-        if (Restaurant.getMenu().containsKey(item)) {
-            MenuItem menuItem = Restaurant.getMenu().get(item);
-            HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
-            ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
-            if (missingIngredients.isEmpty()) {
-                Dish dish = new Dish(item, this, Integer.valueOf(tableNumber));
-                dish.setIngredients(ingredients);
-                dishList.put(dish.getDishId(), dish);
-                Kitchen.addDish(dish);
-                for (String ingredient : ingredients.keySet()) {
-                    Integer quantity = ingredients.get(ingredient);
-                    Restaurant.removeFromInventory(ingredient, quantity);
-                }
-                printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
-            } else {
-                printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
-            }
-        }
-        else {
-            printToScreen("Can't order dish, " + item + " does not exist in the menu");
-        }
+        // creates a Dish with no additions or subtractions
+        createDish(item, new ArrayList<>(), new ArrayList<>(), tableNumber);
     }
 
 
