@@ -87,7 +87,7 @@ public class Waiter implements Listener {
     }
 
     // helper for .createDish, alters Ingredients based on additions and subtractions
-    private HashMap<String, Integer> makeSubstitutions(MenuItem menuItem, HashMap<String, Integer> ingredients,
+    private boolean madeSubstitutions(MenuItem menuItem, HashMap<String, Integer> ingredients,
                                                        ArrayList<String> additions, ArrayList<String> subtractions) {
         for (String addition : additions) {
             if (menuItem.getAllowedAdditions().contains(addition)) {
@@ -97,7 +97,8 @@ public class Waiter implements Listener {
                     ingredients.put(addition, 1);
                 }
             } else {
-                this.printToScreen("You can't add " + addition + ".");
+                this.printToScreen("Can't order: You can't add " + addition + ".");
+                return false;
             }
         }
         // removing <subtractions> from <ingredients>
@@ -105,31 +106,43 @@ public class Waiter implements Listener {
             if (menuItem.getAllowedSubtractions().contains(subtraction)) {
                 ingredients.remove(subtraction);
             } else {
-                this.printToScreen("You can't remove " + subtraction + ".");
+                this.printToScreen("Can't order: You can't remove " + subtraction + ".");
+                return false;
             }
         }
-        return ingredients;
+        return true;
     }
 
     // Precondition: <item> is on the menu
     private void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
         MenuItem menuItem = Restaurant.getMenu().get(item);
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
-        ingredients = makeSubstitutions(menuItem, ingredients, additions, subtractions);
 
-        ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
-        if (missingIngredients.isEmpty()) {
-            Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
-            dishList.put(dish.getDishId(), dish);
-            Kitchen.addDish(dish);
-            for (String ingredient : ingredients.keySet()) {
-                Integer quantity = ingredients.get(ingredient);
-                Restaurant.removeFromInventory(ingredient, quantity);
+        // Attempt to create dish if substitutions were valid.
+        if (madeSubstitutions(menuItem, ingredients, additions, subtractions)){
+
+            ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
+            // There are sufficient ingredients, create the dish
+            if (missingIngredients.isEmpty()) {
+                Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
+                dishList.put(dish.getDishId(), dish);
+                Kitchen.addDish(dish);
+                for (String ingredient : ingredients.keySet()) {
+                    Integer quantity = ingredients.get(ingredient);
+                    Restaurant.removeFromInventory(ingredient, quantity);
+                }
             }
+            // There are insufficient ingredients to complete the order
+            else {
+                printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
+            }
+<<<<<<< HEAD
+=======
             printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
             printToScreen("It has the following additions: " + additions + ", and substractions: " + subtractions + "!");
         } else {
             printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
+>>>>>>> 6740585625a215cc528ad2b18f3e3d5f5668783c
         }
     }
 
