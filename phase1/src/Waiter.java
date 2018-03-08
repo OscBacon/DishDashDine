@@ -22,7 +22,7 @@ public class Waiter extends Listener {
     public void handleEvent(String[] inputArray) {
         if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if (inputArray[0].trim().equals("ordered")) {
+            if (inputArray[0].equals("ordered")) {
                 // Create an array from the String of ingredients separated by commas
                 String[] additionsArray = inputArray[2].split("(,)?");
                 String[] subtractionsArray = inputArray[3].split("(,)?");
@@ -31,27 +31,27 @@ public class Waiter extends Listener {
                 ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
                 ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
 
-                this.createDish(inputArray[1].trim(), add, sub);
+                this.createDish(inputArray[1], add, sub);
             }
         } else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            switch (inputArray[0].trim()) {
+            switch (inputArray[0]) {
                 case "requested bill":
-                    this.showBill(Integer.valueOf(inputArray[1].trim()));
+                    this.showBill(Integer.valueOf(inputArray[1]));
                     break;
                 case "ordered":
-                    this.createDish(inputArray[1].trim());
+                    this.createDish(inputArray[1]);
                     break;
                 case "delivered dish":
-                    this.confirmDishDelivery(Integer.valueOf(inputArray[1].trim()));
+                    this.confirmDishDelivery(Integer.valueOf(inputArray[1]));
                     break;
                 case "recalled dish":
-                    this.recallDish(Integer.valueOf(inputArray[1].trim()));
+                    this.recallDish(Integer.valueOf(inputArray[1]));
                     break;
                 case "new bill":
-                    this.createBill(Integer.valueOf(inputArray[1].trim()));
+                    this.createBill(Integer.valueOf(inputArray[1]));
                 case "pay bill":
-                    this.payBill(Integer.valueOf(inputArray[1].trim()));
+                    this.payBill(Integer.valueOf(inputArray[1]));
             }
         }
     }
