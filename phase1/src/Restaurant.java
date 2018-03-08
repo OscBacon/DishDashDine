@@ -159,13 +159,21 @@ public class Restaurant {
     public static void addToInventory(String ingredient, Integer quantity) {
         if (inventory.containsKey(ingredient)) {
             InventoryItem inventoryItem = inventory.get(ingredient);
+
+            System.out.println("" + quantity + " units of " + ingredient + " were added to the inventory.");
+
             int currQuantity = inventoryItem.getQuantity();
+
+            System.out.println("There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
+
             inventory.get(ingredient).setQuantity(currQuantity + quantity);
         } else {
             inventory.put(ingredient, new InventoryItem(quantity));
         }
 
         inventoryModified = true;
+
+
     }
 
     /**
