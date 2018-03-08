@@ -246,30 +246,25 @@ public class Restaurant {
     private static void run() {
         File eventsFile = new File("events.txt");
         long lastModified = eventsFile.lastModified();
-        String savedLastLine = "";
         while (running) {
             if (eventsFile.lastModified() != lastModified) {
                 String lastLine = "";
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader("events.txt"));
-
-
                     String currLine = reader.readLine();
                     while (currLine != null) {
                         lastLine = currLine;
                         currLine = reader.readLine();
                     }
                     reader.close();
-                    System.out.println(lastLine);
 
                 } catch (IOException e) {
                     System.out.println("events.txt is busy, looping again");
                 } catch (NullPointerException ignore) {
                 }
 
-                if (!lastLine.equals(savedLastLine)) {
+                if (!lastLine.equals("")) {
                     lastModified = eventsFile.lastModified();
-                    savedLastLine = lastLine;
                     handleInput(lastLine);
                 }
             }
