@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-/**
- *
- */
 public class Waiter extends Listener{
     // all paid and unpaid Bills
     private HashMap<Integer, Bill> billList;
@@ -16,6 +13,10 @@ public class Waiter extends Listener{
 
     public Waiter(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     //TODO: create method bodies
