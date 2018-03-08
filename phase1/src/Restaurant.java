@@ -92,9 +92,6 @@ public class Restaurant {
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
 
-        System.out.println("Inventory: " + inventory);
-        System.out.println("Menu: " + menu);
-
         System.out.println(printInventory());
 
         run();
