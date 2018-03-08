@@ -74,26 +74,28 @@ public abstract class Actions {
     }
 
     /**
-     * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with no substitutions.
+     * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with no substitutions for a certain table.
      *
      * @param waiter   The waiter who places the order.
      * @param itemName The name of the menu item that is being ordered.
+     * @param tableNumber The number of the table this dished has been ordered from.
      */
-    public void orderDish(String waiter, String itemName) {
-        eventWriter(waiter + " | ordered | " + itemName);
+    public void orderDish(String waiter, String itemName, String tableNumber) {
+        eventWriter(waiter + " | ordered | " + itemName + " | for table | " + tableNumber);
     }
 
     /**
-     * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with substitutions.
+     * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with substitutions for a certain table.
      *
      * @param waiter       The waiter who places the order.
      * @param itemName     The name of the menu item that is being ordered.
      * @param additions    The ingredients that must be added to the ordered item.
      * @param subtractions The ingredients that must be removed from the ordered item.
+     * @param tableNumber The number of the table this dished has been ordered from.
      */
     // Additions and/or subtractions can be empty strings.
-    public void orderDish(String waiter, String itemName, String additions, String subtractions) {
-        eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions);
+    public void orderDish(String waiter, String itemName, String additions, String subtractions, String tableNumber) {
+        eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | " + tableNumber);
     }
 
     /**

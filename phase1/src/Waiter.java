@@ -22,27 +22,32 @@ public class Waiter extends Listener {
     }
 
     public void handleEvent(String[] inputArray) {
-        if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
-        {
-            if (inputArray[0].equals("ordered")) {
-                // Create an array from the String of ingredients separated by commas
-                String[] additionsArray = inputArray[2].split("(,)?");
-                String[] subtractionsArray = inputArray[3].split("(,)?");
 
-                // Convert those arrays to ArrayLists to match with the necessary datatypes.
-                ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
-                ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
-
-                this.createDish(inputArray[1], add, sub);
-            }
-        } else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+        if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
             switch (inputArray[0]) {
                 case "requested bill":
                     this.showBill(Integer.valueOf(inputArray[1]));
                     break;
-                case "ordered":
-                    this.createDish(inputArray[1]);
+                case "ordered": {
+                    if (inputArray.length >= 6) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+                    {
+                        // Create an array from the String of ingredients separated by commas
+                        String[] additionsArray = inputArray[2].split("(,)?");
+                        String[] subtractionsArray = inputArray[3].split("(,)?");
+
+                        // Convert those arrays to ArrayLists to match with the necessary datatypes.
+                        ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
+                        ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
+
+                        this.createDish(inputArray[1], add, sub, inputArray[5]);
+                    }
+
+                    else if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+                    {
+                        this.createDish(inputArray[1], inputArray[3]);
+                    }
+                }
                     break;
                 case "delivered dish":
                     this.confirmDishDelivery(Integer.valueOf(inputArray[1]));
@@ -95,14 +100,14 @@ public class Waiter extends Listener {
     }
 
     // Precondition: <item> is on the menu
-    private void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions) {
+    private void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
         MenuItem menuItem = Restaurant.getMenu().get(item);
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         ingredients = makeSubstitutions(menuItem, ingredients, additions, subtractions);
 
         ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
         if (missingIngredients.isEmpty()) {
-            Dish dish = new Dish(item, additions, subtractions, this);
+            Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
             dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
             for (String ingredient : ingredients.keySet()) {
@@ -115,12 +120,12 @@ public class Waiter extends Listener {
     }
 
     // Precondition: <item> is on the menu
-    private void createDish(String item) {
+    private void createDish(String item, String tableNumber) {
         MenuItem menuItem = Restaurant.getMenu().get(item);
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
         if (missingIngredients.isEmpty()) {
-            Dish dish = new Dish(item, this);
+            Dish dish = new Dish(item, this, Integer.valueOf(tableNumber));
             dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
             for (String ingredient : ingredients.keySet()) {
@@ -156,7 +161,7 @@ public class Waiter extends Listener {
     private void recallDish(int dishID) {
         removeDish(dishID);
         Dish dish = dishList.get(dishID);
-        createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions());
+        createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
     }
 
     private void showBill(int billID) {
