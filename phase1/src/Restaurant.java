@@ -66,6 +66,12 @@ public class Restaurant {
         // Initialize all of the waiters on waiters.txt and add them to waitersList
         BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
         waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
+        if (!waiterNameList.isEmpty()) {
+            for (String waiterName : waiterNameList) listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
+        }
+        else {
+            listenerList.put("Waiter", new Waiter(""));
+        }
 
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
