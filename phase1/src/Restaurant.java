@@ -337,10 +337,15 @@ public class Restaurant {
      * @param name Name of the waiter to be added
      */
     private static void addWaiter(String name) {
-        waiterNameList.add(name);
-        listenerList.put("Waiter " + name, new Waiter(name));
-        waiterListModified = true;
-        System.out.println("Waiter " + name + " added.");
+        if (!waiterNameList.contains(name)) {
+            waiterNameList.add(name);
+            listenerList.put("Waiter " + name, new Waiter(name));
+            waiterListModified = true;
+            System.out.println("Waiter " + name + " added.");
+        }
+        else {
+            System.out.println("Can't add " + name + ", a waiter with the same name already exists");
+        }
     }
 
     /**
@@ -349,10 +354,15 @@ public class Restaurant {
      * @param name Name of the waiter to be added
      */
     private static void removeWaiter(String name) {
-        waiterNameList.remove(name);
-        listenerList.remove("Waiter " + name);
-        waiterListModified = true;
-        System.out.println("Waiter " + name + " removed.");
+        if (waiterNameList.contains(name)) {
+            waiterNameList.remove(name);
+            listenerList.remove("Waiter " + name);
+            waiterListModified = true;
+            System.out.println("Waiter " + name + " removed.");
+        }
+        else {
+            System.out.println(name + " is not waiter, cannot be removed.");
+        }
     }
 
 }
