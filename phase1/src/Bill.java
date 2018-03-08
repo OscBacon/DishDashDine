@@ -62,6 +62,14 @@ public class Bill {
     }
 
     /**
+     * Returns this bill's ID.
+     * @return An int representing this Bill's ID.
+     */
+    public int getBillID() {
+        return billID;
+    }
+
+    /**
      * Returns the formatted bill as a String containing each dish, each dish's Price, total Price, the Waiter,
      * and the table number.
      *
