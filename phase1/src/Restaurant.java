@@ -110,7 +110,8 @@ public class Restaurant {
     private static void handleInput(String input) {
         String[] inputArray = input.split("( )?\\|( )?");
 
-        switch (inputArray[0]) {
+        String in = inputArray[0].trim();   // Protects from accidental spaces
+        switch (in) {
             case "Restaurant":
                 switch (inputArray[1]) {
                     case "addToInventory":
@@ -129,9 +130,9 @@ public class Restaurant {
                 running = false;
                 break;
             default:
-                if (listenerList.get(inputArray[0]) != null)
+                if (listenerList.get(in) != null)
                 {
-                    Listener calledListener = listenerList.get(inputArray[0]);
+                    Listener calledListener = listenerList.get(in);
                     // Calls the concerned Listener's handleEvent method
                     calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
                 }
@@ -244,7 +245,7 @@ public class Restaurant {
             writer.write(item.toUpperCase() + " is needed in 20 quantities.");
             writer.newLine();
             writer.close();
-            System.out.println("Wrote request for " + item);
+            System.out.println("Wrote request to stock inventory with " + item);
         } catch (IOException e) {
             System.out.println("requests.txt is busy, can't add request");
         }
@@ -268,8 +269,10 @@ public class Restaurant {
                     }
                     reader.close();
 
+                    System.out.println();
+
                 } catch (IOException e) {
-                    System.out.println("events.txt is busy, looping again");
+                    System.out.print(".");
                 } catch (NullPointerException ignore) {
                 }
 
