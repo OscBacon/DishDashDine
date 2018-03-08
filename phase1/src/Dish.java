@@ -29,6 +29,8 @@ public class Dish {
         this.additions = new ArrayList<String>();
         this.subtractions = new ArrayList<String>();
         this.price = Restaurant.getMenu().get(dishName).getPrice();
+        this.dishId = numOfDishes;
+        numOfDishes++;
     }
 
     /**
@@ -44,6 +46,8 @@ public class Dish {
         this.subtractions = dishSubtractions;
         this.waiter = waiter;
         this.price = Restaurant.getMenu().get(dishName).getPrice();
+        this.dishId = numOfDishes;
+        numOfDishes++;
     }
 
     /**
