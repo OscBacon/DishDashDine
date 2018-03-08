@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A dish object is created when the customer (in the Restaurant) orders a dish and a Waiter initialises a new Dish.
+ * A waiter can initialise a dish with or without substitutions.
+ */
 public class Dish {
-
 
     private static int numOfDishes;
     private String name;
@@ -15,7 +18,11 @@ public class Dish {
     private int dishId;
     private HashMap ingredients;
 
-
+    /**
+     * Constructor for Dish object, each dish
+     * @param dishName
+     * @param waiter
+     */
     public Dish(String dishName, Waiter waiter) {
         this.name = dishName;
         this.waiter = waiter;

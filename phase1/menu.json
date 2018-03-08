@@ -14,5 +14,20 @@
       "salad",
       "pineapple"
     ]
+  },
+  "Pasta": {
+    "price": 5,
+    "ingredients": {
+    "pasta": 11,
+      "Red Sauce": 9,
+      "Salt": 1,
+    },
+    "allowedAdditions": [
+      "mushrooms", "pineapple"
+    ],
+    "allowedSubtractions": [
+      "Salt", "Red Sauce"
+    ]
+
   }
 }
