@@ -50,10 +50,6 @@ public class Restaurant {
     /**
      * Keeps track of whether or not menu was modified since start.
      */
-    private static boolean menuModified;
-    /**
-     * Keeps track of whether or not inventory was modified since start.
-     */
     private static boolean inventoryModified;
     /**
      * Keeps track of whether or not waiterList was modified since start.
@@ -96,9 +92,6 @@ public class Restaurant {
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
 
-        System.out.println("Inventory: " + inventory);
-        System.out.println("Menu: " + menu);
-
         System.out.println(printInventory());
 
         run();
@@ -115,7 +108,7 @@ public class Restaurant {
      * @param input The event input
      */
     private static void handleInput(String input) {
-        String[] inputArray = input.split("\\|");
+        String[] inputArray = input.split("( )?\\|( )?");
 
         switch (inputArray[0]) {
             case "Restaurant":
@@ -241,6 +234,7 @@ public class Restaurant {
             writer.write(item.toUpperCase() + " is needed in 20 quantities.");
             writer.newLine();
             writer.close();
+            System.out.println("Wrote request for " + item);
         } catch (IOException e) {
             System.out.println("requests.txt is busy, can't add request");
         }
@@ -293,12 +287,6 @@ public class Restaurant {
         if (inventoryModified) {
             FileWriter writer = new FileWriter("inventory.json");
             gson.toJson(inventory, writer);
-            writer.close();
-        }
-
-        if (menuModified) {
-            FileWriter writer = new FileWriter("menu.json");
-            gson.toJson(menu, writer);
             writer.close();
         }
 
