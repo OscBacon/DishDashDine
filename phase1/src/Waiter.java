@@ -18,7 +18,7 @@ public class Waiter extends Listener{
     public String getName() {
         return name;
     }
-
+    
     public void handleEvent(String[] inputArray)
     {
         if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
