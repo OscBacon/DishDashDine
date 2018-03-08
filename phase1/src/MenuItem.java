@@ -4,17 +4,17 @@ import java.util.HashMap;
 public class MenuItem {
     private final ArrayList<String> allowedAdditions;
     private final ArrayList<String> allowedSubtractions;
-    private int price;
+    private double price;
     private HashMap<String, Integer> ingredients;
 
-    public MenuItem(int price, HashMap<String, Integer> ingredients, ArrayList<String> allowedAdditions, ArrayList<String> allowedSubtractions) {
+    public MenuItem(double price, HashMap<String, Integer> ingredients, ArrayList<String> allowedAdditions, ArrayList<String> allowedSubtractions) {
         this.price = price;
         this.ingredients = ingredients;
         this.allowedAdditions = allowedAdditions;
         this.allowedSubtractions = allowedSubtractions;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
