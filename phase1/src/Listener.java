@@ -4,12 +4,12 @@ public interface Listener {
      *
      * @param inputArray the input to be handled, split into an array
      */
-    public void handleEvent(String[] inputArray);
+    void handleEvent(String[] inputArray);
 
     /**
      * Simulates printing information to a specific Object's "Screen" by adding the target's name to println.
      *
      * @param s String to be printed
      */
-    public void printToScreen(String s);
+    void printToScreen(String s);
 }
