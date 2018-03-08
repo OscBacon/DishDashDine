@@ -1,12 +1,22 @@
 import java.util.ArrayList;
 
 public class Bill {
-
+    /**
+     * The current number of bills.
+     */
     private static int numOfBills;
+    /**
+     * This Bill's table.
+     */
     private int tableNumber;
+    /**
+     * This Bill's Waiter.
+     */
     private Waiter waiter;
+    /**
+     * An ArrayList of this Bill's Dishes.
+     */
     private ArrayList<Dish> dishList;
-    private int billId;
 
     public Bill(int tableNumber, Waiter waiter) {
         this.tableNumber = tableNumber;
@@ -37,11 +47,7 @@ public class Bill {
         }
     }
 
-    public int getBillId() {
-        return this.billId;
-    }
-
-    public int totalBillPrice() {
+    public int getTotalBillPrice() {
         int price = 0;
         for (Dish currentDish : dishList) {
             price += currentDish.getPrice();
@@ -61,7 +67,7 @@ public class Bill {
         for (Dish currentDish : dishList) {
             currentBill += "[" + currentDish + ": " + currentDish.getPrice() + "]" + "\n";
         }
-        currentBill += "TOTAL PRICE: " + totalBillPrice();
+        currentBill += "TOTAL PRICE: " + getTotalBillPrice();
         return currentBill;
     }
 
