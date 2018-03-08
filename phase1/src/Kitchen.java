@@ -40,7 +40,7 @@ public class Kitchen implements Listener {
     private void readyDish(String dishID) {
         Dish dish = dishList.get(dishID);
 
-        dish.getWaiter().printToScreen("Dish " + dish.getDishId() + " for table " +
+        dish.getWaiter().printToScreen("Dish " + dish.getName() + " (Dish id " + dishID + ") for Table " +
                 dish.getTableNumber() + " is ready for pick-up.");
 
         removeDish(dish);
@@ -56,6 +56,7 @@ public class Kitchen implements Listener {
         Dish dish = dishList.get(dishID);
 
         removeDish(dish);
+        printToScreen("Dish " + dish.getName() + " has been canceled");
     }
 
     /**
@@ -68,6 +69,8 @@ public class Kitchen implements Listener {
         Dish dish = dishList.get(dishID);
 
         dish.setCook(cook);
+
+        printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + dishID + ")!");
     }
 
     /**

@@ -92,7 +92,7 @@ public class Waiter implements Listener {
                     ingredients.put(addition, 1);
                 }
             } else {
-                this.printToScreen("You can't add " + addition);
+                this.printToScreen("You can't add " + addition + ".");
             }
         }
         // removing <subtractions> from <ingredients>
@@ -100,7 +100,7 @@ public class Waiter implements Listener {
             if (menuItem.getAllowedSubtractions().contains(subtraction)) {
                 ingredients.remove(subtraction);
             } else {
-                this.printToScreen("You can't remove " + subtraction);
+                this.printToScreen("You can't remove " + subtraction + ".");
             }
         }
         return ingredients;
@@ -121,6 +121,8 @@ public class Waiter implements Listener {
                 Integer quantity = ingredients.get(ingredient);
                 Restaurant.removeFromInventory(ingredient, quantity);
             }
+            printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
+            printToScreen("It has the following additions: " + additions + ", and substractions: " + subtractions + "!");
         } else {
             printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
         }
@@ -139,6 +141,7 @@ public class Waiter implements Listener {
                 Integer quantity = ingredients.get(ingredient);
                 Restaurant.removeFromInventory(ingredient, quantity);
             }
+            printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
         } else {
             printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
         }
