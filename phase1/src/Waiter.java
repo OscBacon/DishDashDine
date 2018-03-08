@@ -135,10 +135,6 @@ public class Waiter extends Listener {
         printToScreen(billList.get(billID).toString());
     }
 
-    public void printToScreen(String output) {
-        super.printToScreen(output);
-    }
-
     public String toString() {
         return this.name;
     }

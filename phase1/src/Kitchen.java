@@ -88,14 +88,4 @@ public class Kitchen extends Listener {
             }
         }
     }
-
-    /**
-     * Prints the input string s to this object's screen.
-     *
-     * @param s String to be printed.
-     */
-    @Override
-    public void printToScreen(String s) {
-        super.printToScreen(s);
-    }
 }
