@@ -58,8 +58,8 @@ public class Bill {
         return dishList;
     }
 
-    private int getTotalBillPrice() {
-        int price = 0;
+    private double getTotalBillPrice() {
+        double price = 0.0;
         for (Integer key : dishList.keySet()) {
             price += dishList.get(key).getPrice();
         }
@@ -81,12 +81,14 @@ public class Bill {
      * @return String
      */
     public String toString() {
-        String currentBill = "\nThank you for joining us today. Your Waiter today was " + this.waiter.getName() + "\n" +
-                "TABLE NUMBER: " + this.tableNumber + "\n";
+        ArrayList<String> billStrings = new ArrayList<>();
+        billStrings.add("Thank you for joining us today. Your Waiter today was " + this.waiter.getName());
+        billStrings.add("TABLE NUMBER: " + this.tableNumber);
         for (Integer key : dishList.keySet()) {
-            currentBill += "  " + dishList.get(key) + ": $" + dishList.get(key).getPrice() + "\n";
+            String formattedPrice = String.format("%.2f",dishList.get(key).getPrice());
+            billStrings.add("  " + dishList.get(key) + ": $" + formattedPrice);
         }
-        currentBill += "TOTAL PRICE: $" + getTotalBillPrice();
-        return currentBill;
+        billStrings.add("TOTAL PRICE: $" + String.format("%.2f", getTotalBillPrice()));
+        return System.lineSeparator() + String.join(System.lineSeparator(), billStrings);
     }
 }
