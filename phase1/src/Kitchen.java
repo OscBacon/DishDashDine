@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Kitchen extends Listener {
+public class Kitchen implements Listener {
 
     private static HashMap<String, Dish> dishList;  // This kitchen's list of active dishes
 
@@ -87,5 +87,9 @@ public class Kitchen extends Listener {
                 this.acceptDish(inputArray[0], inputArray[2]);
             }
         }
+    }
+
+    public void printToScreen(String s) {
+        System.out.println("Kitchen: " + s);
     }
 }

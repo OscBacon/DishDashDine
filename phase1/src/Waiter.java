@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Waiter extends Listener {
+public class Waiter implements Listener {
     // all unpaid Bills
     private HashMap<Integer, Bill> billList;
 
@@ -204,5 +204,9 @@ public class Waiter extends Listener {
 
     public String toString() {
         return this.name;
+    }
+
+    public void printToScreen(String s) {
+        System.out.println(name + ": " + s);
     }
 }
