@@ -14,15 +14,12 @@ public class Waiter extends Listener{
     public Waiter(String name) {
         this.name = name;
     }
-
-<<<<<<< HEAD
+    
     public String getName() {
         return name;
     }
 
     //TODO: create method bodies
-=======
->>>>>>> 9319b47a77dbbb3dd91178a483ba59f2794d3274
     public void handleEvent(String[] inputArray)
     {
         if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
