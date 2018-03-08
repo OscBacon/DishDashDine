@@ -6,7 +6,7 @@ import java.util.HashMap;
  *
  */
 public class Waiter extends Listener{
-    // all paid and unpaid Bills
+    // all unpaid Bills
     private HashMap<Integer, Bill> billList;
 
     // all dishes ever ordered
@@ -18,7 +18,6 @@ public class Waiter extends Listener{
         this.name = name;
     }
 
-    //TODO: create method bodies
     public void handleEvent(String[] inputArray)
     {
         if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
@@ -52,6 +51,10 @@ public class Waiter extends Listener{
                 case "recalled dish":
                     this.recallDish(Integer.valueOf(inputArray[1].trim()));
                     break;
+                case "new bill":
+                    this.createBill(Integer.valueOf(inputArray[1].trim()));
+                case "pay bill":
+                    this.payBill(Integer.valueOf(inputArray[1].trim()));
             }
         }
     }
@@ -120,6 +123,14 @@ public class Waiter extends Listener{
         else {
             printToScreen("Can't order dish: ingredients missing");
         }
+    }
+
+    private void createBill(int tableNum){
+        Bill bill = new Bill(tableNum, this);
+        billList.put(tableNum, bill);
+    }
+
+    private void payBill(int tableNum){
     }
 
     private void confirmDishDelivery(int dishID){
