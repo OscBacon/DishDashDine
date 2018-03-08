@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Bill {
     /**
@@ -18,14 +19,14 @@ public class Bill {
      */
     private Waiter waiter;
     /**
-     * An ArrayList of this Bill's Dishes.
+     * A HashMap of this Bill's Dishes.
      */
-    private ArrayList<Dish> dishList;
+    private HashMap<Integer,Dish> dishList;
 
     public Bill(int tableNumber, Waiter waiter) {
         this.tableNumber = tableNumber;
         this.waiter = waiter;
-        this.dishList = new ArrayList<Dish>();
+        this.dishList = new HashMap<>();
         this.billID = numOfBills;
         numOfBills++;
     }
@@ -37,7 +38,7 @@ public class Bill {
      * @param dish Waiter passes in a dish to the bill which is added to ArrayList dishList
      */
     public void addDish(Dish dish) {
-        dishList.add(dish);
+        dishList.put(dish.getDishId(), dish);
     }
 
     /**
@@ -46,17 +47,13 @@ public class Bill {
      * @param currentDishID specific Dish ID passed to remove the dish from this specific Bill.
      */
     public void removeDish(int currentDishID) {
-        for (int i = 0; i < this.dishList.size(); i++) {
-            if (dishList.get(i).getDishId() == currentDishID) {
-                dishList.remove(i);
-            }
-        }
+        dishList.remove(currentDishID);
     }
 
     public int getTotalBillPrice() {
         int price = 0;
-        for (Dish currentDish : dishList) {
-            price += currentDish.getPrice();
+        for (Integer key : dishList.keySet()) {
+            price += dishList.get(key).getPrice();
         }
         return price;
     }
@@ -78,8 +75,8 @@ public class Bill {
     public String toString() {
         String currentBill = "Thank you for joining us today. Your Waiter today was " + this.waiter.getName() + "\n" +
                 " TABLE NUMBER: " + this.tableNumber;
-        for (Dish currentDish : dishList) {
-            currentBill += "[" + currentDish + ": " + currentDish.getPrice() + "]" + "\n";
+        for (Integer key : dishList.keySet()) {
+            currentBill += "[" + dishList.get(key) + ": " + dishList.get(key).getPrice() + "]" + "\n";
         }
         currentBill += "TOTAL PRICE: " + getTotalBillPrice();
         return currentBill;
