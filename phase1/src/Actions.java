@@ -61,6 +61,17 @@ public abstract class Actions {
      * Writes to events.txt, simulating the input of a waiter asking to see a certain bill.
      *
      * @param waiter     The waiter that wants to see a bill.
+     * @param tableNumber The bill this waiter wishes to see.
+     */
+    public void requestActiveBill(String waiter, String tableNumber) {
+        eventWriter(waiter + " | requested bill for table | " + tableNumber);
+    }
+
+
+    /**
+     * Writes to events.txt, simulating the input of a waiter asking to see a certain bill.
+     *
+     * @param waiter     The waiter that wants to see a bill.
      * @param billNumber The bill this waiter wishes to see.
      */
     public void requestBill(String waiter, String billNumber) {
@@ -73,8 +84,8 @@ public abstract class Actions {
      *
      * @param dishID The id of the dish that has been cancelled.
      */
-    public void cancelDish(String dishID) {
-        eventWriter("Kitchen | Dish | " + dishID + " | cancelled.");
+    public void cancelDish(String waiter, String dishID) {
+        eventWriter(waiter + " | cancelled dish | " + dishID);
     }
 
 
@@ -183,20 +194,20 @@ public abstract class Actions {
     /**
      * Writes to events.txt, simulating the input of a manager adding a waiter into the system.
      *
-     * @param waiter The name of the waiter the manager is adding into the system.
+     * @param waiterName The name of the waiter the manager is adding into the system.
      */
-    public void addWaiter(String waiter) {
-        eventWriter("Restaurant | addWaiter | " + waiter);
+    public void addWaiter(String waiterName) {
+        eventWriter("Restaurant | addWaiter | " + waiterName);
     }
 
 
     /**
      * Writes to events.txt, simulating the input of a manager removing a waiter from the system.
      *
-     * @param waiter The name of the waiter the manager is removing from the system.
+     * @param waiterName The name of the waiter the manager is removing from the system.
      */
-    public void removeWaiter(String waiter) {
-        eventWriter("Restaurant | removeWaiter | " + waiter);
+    public void removeWaiter(String waiterName) {
+        eventWriter("Restaurant | removeWaiter | " + waiterName);
     }
 
 }

@@ -25,12 +25,12 @@ public class Dish {
     private String name;
     private ArrayList<String> additions;
     private ArrayList<String> subtractions;
+    private HashMap<String, Integer> ingredients;
     private int tableNumber;
     private Waiter waiter;
     private String cook;
     private double price;
     private int dishId;
-    private HashMap ingredients;
 
     /**
      * Constructor for Dish object, each dish is initialised with a name, a waiter who adds that dish and tableNumber.
@@ -47,6 +47,7 @@ public class Dish {
         this.price = Restaurant.getMenu().get(dishName).getPrice();
         this.dishId = numOfDishes;
         this.tableNumber = tableNumber;
+        this.ingredients = new HashMap<>();
         numOfDishes++;
     }
 
@@ -68,20 +69,31 @@ public class Dish {
         this.price = Restaurant.getMenu().get(dishName).getPrice();
         this.dishId = numOfDishes;
         this.tableNumber = tableNumber;
+        this.ingredients = new HashMap<>();
         numOfDishes++;
     }
 
     /**
+<<<<<<< HEAD
      * Getter for NumOfDishes
      * @return numOfDishes: returns the number of dishes
+=======
+     * Sets the ingredients HashMap equal to the input parameter.
+     * @param ingredients Represents the ingredients that are necessary for the preparation of this dish.
+>>>>>>> 07f094d962c584b87ca6a0e1570ade60368031f6
      */
-    public static int getNumOfDishes() {
-        return numOfDishes;
+    public void setIngredients(HashMap<String, Integer> ingredients) {
+        this.ingredients = ingredients;
     }
 
     /**
+<<<<<<< HEAD
      * Getter that returns the String for Dish name
      * @return returns Dish name
+=======
+     * Returns the dish's name.
+     * @return String representing the Dish name
+>>>>>>> 07f094d962c584b87ca6a0e1570ade60368031f6
      */
     public String getName() {
         return name;
@@ -137,7 +149,11 @@ public class Dish {
 
     /**
      * Get the price of the dishName
+<<<<<<< HEAD
      * @return double price
+=======
+     * @return A double representing the price of this dish.
+>>>>>>> 07f094d962c584b87ca6a0e1570ade60368031f6
      */
     public double getPrice() {
         return price;
@@ -153,9 +169,9 @@ public class Dish {
 
     /**
      * Each particular ingredient of the Dish
-     * @return Hashmap
+     * @return HashMap
      */
-    public HashMap getIngredients() {
+    public HashMap<String, Integer> getIngredients() {
         return ingredients;
     }
 

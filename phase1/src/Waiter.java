@@ -13,7 +13,7 @@ public class Waiter implements Listener {
      * All the Bills that have ever been ordered through this waiter, accessible with the Bill id.
      * Includes paid and unpaid bills.
      */
-    private HashMap<Integer,Bill> allBillsList;
+    private HashMap<Integer, Bill> allBillsList;
 
     /**
      * All dishes ever ordered through this waiter.
@@ -82,14 +82,20 @@ public class Waiter implements Listener {
                 case "recalled dish":   // When the customer is unsatisfied and wants a remake of the dish
                     this.recallDish(Integer.valueOf(inputArray[1]));
                     break;
+                case "cancelled dish":   // When the waiter cancels the dish order
+                    this.cancelDish(Integer.valueOf(inputArray[1]));
+                    break;
                 case "new bill":    // When the waiter sits new customers down at a table
                     this.createBill(Integer.valueOf(inputArray[1]));
                     break;
                 case "pay bill":    // When a customer pays a bill
                     this.payBill(Integer.valueOf(inputArray[1]));
                     break;
-                case "requested bill":  // When a waiter wishes to see a bill
+                case "requested bill for table":  // When a waiter wishes to see an active bill
                     this.showBill(Integer.valueOf(inputArray[1]));
+                    break;
+                case "requested bill":  // When a waiter wishes to see any bill
+                    this.showArchivedBill(Integer.valueOf(inputArray[1]));
                     break;
                 case "removed dish":    // When the customer is unsatisfied and does not want a remake of the dish
                     this.removeDish(Integer.valueOf(inputArray[1]));
@@ -162,6 +168,7 @@ public class Waiter implements Listener {
             // There are sufficient ingredients, create the dish
             if (missingIngredients.isEmpty()) {
                 Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
+                dish.setIngredients(ingredients);
                 dishList.put(dish.getDishId(), dish);
                 Kitchen.addDish(dish);
                 for (String ingredient : ingredients.keySet()) {
@@ -193,6 +200,7 @@ public class Waiter implements Listener {
         ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
         if (missingIngredients.isEmpty()) {
             Dish dish = new Dish(item, this, Integer.valueOf(tableNumber));
+            dish.setIngredients(ingredients);
             dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
             for (String ingredient : ingredients.keySet()) {
@@ -254,6 +262,27 @@ public class Waiter implements Listener {
 
 
     /**
+     * Cancels the dish by removing it from the kitchen's dishList.
+     *
+     * Precondition: the dish has not yet been started by the kitchen.
+     *
+     * @param dishID The id of the dish that is to be cancelled.
+     */
+    private void cancelDish(int dishID) {
+        Dish dish = dishList.get(dishID);
+
+        Kitchen.removeDish(dish);
+
+        for (String ingredient : dish.getIngredients().keySet()) {
+            Integer quantity = dish.getIngredients().get(ingredient);
+            Restaurant.addToInventory(ingredient, quantity);
+        }
+
+        printToScreen("Dish " + dishID + " has been cancelled.");
+    }
+
+
+    /**
      * Removes this dish from its table's bill.
      *
      * @param dishID The ID of the dish in question.
@@ -272,9 +301,12 @@ public class Waiter implements Listener {
      * @param dishID The ID of the dish in question.
      */
     private void recallDish(int dishID) {
-        removeDish(dishID);
         Dish dish = dishList.get(dishID);
-        createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
+        //createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
+        // Better to just call Kitchen.addDish?
+        Kitchen.addDish(dish);
+        Bill bill = billList.get(dish.getTableNumber());
+        bill.removeDish(dishID);
         printToScreen("Dish " + dishID + " recalled!");
     }
 
@@ -284,8 +316,18 @@ public class Waiter implements Listener {
      *
      * @param billID The ID of the bill that the waiter wishes to see.
      */
-    private void showBill(int billID) {
+    private void showArchivedBill(int billID) {
         printToScreen(allBillsList.get(billID).toString());
+    }
+
+
+    /**
+     * Finds the active bill for a table and prints the bill.
+     *
+     * @param tableNum The table number of the bill that the waiter wishes to see.
+     */
+    private void showBill(int tableNum) {
+        printToScreen(billList.get(tableNum).toString());
     }
 
 

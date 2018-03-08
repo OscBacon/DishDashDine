@@ -19,6 +19,12 @@ Libraries:
     it allows us to parse and write to / read from .json files, which is necessary for our program. Thanks!
 
 
+Notes:
+
+    A dish may be cancelled only before some cook confirms it. Once confirmed by a cook, the server can at most remove
+    the dish, but the ingredients that were to be used for the dish are not recovered - they're considered gone.
+
+
 Input format to events.txt:
 
     *** Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a
@@ -27,6 +33,7 @@ Input format to events.txt:
 
 
     Kitchen inputs:
+    ---------------
 
         - When a cook confirms that he has seen a dish, the format is as follows:
             String cookName, String dishID
@@ -41,17 +48,24 @@ Input format to events.txt:
 
 
     Waiter inputs:
+    --------------
 
         - When a waiter requests a bill, the format is as follows:
+            String waiter, String tableNumber
+
+            waiter + " | requested bill for table | " + tableNumber
+
+
+        - When a waiter requests to see any bill (active or non-active), the format is as follows:
             String waiter, String billNumber
 
             waiter + " | requested bill | " + billNumber
 
 
         - When a waiter cancels a dish, the format is as follows:
-            String dishID
+            String waiter, String dishID
 
-            "Kitchen | Dish | " + dishID + " | cancelled."
+            waiter + " | cancelled dish | " + dishID
 
 
         - When a waiter places a dish order without substitutions, the format is as follows:
@@ -79,7 +93,26 @@ Input format to events.txt:
             waiter + " | recalled dish | " + dishID
 
 
+        - When a waiter starts a new bill, the format is as follows:
+             String waiter, String tableNumber
+
+             waiter + " | new bill | " + tableNumber
+
+
+        - When a waiter's bill gets paid, the format is as follows:
+            String waiter, String tableNumber
+
+            waiter + " | pay bill | " + tableNumber
+
+
+        - When a waiter must remove a dish from the table, the format is as follows:
+            String waiter, String dishID
+
+            waiter + " | removed dish | " + dishID
+
+
     Receiver inputs:
+    ----------------
 
          - When a receiver wishes to add an ingredient to inventory, the format is as follows:
             String ingredient, String quantity
@@ -87,14 +120,31 @@ Input format to events.txt:
             "Restaurant | addToInventory | " + ingredient + " | " + quantity
 
 
+    Manager inputs:
+    ---------------
 
-Example scenario, to be entered line by line in events.txt:
+        - When a manager wishes to add a waiter into the system, the format is as follows:
+            String waiterName
 
-Waiter Dennis | new bill | 2
-Waiter Dennis | ordered | Kung Pao Chicken | for table | 2
-Kitchen | Mike | has accepted dish | 0
-Kitchen | Dish | 0 | is ready.
-Waiter Dennis | delivered dish | 0
-Waiter Dennis | requested bill | 2
-Waiter Dennis | ordered | Kung Pao Chicken | salad | | for table | 2
-Waiter Dennis | pay bill  | 2
+            "Restaurant | addWaiter | " + waiterName
+
+
+        - When a manager wishes to remove a waiter from the system, the format is as follows:
+            String waiterName
+
+            "Restaurant | removeWaiter | " + waiterName
+
+
+=======================================================================================================================
+
+
+    Example Scenario (to be entered line by line in events.txt):
+
+        Waiter Dennis | new bill | 2
+        Waiter Dennis | ordered | Kung Pao Chicken | for table | 2
+        Kitchen | Mike | has accepted dish | 0
+        Kitchen | Dish | 0 | is ready.
+        Waiter Dennis | delivered dish | 0
+        Waiter Dennis | requested bill | 2
+        Waiter Dennis | ordered | Kung Pao Chicken | salad | | for table | 2
+        Waiter Dennis | pay bill  | 2

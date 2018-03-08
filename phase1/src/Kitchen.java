@@ -25,7 +25,7 @@ public class Kitchen implements Listener {
      *
      * @param dish The dish that is not to be prepared by the Kitchen anymore.
      */
-    private static void removeDish(Dish dish) {
+    public static void removeDish(Dish dish) {
         String id = String.valueOf(dish.getDishId());
 
         dishList.remove(id);
@@ -44,19 +44,6 @@ public class Kitchen implements Listener {
                 dish.getTableNumber() + " is ready for pick-up.");
 
         removeDish(dish);
-    }
-
-    /**
-     * Cancels the dish by removing it from this kitchen's dishList.
-     * Precondition: the dish has not yet been finished by the kitchen.
-     *
-     * @param dishID The id of the dish that is to be cancelled.
-     */
-    private void cancelDish(String dishID) {
-        Dish dish = dishList.get(dishID);
-
-        removeDish(dish);
-        printToScreen("Dish " + dish.getName() + " has been canceled");
     }
 
     /**
@@ -84,8 +71,6 @@ public class Kitchen implements Listener {
         {
             if (inputArray[2].equals("is ready.")) {
                 this.readyDish(inputArray[1]);
-            } else if (inputArray[2].equals("cancelled.")) {
-                this.cancelDish(inputArray[1]);
             } else if (inputArray[1].equals("has accepted dish")) {
                 this.acceptDish(inputArray[0], inputArray[2]);
             }
