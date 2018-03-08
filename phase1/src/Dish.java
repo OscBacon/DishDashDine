@@ -19,17 +19,24 @@ public class Dish {
     private HashMap ingredients;
 
     /**
-     * Constructor for Dish object, each dish
-     * @param dishName
-     * @param waiter
+     * Constructor for Dish object, each dish is initialised with a name and a waiter who adds that dish.
+     * @param dishName Precondition: dishName is already in the menu
+     * @param waiter Precondition: Waiter exists in the restaurant.
      */
     public Dish(String dishName, Waiter waiter) {
         this.name = dishName;
         this.waiter = waiter;
     }
 
-    public Dish(String name, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter) {
-        this.name = name;
+    /**
+     * Constructor for Dish object including allowed Additions and Subtractions.
+     * @param dishName Precondition: dishName is already on the menu.
+     * @param dishAdditions All Dish Additions allowed
+     * @param dishSubtractions All Dish subtractions asked by the client
+     * @param waiter The waiter who assigned this Dish
+     */
+    public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter) {
+        this.name = dishName;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
         this.waiter = waiter;
