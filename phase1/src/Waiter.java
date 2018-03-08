@@ -87,7 +87,8 @@ public class Waiter extends Listener {
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
         ingredients = makeSubstitutions(menuItem, ingredients, additions, subtractions);
 
-        if (Restaurant.checkInventory(ingredients)) {
+        ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
+        if (missingIngredients.isEmpty()) {
             Dish dish = new Dish(item, additions, subtractions, this);
             dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
@@ -96,7 +97,7 @@ public class Waiter extends Listener {
                 Restaurant.removeFromInventory(ingredient, quantity);
             }
         } else {
-            printToScreen("Can't order dish: ingredients missing");
+            printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
         }
     }
 
@@ -104,7 +105,8 @@ public class Waiter extends Listener {
     private void createDish(String item) {
         MenuItem menuItem = Restaurant.getMenu().get(item);
         HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
-        if (Restaurant.checkInventory(ingredients)) {
+        ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
+        if (missingIngredients.isEmpty()) {
             Dish dish = new Dish(item, this);
             dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
@@ -113,7 +115,7 @@ public class Waiter extends Listener {
                 Restaurant.removeFromInventory(ingredient, quantity);
             }
         } else {
-            printToScreen("Can't order dish: ingredients missing");
+            printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
         }
     }
 
