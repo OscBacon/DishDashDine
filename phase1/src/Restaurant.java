@@ -120,14 +120,14 @@ public class Restaurant {
         switch (in) {
             case "Restaurant":
                 switch (inputArray[1]) {
-                    case "addToInventory":
+                    case "add to inventory":
                         // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
                         addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
                         break;
-                    case "addWaiter":
+                    case "add waiter":
                         addWaiter(inputArray[2]);
                         break;
-                    case "removeWaiter":
+                    case "remove waiter":
                         removeWaiter(inputArray[2]);
                         break;
                 }

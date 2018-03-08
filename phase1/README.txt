@@ -121,7 +121,7 @@ Input format to events.txt:
          - When a receiver wishes to add an ingredient to inventory, the format is as follows:
             String ingredient, String quantity
 
-            "Restaurant | addToInventory | " + ingredient + " | " + quantity
+            "Restaurant | add to inventory | " + ingredient + " | " + quantity
 
 
     Manager inputs:
@@ -130,13 +130,13 @@ Input format to events.txt:
         - When a manager wishes to add a waiter into the system, the format is as follows:
             String waiterName
 
-            "Restaurant | addWaiter | " + waiterName
+            "Restaurant | add waiter | " + waiterName
 
 
         - When a manager wishes to remove a waiter from the system, the format is as follows:
             String waiterName
 
-            "Restaurant | removeWaiter | " + waiterName
+            "Restaurant | remove waiter | " + waiterName
 
 
 =======================================================================================================================
