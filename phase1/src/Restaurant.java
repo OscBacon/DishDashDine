@@ -21,7 +21,7 @@ public class Restaurant {
     private static HashMap<String, MenuItem> menu;
 
     // An Array of the Waiters' names
-    private static String[] waiterNameList;
+    private static ArrayList<String> waiterNameList;
 
     private static Type menuType = new TypeToken<HashMap<String,MenuItem>>() {}.getType();
     private static Type inventoryType = new TypeToken<HashMap<String,InventoryItem>>() {}.getType();
@@ -65,8 +65,7 @@ public class Restaurant {
 
         // Initialize all of the waiters on waiters.txt and add them to waitersList
         BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
-        waiterNameList = reader.readLine().split(",[ ]?");
-        for (String waiterName : waiterNameList) listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
+        waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
 
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
