@@ -1,3 +1,10 @@
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -142,8 +149,34 @@ public class Waiter extends Listener {
         billList.put(tableNum, bill);
     }
 
-    //TODO: IMPLEMENT PAYBILL
+    /**
+     * Pays Bill of the given table.
+     * This archives the table's Bill in bills.json.
+     * @param tableNum Number of the table whose Bill is paid
+     */
     private void payBill(int tableNum) {
+        Type billArrayList = new TypeToken<ArrayList<Bill>>() {
+        }.getType();
+        Gson gson = new Gson();
+
+        try {
+            ArrayList<Bill> bills = gson.fromJson(new FileReader("bills.json"), billArrayList);
+            bills.add(billList.get(tableNum));
+
+            try {
+                FileWriter writer = new FileWriter("bills.json");
+                gson.toJson(bills, writer);
+                writer.close();
+                printToScreen("Successful payment for Table " + tableNum + "!");
+            }
+            catch (IOException e) {
+                System.out.println("bills.txt is busy, can't add bill");
+            }
+
+        }
+        catch (IOException e) {
+            System.out.println("bills.txt is busy, can't read past bills");
+        }
     }
 
     private void confirmDishDelivery(int dishID) {

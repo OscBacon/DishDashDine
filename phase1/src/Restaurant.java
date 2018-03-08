@@ -64,7 +64,7 @@ public class Restaurant {
         File menuFile = new File("menu.json");
         File inventoryFile = new File("inventory.json");*/
 
-        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json"};
+        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json", "bills.json"};
         for (String fileName : fileNames) {
             File file = new File(fileName);
             if (!file.isFile()) {
