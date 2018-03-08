@@ -1,4 +1,4 @@
-How to use DishDashDine, a student made application:
+README of DishDashDine, a student made application:
 ----------------------------------------------------
 
 DishDashDine is a program that helps restaurants adapt to a dynamic industry. Many restaurants are giving their waiters
@@ -24,7 +24,7 @@ Notes:
     A dish may be cancelled only before some cook confirms it. Once confirmed by a cook, the server can at most remove
     the dish, but the ingredients that were to be used for the dish are not recovered - they're considered gone.
 
-
+    We have included several dishes in our Menu but
 Input format to events.txt:
 
     *** Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a

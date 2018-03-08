@@ -19,7 +19,7 @@
     "price": 5,
     "ingredients": {
       "pasta": 11,
-      "red Sauce": 9,
+      "red sauce": 9,
       "salt": 1
     },
     "allowedAdditions": [
@@ -28,7 +28,7 @@
     ],
     "allowedSubtractions": [
       "salt",
-      "red Sauce"
+      "red sauce"
     ]
   }
 }

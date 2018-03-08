@@ -10,5 +10,20 @@
   "pineapple": {
     "quantity": 10,
     "threshold": 10
+  },
+  "red sauce": {
+    "quantity": 12,
+    "threshold": 3
+  },
+
+  "salt": {
+    "quantity": 134,
+    "threshold": 20
+  },
+
+  "pasta": {
+    "quantity": 183,
+    "threshold": 9
   }
+
 }
