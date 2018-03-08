@@ -23,11 +23,12 @@ public class Dish {
      * @param dishName Precondition: dishName is already in the menu
      * @param waiter Precondition: Waiter exists in the restaurant.
      */
-    public Dish(String dishName, Waiter waiter) {
+    Dish(String dishName, Waiter waiter) {
         this.name = dishName;
         this.waiter = waiter;
         this.additions = new ArrayList<String>();
         this.subtractions = new ArrayList<String>();
+        this.price = Restaurant.getMenu().get(dishName).getPrice();
     }
 
     /**
@@ -37,55 +38,96 @@ public class Dish {
      * @param dishSubtractions All Dish subtractions asked by the client
      * @param waiter The waiter who assigned this Dish
      */
-    public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter) {
+    Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter) {
         this.name = dishName;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
         this.waiter = waiter;
+        this.price = Restaurant.getMenu().get(dishName).getPrice();
     }
 
+    /**
+     * @return numOfDishes: returns the number of dishes
+     */
     public static int getNumOfDishes() {
         return numOfDishes;
     }
 
-    // Getters for all variables
+    /**
+     * @return returns Dish name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns all the additions of the dish
+     * @return additions
+     */
     public ArrayList<String> getAdditions() {
         return additions;
     }
 
+    /**
+     * Returns all the subtractions required by the Restaurant's customer.
+     * @return subtractions
+     */
     public ArrayList<String> getSubtractions() {
         return subtractions;
     }
 
+    /**
+     * Returns the table this particular dish has been assigned
+     * @return tableNumber
+     */
     public int getTableNumber() {
         return tableNumber;
     }
 
+    /**
+     * Returns the Waiter that has assigned this Dish.
+     * @return Waiter
+     */
     public Waiter getWaiter() {
         return waiter;
     }
 
+    /**
+     * Returns the cook who accepts and prepares this particular dish
+     * @return String Name of Cook
+     */
     public String getCook() {
         return cook;
     }
 
-    // One setter, for the cook attribute
+    /**
+     * Sets the cook who will accept and prepare the dish
+     * @param cook The particular cook who will accept and prepare the dish.
+     */
     public void setCook(String cook) {
         this.cook = cook;
     }
 
+    /**
+     * Get the price of the dishName
+     * @return
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * ID of each particular dish
+     * @return int dishID
+     */
     public int getDishId() {
         return dishId;
     }
 
+    /**
+     * Each particular ingredient of the Dish
+     * @return Hashmap
+     */
     public HashMap getIngredients() {
         return ingredients;
     }
