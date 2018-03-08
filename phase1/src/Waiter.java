@@ -162,6 +162,7 @@ public class Waiter implements Listener {
             // There are sufficient ingredients, create the dish
             if (missingIngredients.isEmpty()) {
                 Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
+                dish.setIngredients(ingredients);
                 dishList.put(dish.getDishId(), dish);
                 Kitchen.addDish(dish);
                 for (String ingredient : ingredients.keySet()) {
@@ -193,6 +194,7 @@ public class Waiter implements Listener {
         ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
         if (missingIngredients.isEmpty()) {
             Dish dish = new Dish(item, this, Integer.valueOf(tableNumber));
+            dish.setIngredients(ingredients);
             dishList.put(dish.getDishId(), dish);
             Kitchen.addDish(dish);
             for (String ingredient : ingredients.keySet()) {
@@ -272,9 +274,12 @@ public class Waiter implements Listener {
      * @param dishID The ID of the dish in question.
      */
     private void recallDish(int dishID) {
-        removeDish(dishID);
         Dish dish = dishList.get(dishID);
-        createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
+        //createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
+        // Better to just call Kitchen.addDish?
+        Kitchen.addDish(dish);
+        Bill bill = billList.get(dish.getTableNumber());
+        bill.removeDish(dishID);
         printToScreen("Dish " + dishID + " recalled!");
     }
 

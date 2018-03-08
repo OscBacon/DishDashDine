@@ -11,12 +11,12 @@ public class Dish {
     private String name;
     private ArrayList<String> additions;
     private ArrayList<String> subtractions;
+    private HashMap<String, Integer> ingredients;
     private int tableNumber;
     private Waiter waiter;
     private String cook;
     private double price;
     private int dishId;
-    private HashMap ingredients;
 
     /**
      * Constructor for Dish object, each dish is initialised with a name and a waiter who adds that dish.
@@ -31,6 +31,7 @@ public class Dish {
         this.price = Restaurant.getMenu().get(dishName).getPrice();
         this.dishId = numOfDishes;
         this.tableNumber = tableNumber;
+        this.ingredients = new HashMap<>();
         numOfDishes++;
     }
 
@@ -49,18 +50,21 @@ public class Dish {
         this.price = Restaurant.getMenu().get(dishName).getPrice();
         this.dishId = numOfDishes;
         this.tableNumber = tableNumber;
+        this.ingredients = new HashMap<>();
         numOfDishes++;
     }
 
     /**
-     * @return numOfDishes: returns the number of dishes
+     * Sets the ingredients HashMap equal to the input parameter.
+     * @param ingredients Represents the ingredients that are necessary for the preparation of this dish.
      */
-    public static int getNumOfDishes() {
-        return numOfDishes;
+    public void setIngredients(HashMap<String, Integer> ingredients) {
+        this.ingredients = ingredients;
     }
 
     /**
-     * @return returns Dish name
+     * Returns the dish's name.
+     * @return String representing the Dish name
      */
     public String getName() {
         return name;
@@ -116,7 +120,7 @@ public class Dish {
 
     /**
      * Get the price of the dishName
-     * @return
+     * @return A double representing the price of this dish.
      */
     public double getPrice() {
         return price;
