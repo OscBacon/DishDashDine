@@ -26,6 +26,8 @@ public class Dish {
     public Dish(String dishName, Waiter waiter) {
         this.name = dishName;
         this.waiter = waiter;
+        this.additions = new ArrayList<String>();
+        this.subtractions = new ArrayList<String>();
     }
 
     /**
