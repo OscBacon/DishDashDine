@@ -51,7 +51,7 @@ public class Bill
      * @return String
      */
     public String toString() {
-        String currentBill = "Thank you for joining us today. Your Waiter today was " + this.server + "\n" +
+        String currentBill = "Thank you for joining us today. Your Waiter today was " + this.server.getName() + "\n" +
                 " TABLE NUMBER: " + this.tableNumber;
         for(Dish currentDish: dishList) {
             currentBill += "[" + currentDish + ": " + currentDish.getPrice() + "]" + "\n";
