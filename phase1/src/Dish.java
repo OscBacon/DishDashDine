@@ -74,26 +74,18 @@ public class Dish {
     }
 
     /**
-<<<<<<< HEAD
      * Getter for NumOfDishes
-     * @return numOfDishes: returns the number of dishes
-=======
      * Sets the ingredients HashMap equal to the input parameter.
      * @param ingredients Represents the ingredients that are necessary for the preparation of this dish.
->>>>>>> 07f094d962c584b87ca6a0e1570ade60368031f6
      */
     public void setIngredients(HashMap<String, Integer> ingredients) {
         this.ingredients = ingredients;
     }
 
     /**
-<<<<<<< HEAD
      * Getter that returns the String for Dish name
      * @return returns Dish name
-=======
-     * Returns the dish's name.
-     * @return String representing the Dish name
->>>>>>> 07f094d962c584b87ca6a0e1570ade60368031f6
+
      */
     public String getName() {
         return name;
@@ -149,11 +141,7 @@ public class Dish {
 
     /**
      * Get the price of the dishName
-<<<<<<< HEAD
-     * @return double price
-=======
      * @return A double representing the price of this dish.
->>>>>>> 07f094d962c584b87ca6a0e1570ade60368031f6
      */
     public double getPrice() {
         return price;
