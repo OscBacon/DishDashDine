@@ -24,6 +24,16 @@
   "pasta": {
     "quantity": 183,
     "threshold": 9
+  },
+
+  "potatoes": {
+    "quantity": 1356,
+    "threshold": 100
+  },
+
+  "onions": {
+    "quantity": 900,
+    "threshold": 100
   }
 
 }
