@@ -7,30 +7,46 @@ import java.util.HashMap;
  */
 public class Dish {
 
-    /**
+     /**
      * static numOfDishes: keeps track of all the numOfDishes made.
+     */
+     private static int numOfDishes;
+     /**
      * String name: This Dish's name
+     */
+     private String name;
+     /**
      * ArrayList additions: All allowed additions required by the Restaurant's customer for this dish.
+     */
+     private ArrayList<String> additions;
+     /**
      * ArrayList subtractions: All allowed subtractions required by the Restaurant's customer for this dish.
-     * int tableNumber: The table this dish belongs to.
-     * Waiter waiter: The particular waiter to handle this dish.
-     * String cook: The particular cook who accepts and prepares this dish.
+     */
+     private ArrayList<String> subtractions;
+     /**int tableNumber: The table this dish belongs to.
+     */
+     private int tableNumber;
+     /** Waiter waiter: The particular waiter to handle this dish.
+     */
+     private Waiter waiter;
+     /** String cook: The particular cook who accepts and prepares this dish.
+     */
+     private String cook;
+     /**
      * double price: The price of each dish which is held constant regardless of the substitutions of this dish. The
      *               price is obtained from the menu.
+     */
+     private double price;
+     /**
      * int dishId: Equal to the this dish's particular numOfDishes, non-static attribute that helps keep track of the
      *             particular dish.
+     */
+     private int dishId;
+     /**
      * HashMap ingredients: The ingredients required to prepare this dish, including the substitutions.
      */
-    private static int numOfDishes;
-    private String name;
-    private ArrayList<String> additions;
-    private ArrayList<String> subtractions;
-    private HashMap<String, Integer> ingredients;
-    private int tableNumber;
-    private Waiter waiter;
-    private String cook;
-    private double price;
-    private int dishId;
+     private HashMap<String, Integer> ingredients;
+
 
     /**
      * Constructor for Dish object including allowed Additions and Subtractions.
