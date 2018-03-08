@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class Dish {
 
 
+    private static int numOfDishes;
     private String name;
     private ArrayList<String> additions;
     private ArrayList<String> subtractions;
@@ -12,7 +13,6 @@ public class Dish {
     private String cook;
     private double price;
     private int dishId;
-    private static int numOfDishes;
     private HashMap ingredients;
 
     public Dish(String dishName, Waiter waiter) {
@@ -25,6 +25,10 @@ public class Dish {
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
         this.waiter = waiter;
+    }
+
+    public static int getNumOfDishes() {
+        return numOfDishes;
     }
 
     // Getters for all variables
@@ -44,12 +48,17 @@ public class Dish {
         return tableNumber;
     }
 
-    public Waiter getWaiter(){
+    public Waiter getWaiter() {
         return waiter;
     }
 
     public String getCook() {
         return cook;
+    }
+
+    // One setter, for the cook attribute
+    public void setCook(String cook) {
+        this.cook = cook;
     }
 
     public double getPrice() {
@@ -60,17 +69,8 @@ public class Dish {
         return dishId;
     }
 
-    public static int getNumOfDishes() {
-        return numOfDishes;
-    }
-
     public HashMap getIngredients() {
         return ingredients;
-    }
-
-    // One setter, for the cook attribute
-    public void setCook(String cook) {
-        this.cook = cook;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Dish {
         for (String addition : this.additions) {
             fullDish += "+" + addition;
         }
-        for (String eachSubtraction: this.subtractions) {
+        for (String eachSubtraction : this.subtractions) {
             fullDish += "-" + eachSubtraction;
         }
         return fullDish;

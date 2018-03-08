@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -10,7 +6,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-
 
 
 public class Restaurant {
@@ -23,11 +18,13 @@ public class Restaurant {
     // An Array of the Waiters' names
     private static ArrayList<String> waiterNameList;
 
-    private static Type menuType = new TypeToken<HashMap<String,MenuItem>>() {}.getType();
-    private static Type inventoryType = new TypeToken<HashMap<String,InventoryItem>>() {}.getType();
+    private static Type menuType = new TypeToken<HashMap<String, MenuItem>>() {
+    }.getType();
+    private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {
+    }.getType();
 
     // A list of all objects that can listen to events
-    private static HashMap<String,Listener> listenerList = new HashMap<>();
+    private static HashMap<String, Listener> listenerList = new HashMap<>();
 
     // An attribute to keep track of whether or not this Restaurant is running
     private static boolean running = true;
@@ -68,8 +65,7 @@ public class Restaurant {
         waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
         if (!waiterNameList.isEmpty()) {
             for (String waiterName : waiterNameList) listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
-        }
-        else {
+        } else {
             listenerList.put("Waiter", new Waiter(""));
         }
 
@@ -91,6 +87,7 @@ public class Restaurant {
      * Handles the input from a new event in event.txt.
      * This sends the input to be handled to the appropriate Class or Object.
      * The input is separated by pipe symbols, and is appropriately spliced.
+     *
      * @param input The event input
      */
     private static void handleInput(String input) {
@@ -117,16 +114,16 @@ public class Restaurant {
     /**
      * Adds the given quantity of an ingredient to the inventory.
      * If the ingredient is not the inventory, a new key is created for it.
+     *
      * @param ingredient The ingredient to be added
-     * @param quantity The quantity of the ingredient to be added
+     * @param quantity   The quantity of the ingredient to be added
      */
     private static void addToInventory(String ingredient, Integer quantity) {
         if (inventory.containsKey(ingredient)) {
             InventoryItem inventoryItem = inventory.get(ingredient);
             int currQuantity = inventoryItem.getQuantity();
             inventory.get(ingredient).setQuantity(currQuantity + quantity);
-        }
-        else {
+        } else {
             inventory.put(ingredient, new InventoryItem(quantity));
         }
 
@@ -135,11 +132,12 @@ public class Restaurant {
 
     /**
      * Removes the given quantity of an ingredient to the inventory.
+     *
      * @param ingredient The ingredient to be added
-     * @param quantity The quantity of the ingredient to be added
+     * @param quantity   The quantity of the ingredient to be added
      */
     public static void removeFromInventory(String ingredient, Integer quantity) {
-        if (inventory.containsKey(ingredient) && inventory.get(ingredient).getQuantity() >=quantity) {
+        if (inventory.containsKey(ingredient) && inventory.get(ingredient).getQuantity() >= quantity) {
             addToInventory(ingredient, -quantity);
         }
     }
@@ -147,6 +145,7 @@ public class Restaurant {
     /**
      * Check the inventory to see if there are enough of each items.
      * If an inventory is under its threshold for reorder, a request for reorder is added to requests.txt
+     *
      * @return False if an item is under its threshold for reorder
      */
     public static boolean checkInventory() {
@@ -163,10 +162,11 @@ public class Restaurant {
 
     /**
      * Check in the inventory whether or not there are sufficient quantities of each items.
+     *
      * @param ingredients The ingredients to be checked and the quantities needed
      * @return True if all items have sufficient quantities available
      */
-    public static boolean checkInventory(HashMap<String,Integer> ingredients) {
+    public static boolean checkInventory(HashMap<String, Integer> ingredients) {
         boolean sufficientItems = true;
         for (String key : ingredients.keySet()) {
             if (inventory.containsKey(key)) {
@@ -176,8 +176,7 @@ public class Restaurant {
                 if (quantityNeeded > item.getQuantity()) {
                     sufficientItems = false;
                 }
-            }
-            else {
+            } else {
                 writeRequest(key);
                 sufficientItems = false;
             }
@@ -188,11 +187,12 @@ public class Restaurant {
 
     /**
      * Prints a string representation of the inventory.
-     * @return  A string representation of the inventory
+     *
+     * @return A string representation of the inventory
      */
     private static String printInventory() {
         ArrayList<String> inventoryItems = new ArrayList<String>();
-        for (Object key: inventory.keySet()) {
+        for (Object key : inventory.keySet()) {
             InventoryItem inventoryItem = inventory.get(key);
             inventoryItems.add(key + ": " + System.lineSeparator() +
                     "\t quantity: " + inventoryItem.getQuantity() + System.lineSeparator() +
@@ -204,6 +204,7 @@ public class Restaurant {
 
     /**
      * Writes a request for the given item in requests.txt
+     *
      * @param item The item to be requested
      */
     private static void writeRequest(String item) {
@@ -212,8 +213,7 @@ public class Restaurant {
             writer.write(item.toUpperCase() + " is needed in 20 quantities.");
             writer.newLine();
             writer.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("requests.txt is busy, can't add request");
         }
     }
@@ -240,11 +240,10 @@ public class Restaurant {
                     reader.close();
                     System.out.println(lastLine);
 
-                }
-                catch (IOException e){
+                } catch (IOException e) {
                     System.out.println("events.txt is busy, looping again");
+                } catch (NullPointerException ignore) {
                 }
-                catch (NullPointerException ignore) {}
 
                 if (!lastLine.equals(savedLastLine)) {
                     lastModified = eventsFile.lastModified();
@@ -269,13 +268,13 @@ public class Restaurant {
             writer.close();
         }
 
-        if(menuModified) {
+        if (menuModified) {
             FileWriter writer = new FileWriter("menu.json");
             gson.toJson(menu, writer);
             writer.close();
         }
 
-        if(waiterListModified) {
+        if (waiterListModified) {
             FileWriter writer = new FileWriter("waiters.txt");
             writer.write(String.join(",", waiterNameList));
             writer.close();
@@ -288,6 +287,7 @@ public class Restaurant {
 
     /**
      * Getter for inventory.
+     *
      * @return inventory
      */
     public static HashMap<String, InventoryItem> getInventory() {
@@ -296,6 +296,7 @@ public class Restaurant {
 
     /**
      * Getter for menu.
+     *
      * @return menu
      */
     public static HashMap<String, MenuItem> getMenu() {
@@ -304,6 +305,7 @@ public class Restaurant {
 
     /**
      * Adds the given waiter to waiterListName and listenerList.
+     *
      * @param name Name of the waiter to be added
      */
     public void addWaiter(String name) {
@@ -314,6 +316,7 @@ public class Restaurant {
 
     /**
      * Removes the given waiter to waiterListName and listenerList.
+     *
      * @param name Name of the waiter to be added
      */
     public void removeWaiter(String name) {

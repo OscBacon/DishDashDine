@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MenuItem {
-    private int price;
-    private HashMap<String, Integer> ingredients;
     private final ArrayList<String> allowedAdditions;
     private final ArrayList<String> allowedSubtractions;
+    private int price;
+    private HashMap<String, Integer> ingredients;
 
     public MenuItem(int price, HashMap<String, Integer> ingredients, ArrayList<String> allowedAdditions, ArrayList<String> allowedSubtractions) {
         this.price = price;

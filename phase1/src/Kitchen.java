@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Kitchen extends Listener {
@@ -6,17 +5,16 @@ public class Kitchen extends Listener {
     private static HashMap<String, Dish> dishList;  // This kitchen's list of active dishes
 
 
-    public Kitchen()
-    {
+    public Kitchen() {
         dishList = new HashMap<>();
     }
 
     /**
      * Adds the Dish object parameter to this kitchen's list of active dishes (dishList).
+     *
      * @param dish The dish that has just been ordered.
      */
-    public static void addDish(Dish dish)
-    {
+    public static void addDish(Dish dish) {
         String id = String.valueOf(dish.getDishId());
 
         dishList.put(id, dish);
@@ -24,10 +22,10 @@ public class Kitchen extends Listener {
 
     /**
      * Removes the Dish object parameter from this kitchen's list of active dishes (dishList).
+     *
      * @param dish The dish that is not to be prepared by the Kitchen anymore.
      */
-    private static void removeDish(Dish dish)
-    {
+    private static void removeDish(Dish dish) {
         String id = String.valueOf(dish.getDishId());
 
         dishList.remove(id);
@@ -39,8 +37,7 @@ public class Kitchen extends Listener {
      *
      * @param dishID The id of the dish that has just been prepared by the kitchen.
      */
-    private void readyDish(String dishID)
-    {
+    private void readyDish(String dishID) {
         Dish dish = dishList.get(dishID);
 
         dish.getWaiter().printToScreen("Dish " + dish.getDishId() + " for table " +
@@ -55,8 +52,7 @@ public class Kitchen extends Listener {
      *
      * @param dishID The id of the dish that is to be cancelled.
      */
-    private void cancelDish(String dishID)
-    {
+    private void cancelDish(String dishID) {
         Dish dish = dishList.get(dishID);
 
         removeDish(dish);
@@ -65,11 +61,10 @@ public class Kitchen extends Listener {
     /**
      * This method allows to record which cook confirmed to cook the dish whose id is dishID.
      *
-     * @param cook The cook that will cook the dish whose ID is dishID.
+     * @param cook   The cook that will cook the dish whose ID is dishID.
      * @param dishID The ID of the dish.
      */
-    private void acceptDish(String cook, String dishID)
-    {
+    private void acceptDish(String cook, String dishID) {
         Dish dish = dishList.get(dishID);
 
         dish.setCook(cook);
@@ -77,24 +72,18 @@ public class Kitchen extends Listener {
 
     /**
      * Makes calls to the appropriate functions in this Kitchen class depending on the input array of Strings.
+     *
      * @param inputArray The input to be handled, split into an array.
      */
     @Override
     public void handleEvent(String[] inputArray) {
         if (inputArray.length >= 3) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if (inputArray[2].trim().equals("is ready."))
-            {
+            if (inputArray[2].trim().equals("is ready.")) {
                 this.readyDish(inputArray[1]);
-            }
-
-            else if (inputArray[2].trim().equals("cancelled."))
-            {
+            } else if (inputArray[2].trim().equals("cancelled.")) {
                 this.cancelDish(inputArray[1]);
-            }
-
-            else if (inputArray[1].trim().equals("has accepted dish"))
-            {
+            } else if (inputArray[1].trim().equals("has accepted dish")) {
                 this.acceptDish(inputArray[0].trim(), inputArray[2].trim());
             }
         }
@@ -102,6 +91,7 @@ public class Kitchen extends Listener {
 
     /**
      * Prints the input string s to this object's screen.
+     *
      * @param s String to be printed.
      */
     @Override
