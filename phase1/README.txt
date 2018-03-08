@@ -142,6 +142,8 @@ Input format to events.txt:
 
 
     Example Scenario (to be entered line by line in events.txt):
+    Please note that after entering each line in events.txt, do not press enter as that will result in a NullPointer
+    Exception.
 
         Waiter Dennis | new bill | 2
         Waiter Dennis | ordered | Kung Pao Chicken | for table | 2
