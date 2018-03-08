@@ -6,7 +6,6 @@ public class Bill {
     private int tableNumber;
     private Waiter waiter;
     private ArrayList<Dish> dishList;
-    private int billId;
 
     public Bill(int tableNumber, Waiter waiter) {
         this.tableNumber = tableNumber;
@@ -35,10 +34,6 @@ public class Bill {
                 dishList.remove(i);
             }
         }
-    }
-
-    public int getBillId() {
-        return this.billId;
     }
 
     public int totalBillPrice() {
