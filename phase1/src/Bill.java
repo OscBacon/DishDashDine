@@ -50,6 +50,14 @@ public class Bill {
         dishList.remove(currentDishID);
     }
 
+    /**
+     * Returns this Bill's dishList.
+     * @return dishList
+     */
+    public HashMap<Integer, Dish> getDishList() {
+        return dishList;
+    }
+
     public int getTotalBillPrice() {
         int price = 0;
         for (Integer key : dishList.keySet()) {
