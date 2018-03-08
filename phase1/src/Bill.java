@@ -4,13 +4,13 @@ public class Bill {
 
     private static int numOfBills;
     private int tableNumber;
-    private Waiter server;
+    private Waiter waiter;
     private ArrayList<Dish> dishList;
     private int billId;
 
-    public Bill(int tableNumber, Waiter server) {
+    public Bill(int tableNumber, Waiter waiter) {
         this.tableNumber = tableNumber;
-        this.server = server;
+        this.waiter = waiter;
         numOfBills++;
     }
 
@@ -56,7 +56,7 @@ public class Bill {
      * @return String
      */
     public String toString() {
-        String currentBill = "Thank you for joining us today. Your Waiter today was " + this.server.getName() + "\n" +
+        String currentBill = "Thank you for joining us today. Your Waiter today was " + this.waiter.getName() + "\n" +
                 " TABLE NUMBER: " + this.tableNumber;
         for (Dish currentDish : dishList) {
             currentBill += "[" + currentDish + ": " + currentDish.getPrice() + "]" + "\n";
