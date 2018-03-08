@@ -110,7 +110,13 @@ public class Restaurant {
     private static void handleInput(String input) {
         String[] inputArray = input.split("( )?\\|( )?");
 
-        String in = inputArray[0].trim();   // Protects from accidental spaces
+        for (int i = 0; i < inputArray.length; i++) // Protects from accidental spaces
+        {
+            inputArray[i] = inputArray[i].trim();
+        }
+
+        String in = inputArray[0];
+
         switch (in) {
             case "Restaurant":
                 switch (inputArray[1]) {
