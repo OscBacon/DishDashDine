@@ -164,28 +164,13 @@ public class Waiter implements Listener {
      * @param tableNum Number of the table whose Bill is paid
      */
     private void payBill(int tableNum) {
-        Type billArrayList = new TypeToken<ArrayList<Bill>>() {
-        }.getType();
-        Gson gson = new Gson();
-
-        try {
-            ArrayList<Bill> bills = gson.fromJson(new FileReader("bills.json"), billArrayList);
-            bills.add(billList.get(tableNum));
-
-            try {
-                FileWriter writer = new FileWriter("bills.json");
-                gson.toJson(bills, writer);
-                writer.close();
-                printToScreen("Successful payment for Table " + tableNum + "!");
-            }
-            catch (IOException e) {
-                System.out.println("bills.txt is busy, can't add bill");
-            }
-
+        Bill bill = billList.get(tableNum);
+        archivedBillList.put(bill.getBillID(), bill);
+        for (Integer key : bill.getDishList().keySet()) {
+            dishList.remove(key);
         }
-        catch (IOException e) {
-            System.out.println("bills.txt is busy, can't read past bills");
-        }
+        printToScreen(bill.toString());
+        printToScreen("Table " + tableNum + " has paid!");
     }
 
     private void confirmDishDelivery(int dishID) {
