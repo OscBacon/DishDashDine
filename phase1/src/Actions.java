@@ -183,20 +183,20 @@ public abstract class Actions {
     /**
      * Writes to events.txt, simulating the input of a manager adding a waiter into the system.
      *
-     * @param waiter The name of the waiter the manager is adding into the system.
+     * @param waiterName The name of the waiter the manager is adding into the system.
      */
-    public void addWaiter(String waiter) {
-        eventWriter("Restaurant | addWaiter | " + waiter);
+    public void addWaiter(String waiterName) {
+        eventWriter("Restaurant | addWaiter | " + waiterName);
     }
 
 
     /**
      * Writes to events.txt, simulating the input of a manager removing a waiter from the system.
      *
-     * @param waiter The name of the waiter the manager is removing from the system.
+     * @param waiterName The name of the waiter the manager is removing from the system.
      */
-    public void removeWaiter(String waiter) {
-        eventWriter("Restaurant | removeWaiter | " + waiter);
+    public void removeWaiter(String waiterName) {
+        eventWriter("Restaurant | removeWaiter | " + waiterName);
     }
 
 }

@@ -27,6 +27,7 @@ Input format to events.txt:
 
 
     Kitchen inputs:
+    ---------------
 
         - When a cook confirms that he has seen a dish, the format is as follows:
             String cookName, String dishID
@@ -41,6 +42,7 @@ Input format to events.txt:
 
 
     Waiter inputs:
+    --------------
 
         - When a waiter requests a bill, the format is as follows:
             String waiter, String billNumber
@@ -79,7 +81,26 @@ Input format to events.txt:
             waiter + " | recalled dish | " + dishID
 
 
+        - When a waiter starts a new bill, the format is as follows:
+             String waiter, String tableNumber
+
+             waiter + " | new bill | " + tableNumber
+
+
+        - When a waiter's bill gets paid, the format is as follows:
+            String waiter, String tableNumber
+
+            waiter + " | pay bill | " + tableNumber
+
+
+        - When a waiter must remove a dish from the table, the format is as follows:
+            String waiter, String dishID
+
+            waiter + " | removed dish | " + dishID
+
+
     Receiver inputs:
+    ----------------
 
          - When a receiver wishes to add an ingredient to inventory, the format is as follows:
             String ingredient, String quantity
@@ -87,14 +108,31 @@ Input format to events.txt:
             "Restaurant | addToInventory | " + ingredient + " | " + quantity
 
 
+    Manager inputs:
+    ---------------
 
-Example scenario, to be entered line by line in events.txt:
+        - When a manager wishes to add a waiter into the system, the format is as follows:
+            String waiterName
 
-Waiter Dennis | new bill | 2
-Waiter Dennis | ordered | Kung Pao Chicken | for table | 2
-Kitchen | Mike | has accepted dish | 0
-Kitchen | Dish | 0 | is ready.
-Waiter Dennis | delivered dish | 0
-Waiter Dennis | requested bill | 2
-Waiter Dennis | ordered | Kung Pao Chicken | salad | | for table | 2
-Waiter Dennis | pay bill  | 2
+            "Restaurant | addWaiter | " + waiterName
+
+
+        - When a manager wishes to remove a waiter from the system, the format is as follows:
+            String waiterName
+
+            "Restaurant | removeWaiter | " + waiterName
+
+
+=======================================================================================================================
+
+
+    Example Scenario (to be entered line by line in events.txt):
+
+        Waiter Dennis | new bill | 2
+        Waiter Dennis | ordered | Kung Pao Chicken | for table | 2
+        Kitchen | Mike | has accepted dish | 0
+        Kitchen | Dish | 0 | is ready.
+        Waiter Dennis | delivered dish | 0
+        Waiter Dennis | requested bill | 2
+        Waiter Dennis | ordered | Kung Pao Chicken | salad | | for table | 2
+        Waiter Dennis | pay bill  | 2
