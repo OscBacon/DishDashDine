@@ -302,7 +302,7 @@ public class Restaurant {
 
         if (waiterListModified) {
             FileWriter writer = new FileWriter("waiters.txt");
-            writer.write(String.join(",", waiterNameList));
+            writer.write(String.join(", ", waiterNameList));
             writer.close();
         }
 
