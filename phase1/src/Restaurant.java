@@ -92,7 +92,7 @@ public class Restaurant {
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
 
-        System.out.println(printInventory());
+        //System.out.println(printInventory());
 
         run();
         System.out.println("Saving...");
@@ -129,9 +129,19 @@ public class Restaurant {
                 running = false;
                 break;
             default:
-                Listener calledListener = listenerList.get(inputArray[0]);
-                // Calls the concerned Listener's handleEvent method
-                calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
+                if (listenerList.get(inputArray[0]) != null)
+                {
+                    Listener calledListener = listenerList.get(inputArray[0]);
+                    // Calls the concerned Listener's handleEvent method
+                    calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
+                }
+
+                else
+                {
+                    System.out.println("Sorry, a line in events.txt has been written incorrectly, and the program " +
+                            "could not process the input. Worry not, though! Everything is under control.");
+                }
+
                 break;
         }
     }
@@ -181,11 +191,11 @@ public class Restaurant {
     }
 
     /**
-     * Check in the inventory whether or not there are sufficient quantities of each items.
+     * Checks in the inventory whether or not there are sufficient quantities of each item.
      * Tells which ingredients are in insufficient quantities
      *
      * @param ingredients The ingredients to be checked and the quantities needed
-     * @return An String Array of all ingredients in insufficient quantities
+     * @return A String Array of all ingredients in insufficient quantities
      */
     public static ArrayList<String> checkIngredientsInventory(HashMap<String, Integer> ingredients) {
         ArrayList<String> insufficientIngredients = new ArrayList<>();

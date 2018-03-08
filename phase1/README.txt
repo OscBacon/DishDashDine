@@ -1,12 +1,29 @@
 How to use DishDashDine, a student made application:
-
+----------------------------------------------------
 
 DishDashDine is a program that helps restaurants adapt to a dynamic industry. Many restaurants are giving their waiters
 tablets into which they can enter orders. DishDashDine aims to avoid the use of paper by automating a majority of the
 actions by waiters and cooks. This program aims to streamline interactions between the stakeholders in a restaurant.
 
+Enjoy!
+
+- Sincerely, the Dev Team
+
+
+=======================================================================================================================
+
+
+Libraries:
+
+    We've included a gson-2.8.2.jar file in the lib directory. Please include this library when using our program;
+    it allows us to parse and write to / read from .json files, which is necessary for our program. Thanks!
+
 
 Input format to events.txt:
+
+    *** Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a
+        simple function call. We wrote it so that we could write simulations and test our program more easily, but you
+        are welcome to use it as well if you prefer!
 
 
     Kitchen inputs:
@@ -68,6 +85,7 @@ Input format to events.txt:
             String ingredient, String quantity
 
             "Restaurant | addToInventory | " + ingredient + " | " + quantity
+
 
 
 Example scenario, to be entered line by line in events.txt:
