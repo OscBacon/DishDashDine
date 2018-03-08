@@ -61,6 +61,17 @@ public abstract class Actions {
      * Writes to events.txt, simulating the input of a waiter asking to see a certain bill.
      *
      * @param waiter     The waiter that wants to see a bill.
+     * @param tableNumber The bill this waiter wishes to see.
+     */
+    public void requestActiveBill(String waiter, String tableNumber) {
+        eventWriter(waiter + " | requested bill for table | " + tableNumber);
+    }
+
+
+    /**
+     * Writes to events.txt, simulating the input of a waiter asking to see a certain bill.
+     *
+     * @param waiter     The waiter that wants to see a bill.
      * @param billNumber The bill this waiter wishes to see.
      */
     public void requestBill(String waiter, String billNumber) {

@@ -51,6 +51,12 @@ Input format to events.txt:
     --------------
 
         - When a waiter requests a bill, the format is as follows:
+            String waiter, String tableNumber
+
+            waiter + " | requested bill for table | " + tableNumber
+
+
+        - When a waiter requests to see any bill (active or non-active), the format is as follows:
             String waiter, String billNumber
 
             waiter + " | requested bill | " + billNumber
