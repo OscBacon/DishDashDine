@@ -136,9 +136,9 @@ public class Dish {
 
     /**
      * Each particular ingredient of the Dish
-     * @return Hashmap
+     * @return HashMap
      */
-    public HashMap getIngredients() {
+    public HashMap<String, Integer> getIngredients() {
         return ingredients;
     }
 

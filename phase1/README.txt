@@ -19,6 +19,12 @@ Libraries:
     it allows us to parse and write to / read from .json files, which is necessary for our program. Thanks!
 
 
+Notes:
+
+    A dish may be cancelled only before some cook confirms it. Once confirmed by a cook, the server can at most remove
+    the dish, but the ingredients that were to be used for the dish are not recovered - they're considered gone.
+
+
 Input format to events.txt:
 
     *** Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a
@@ -51,9 +57,9 @@ Input format to events.txt:
 
 
         - When a waiter cancels a dish, the format is as follows:
-            String dishID
+            String waiter, String dishID
 
-            "Kitchen | Dish | " + dishID + " | cancelled."
+            waiter + " | cancelled dish | " + dishID
 
 
         - When a waiter places a dish order without substitutions, the format is as follows:

@@ -73,8 +73,8 @@ public abstract class Actions {
      *
      * @param dishID The id of the dish that has been cancelled.
      */
-    public void cancelDish(String dishID) {
-        eventWriter("Kitchen | Dish | " + dishID + " | cancelled.");
+    public void cancelDish(String waiter, String dishID) {
+        eventWriter(waiter + " | cancelled dish | " + dishID);
     }
 
 

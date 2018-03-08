@@ -82,6 +82,9 @@ public class Waiter implements Listener {
                 case "recalled dish":   // When the customer is unsatisfied and wants a remake of the dish
                     this.recallDish(Integer.valueOf(inputArray[1]));
                     break;
+                case "cancelled dish":   // When the waiter cancels the dish order
+                    this.cancelDish(Integer.valueOf(inputArray[1]));
+                    break;
                 case "new bill":    // When the waiter sits new customers down at a table
                     this.createBill(Integer.valueOf(inputArray[1]));
                     break;
@@ -252,6 +255,27 @@ public class Waiter implements Listener {
         Bill bill = billList.get(dish.getTableNumber());
         bill.addDish(dish);
         printToScreen("Dish " + dishID + " delivered!");
+    }
+
+
+    /**
+     * Cancels the dish by removing it from the kitchen's dishList.
+     *
+     * Precondition: the dish has not yet been started by the kitchen.
+     *
+     * @param dishID The id of the dish that is to be cancelled.
+     */
+    private void cancelDish(int dishID) {
+        Dish dish = dishList.get(dishID);
+
+        Kitchen.removeDish(dish);
+
+        for (String ingredient : dish.getIngredients().keySet()) {
+            Integer quantity = dish.getIngredients().get(ingredient);
+            Restaurant.addToInventory(ingredient, quantity);
+        }
+
+        printToScreen("Dish " + dishID + " has been cancelled.");
     }
 
 

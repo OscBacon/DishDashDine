@@ -153,7 +153,7 @@ public class Restaurant {
      * @param ingredient The ingredient to be added
      * @param quantity   The quantity of the ingredient to be added
      */
-    private static void addToInventory(String ingredient, Integer quantity) {
+    public static void addToInventory(String ingredient, Integer quantity) {
         if (inventory.containsKey(ingredient)) {
             InventoryItem inventoryItem = inventory.get(ingredient);
             int currQuantity = inventoryItem.getQuantity();
