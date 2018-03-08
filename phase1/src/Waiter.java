@@ -40,8 +40,8 @@ public class Waiter implements Listener {
                     if (inputArray.length >= 6) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
                         // Create an array from the String of ingredients separated by commas
-                        String[] additionsArray = inputArray[2].split("(,)?");
-                        String[] subtractionsArray = inputArray[3].split("(,)?");
+                        String[] additionsArray = inputArray[2].split(",");
+                        String[] subtractionsArray = inputArray[3].split(",");
 
                         // Convert those arrays to ArrayLists to match with the necessary datatypes.
                         ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
