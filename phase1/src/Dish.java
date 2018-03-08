@@ -23,13 +23,14 @@ public class Dish {
      * @param dishName Precondition: dishName is already in the menu
      * @param waiter Precondition: Waiter exists in the restaurant.
      */
-    Dish(String dishName, Waiter waiter) {
+    Dish(String dishName, Waiter waiter, int tableNumber) {
         this.name = dishName;
         this.waiter = waiter;
         this.additions = new ArrayList<String>();
         this.subtractions = new ArrayList<String>();
         this.price = Restaurant.getMenu().get(dishName).getPrice();
         this.dishId = numOfDishes;
+        this.tableNumber = tableNumber;
         numOfDishes++;
     }
 
@@ -40,13 +41,14 @@ public class Dish {
      * @param dishSubtractions All Dish subtractions asked by the client
      * @param waiter The waiter who assigned this Dish
      */
-    Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter) {
+    Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
         this.name = dishName;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
         this.waiter = waiter;
         this.price = Restaurant.getMenu().get(dishName).getPrice();
         this.dishId = numOfDishes;
+        this.tableNumber = tableNumber;
         numOfDishes++;
     }
 
