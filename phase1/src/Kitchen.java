@@ -65,7 +65,6 @@ public class Kitchen implements Listener {
      *
      * @param inputArray The input to be handled, split into an array.
      */
-    @Override
     public void handleEvent(String[] inputArray) {
         if (inputArray.length >= 3) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
