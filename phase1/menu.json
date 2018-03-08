@@ -30,5 +30,24 @@
       "salt",
       "red sauce"
     ]
+  },
+  "Quiche": {
+    "price": 8.99,
+    "ingredients": {
+      "potatoes": 5,
+      "onions": 2,
+      "raw sauce": 9,
+      "salt": 12
+    },
+    "allowedAdditions": [
+      "mushrooms",
+      "pineapple",
+      "chicken"
+    ],
+    "allowedSubtractions": [
+      "salt",
+      "onions",
+      "raw sauce"
+    ]
   }
 }
