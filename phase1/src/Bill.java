@@ -21,6 +21,7 @@ public class Bill {
     public Bill(int tableNumber, Waiter waiter) {
         this.tableNumber = tableNumber;
         this.waiter = waiter;
+        this.dishList = new ArrayList<Dish>();
         numOfBills++;
     }
 
