@@ -7,6 +7,20 @@ import java.util.HashMap;
  */
 public class Dish {
 
+    /**
+     * static numOfDishes: keeps track of all the numOfDishes made.
+     * String name: This Dish's name
+     * ArrayList additions: All allowed additions required by the Restaurant's customer for this dish.
+     * ArrayList subtractions: All allowed subtractions required by the Restaurant's customer for this dish.
+     * int tableNumber: The table this dish belongs to.
+     * Waiter waiter: The particular waiter to handle this dish.
+     * String cook: The particular cook who accepts and prepares this dish.
+     * double price: The price of each dish which is held constant regardless of the substitutions of this dish. The
+     *               price is obtained from the menu.
+     * int dishId: Equal to the this dish's particular numOfDishes, non-static attribute that helps keep track of the
+     *             particular dish.
+     * HashMap ingredients: The ingredients required to prepare this dish, including the substitutions.
+     */
     private static int numOfDishes;
     private String name;
     private ArrayList<String> additions;
@@ -19,9 +33,11 @@ public class Dish {
     private HashMap ingredients;
 
     /**
-     * Constructor for Dish object, each dish is initialised with a name and a waiter who adds that dish.
-     * @param dishName Precondition: dishName is already in the menu
-     * @param waiter Precondition: Waiter exists in the restaurant.
+     * Constructor for Dish object, each dish is initialised with a name, a waiter who adds that dish and tableNumber.
+     * @param dishName The particular name of the dish from the menu.
+     * @param waiter The waiter who assigned the dish.
+     * @param tableNumber The tableNumber that this dish belongs to.
+     * Preconditions: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
      */
     Dish(String dishName, Waiter waiter, int tableNumber) {
         this.name = dishName;
@@ -36,10 +52,13 @@ public class Dish {
 
     /**
      * Constructor for Dish object including allowed Additions and Subtractions.
-     * @param dishName Precondition: dishName is already on the menu.
-     * @param dishAdditions All Dish Additions allowed
-     * @param dishSubtractions All Dish subtractions asked by the client
-     * @param waiter The waiter who assigned this Dish
+     * @param dishName The particular name of the dish from the menu.
+     * @param dishAdditions All Dish Additions allowed.
+     * @param dishSubtractions All Dish subtractions asked by the client.
+     * @param waiter The waiter who assigned this Dish.
+     * @param tableNumber The tableNumber that this dish belongs to.
+     * Precondition: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
+     *               All substitutions are allowed.
      */
     Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
         this.name = dishName;
@@ -53,6 +72,7 @@ public class Dish {
     }
 
     /**
+     * Getter for NumOfDishes
      * @return numOfDishes: returns the number of dishes
      */
     public static int getNumOfDishes() {
@@ -60,6 +80,7 @@ public class Dish {
     }
 
     /**
+     * Getter that returns the String for Dish name
      * @return returns Dish name
      */
     public String getName() {
@@ -67,7 +88,7 @@ public class Dish {
     }
 
     /**
-     * Returns all the additions of the dish
+     * Getter that Returns all the additions of the dish
      * @return additions
      */
     public ArrayList<String> getAdditions() {
@@ -83,7 +104,7 @@ public class Dish {
     }
 
     /**
-     * Returns the table this particular dish has been assigned
+     * Getter that returns the table this particular dish has been assigned
      * @return tableNumber
      */
     public int getTableNumber() {
@@ -91,7 +112,7 @@ public class Dish {
     }
 
     /**
-     * Returns the Waiter that has assigned this Dish.
+     *  Getter that returns the Waiter that has assigned this Dish.
      * @return Waiter
      */
     public Waiter getWaiter() {
@@ -100,7 +121,7 @@ public class Dish {
 
     /**
      * Returns the cook who accepts and prepares this particular dish
-     * @return String Name of Cook
+     * @return cook: Name of Cook
      */
     public String getCook() {
         return cook;
@@ -116,7 +137,7 @@ public class Dish {
 
     /**
      * Get the price of the dishName
-     * @return
+     * @return double price
      */
     public double getPrice() {
         return price;
@@ -138,6 +159,10 @@ public class Dish {
         return ingredients;
     }
 
+    /**
+     * The standard toString method has been overridden to show all the additions and subtractions of each dish.
+     * @return String representation of the particular dish.
+     */
     @Override
     public String toString() {
         String fullDish = this.name;
