@@ -13,6 +13,8 @@ public class Waiter extends Listener {
 
     public Waiter(String name) {
         this.name = name;
+        this.billList = new HashMap<>();
+        this.dishList = new HashMap<>();
     }
 
     public String getName() {
@@ -50,8 +52,19 @@ public class Waiter extends Listener {
                     break;
                 case "new bill":
                     this.createBill(Integer.valueOf(inputArray[1].trim()));
+                    break;
                 case "pay bill":
                     this.payBill(Integer.valueOf(inputArray[1].trim()));
+                    break;
+                case "show bill":
+                    this.showBill(Integer.valueOf(inputArray[1].trim()));
+                    break;
+                case "recall dish":
+                    this.recallDish(Integer.valueOf(inputArray[1].trim()));
+                    break;
+                case "remove dish":
+                    this.removeDish(Integer.valueOf(inputArray[1].trim()));
+                    break;
             }
         }
     }
@@ -124,6 +137,7 @@ public class Waiter extends Listener {
         billList.put(tableNum, bill);
     }
 
+    //TODO: IMPLEMENT PAYBILL
     private void payBill(int tableNum) {
     }
 
