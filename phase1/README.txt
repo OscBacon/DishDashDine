@@ -156,7 +156,7 @@ Input format to events.txt:
         Waiter Dennis | delivered dish | 0
         Waiter Dennis | recalled dish | 1
         Waiter Dennis | requested bill for table | 2
-        Kitchen | Mike | has accepted dish | 0
+        Kitchen | Mike | has accepted dish | 1
         Kitchen | Dish | 1 | is ready.
         Waiter Dennis | delivered dish | 1
         Waiter Dennis | pay bill | 2
