@@ -111,7 +111,7 @@ public class Restaurant {
      * @param input The event input
      */
     private static void handleInput(String input) {
-        String[] inputArray = input.split("\\|");
+        String[] inputArray = input.split("( )?\\|( )?");
 
         switch (inputArray[0]) {
             case "Restaurant":
