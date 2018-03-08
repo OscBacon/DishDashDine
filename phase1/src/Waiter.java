@@ -158,29 +158,35 @@ public class Waiter implements Listener {
      * @param tableNumber The number of the table that this dish is to be served to.
      */
     private void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
-        MenuItem menuItem = Restaurant.getMenu().get(item);
-        HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
+        // Item is in the menu
+        if (Restaurant.getMenu().containsKey(item)) {
+            MenuItem menuItem = Restaurant.getMenu().get(item);
+            HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
+            // Attempt to create dish if substitutions were valid.
+            if (madeSubstitutions(menuItem, ingredients, additions, subtractions)) {
 
-        // Attempt to create dish if substitutions were valid.
-        if (madeSubstitutions(menuItem, ingredients, additions, subtractions)){
-
-            ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
-            // There are sufficient ingredients, create the dish
-            if (missingIngredients.isEmpty()) {
-                Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
-                dish.setIngredients(ingredients);
-                dishList.put(dish.getDishId(), dish);
-                Kitchen.addDish(dish);
-                for (String ingredient : ingredients.keySet()) {
-                    Integer quantity = ingredients.get(ingredient);
-                    Restaurant.removeFromInventory(ingredient, quantity);
+                ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
+                // There are sufficient ingredients, create the dish
+                if (missingIngredients.isEmpty()) {
+                    Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
+                    dish.setIngredients(ingredients);
+                    dishList.put(dish.getDishId(), dish);
+                    Kitchen.addDish(dish);
+                    for (String ingredient : ingredients.keySet()) {
+                        Integer quantity = ingredients.get(ingredient);
+                        Restaurant.removeFromInventory(ingredient, quantity);
+                    }
+                    printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber);
                 }
-                printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber);
+                // There are insufficient ingredients to complete the order
+                else {
+                    printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
+                }
             }
-            // There are insufficient ingredients to complete the order
-            else {
-                printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
-            }
+        }
+        // Item is not in the menu
+        else {
+            printToScreen("Can't order dish, " + item + " does not exist in the menu");
         }
     }
 
@@ -195,21 +201,27 @@ public class Waiter implements Listener {
      * @param tableNumber The number of the table that this dish is to be served to.
      */
     private void createDish(String item, String tableNumber) {
-        MenuItem menuItem = Restaurant.getMenu().get(item);
-        HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
-        ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
-        if (missingIngredients.isEmpty()) {
-            Dish dish = new Dish(item, this, Integer.valueOf(tableNumber));
-            dish.setIngredients(ingredients);
-            dishList.put(dish.getDishId(), dish);
-            Kitchen.addDish(dish);
-            for (String ingredient : ingredients.keySet()) {
-                Integer quantity = ingredients.get(ingredient);
-                Restaurant.removeFromInventory(ingredient, quantity);
+        //Item is in the Menu
+        if (Restaurant.getMenu().containsKey(item)) {
+            MenuItem menuItem = Restaurant.getMenu().get(item);
+            HashMap<String, Integer> ingredients = new HashMap<>(menuItem.getIngredients());
+            ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
+            if (missingIngredients.isEmpty()) {
+                Dish dish = new Dish(item, this, Integer.valueOf(tableNumber));
+                dish.setIngredients(ingredients);
+                dishList.put(dish.getDishId(), dish);
+                Kitchen.addDish(dish);
+                for (String ingredient : ingredients.keySet()) {
+                    Integer quantity = ingredients.get(ingredient);
+                    Restaurant.removeFromInventory(ingredient, quantity);
+                }
+                printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
+            } else {
+                printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
             }
-            printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
-        } else {
-            printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
+        }
+        else {
+            printToScreen("Can't order dish, " + item + " does not exist in the menu");
         }
     }
 
