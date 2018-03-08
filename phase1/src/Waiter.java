@@ -142,6 +142,7 @@ public class Waiter extends Listener {
     private void createBill(int tableNum) {
         Bill bill = new Bill(tableNum, this);
         billList.put(tableNum, bill);
+        printToScreen("New bill created for Table " + tableNum + "!");
     }
 
     /**
