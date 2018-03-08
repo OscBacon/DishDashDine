@@ -53,8 +53,10 @@ public class Waiter implements Listener {
 
         if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            switch (inputArray[0]) {
-                case "ordered": {
+            switch (inputArray[0])
+            {
+                case "ordered":     // When a customer orders some dish
+                    {
                     if (inputArray.length >= 6) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
                         // Create an array from the String of ingredients separated by commas
@@ -74,25 +76,22 @@ public class Waiter implements Listener {
                     }
                 }
                     break;
-                case "delivered dish":
+                case "delivered dish":  // When a waiter delivers the dish to its table
                     this.confirmDishDelivery(Integer.valueOf(inputArray[1]));
                     break;
-                case "recalled dish":
+                case "recalled dish":   // When the customer is unsatisfied and wants a remake of the dish
                     this.recallDish(Integer.valueOf(inputArray[1]));
                     break;
-                case "new bill":
+                case "new bill":    // When the waiter sits new customers down at a table
                     this.createBill(Integer.valueOf(inputArray[1]));
                     break;
-                case "pay bill":
+                case "pay bill":    // When a customer pays a bill
                     this.payBill(Integer.valueOf(inputArray[1]));
                     break;
-                case "requested bill":
+                case "requested bill":  // When a waiter wishes to see a bill
                     this.showBill(Integer.valueOf(inputArray[1]));
                     break;
-                case "recall dish":
-                    this.recallDish(Integer.valueOf(inputArray[1]));
-                    break;
-                case "remove dish":
+                case "removed dish":    // When the customer is unsatisfied and does not want a remake of the dish
                     this.removeDish(Integer.valueOf(inputArray[1]));
                     break;
             }
