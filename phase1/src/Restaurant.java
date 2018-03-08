@@ -266,7 +266,9 @@ public class Restaurant {
                     BufferedReader reader = new BufferedReader(new FileReader("events.txt"));
                     String currLine = reader.readLine();
                     while (currLine != null) {
-                        lastLine = currLine;
+                        if (!currLine.equals("")) {
+                            lastLine = currLine;
+                        }
                         currLine = reader.readLine();
                     }
                     reader.close();
