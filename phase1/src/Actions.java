@@ -184,7 +184,7 @@ public abstract class Actions {
      * @param quantity   The quantity of this ingredient that has arrived.
      */
     public void addToInventory(String ingredient, String quantity) {
-        eventWriter("Restaurant | addToInventory | " + ingredient + " | " + quantity);
+        eventWriter("Restaurant | add to inventory | " + ingredient + " | " + quantity);
     }
 
 
@@ -197,7 +197,7 @@ public abstract class Actions {
      * @param waiterName The name of the waiter the manager is adding into the system.
      */
     public void addWaiter(String waiterName) {
-        eventWriter("Restaurant | addWaiter | " + waiterName);
+        eventWriter("Restaurant | add waiter | " + waiterName);
     }
 
 
@@ -207,7 +207,7 @@ public abstract class Actions {
      * @param waiterName The name of the waiter the manager is removing from the system.
      */
     public void removeWaiter(String waiterName) {
-        eventWriter("Restaurant | removeWaiter | " + waiterName);
+        eventWriter("Restaurant | remove waiter | " + waiterName);
     }
 
 }
