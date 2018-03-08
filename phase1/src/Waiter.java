@@ -184,18 +184,21 @@ public class Waiter implements Listener {
         Dish dish = dishList.get(dishID);
         Bill bill = billList.get(dish.getTableNumber());
         bill.addDish(dish);
+        printToScreen("Dish " + dish + " delivered!");
     }
 
     private void removeDish(int dishID){
         Dish dish = dishList.get(dishID);
         Bill bill = billList.get(dish.getTableNumber());
         bill.removeDish(dishID);
+        printToScreen("Dish " + dish + " removed!");
     }
 
     private void recallDish(int dishID) {
         removeDish(dishID);
         Dish dish = dishList.get(dishID);
         createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
+        printToScreen("Dish " + dish + " recalled!");
     }
 
     private void showBill(int billID) {
