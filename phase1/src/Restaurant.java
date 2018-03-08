@@ -169,44 +169,40 @@ public class Restaurant {
     /**
      * Check the inventory to see if there are enough of each items.
      * If an inventory is under its threshold for reorder, a request for reorder is added to requests.txt
-     *
-     * @return False if an item is under its threshold for reorder
      */
-    public static boolean checkInventory() {
-        boolean sufficientItems = true;
+    private static void checkInventory() {
         for (String key : inventory.keySet()) {
             InventoryItem item = inventory.get(key);
             if (item.getQuantity() < item.getThreshold()) {
                 writeRequest(key);
-                sufficientItems = false;
             }
         }
-        return sufficientItems;
     }
 
     /**
      * Check in the inventory whether or not there are sufficient quantities of each items.
+     * Tells which ingredients are in insufficient quantities
      *
      * @param ingredients The ingredients to be checked and the quantities needed
-     * @return True if all items have sufficient quantities available
+     * @return An String Array of all ingredients in insufficient quantities
      */
-    public static boolean checkInventory(HashMap<String, Integer> ingredients) {
-        boolean sufficientItems = true;
+    public static ArrayList<String> checkIngredientsInventory(HashMap<String, Integer> ingredients) {
+        ArrayList<String> insufficientIngredients = new ArrayList<>();
         for (String key : ingredients.keySet()) {
             if (inventory.containsKey(key)) {
                 InventoryItem item = inventory.get(key);
                 Integer quantityNeeded = ingredients.get(key);
 
                 if (quantityNeeded > item.getQuantity()) {
-                    sufficientItems = false;
+                    insufficientIngredients.add(key);
                 }
             } else {
                 writeRequest(key);
-                sufficientItems = false;
+                insufficientIngredients.add(key);
             }
         }
 
-        return sufficientItems;
+        return insufficientIngredients;
     }
 
     /**
