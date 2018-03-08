@@ -30,6 +30,7 @@ public abstract class Actions {
     }
 
 
+// --------------------------------------------------------------------------------
     // Kitchen inputs:
 
     /**
@@ -42,6 +43,7 @@ public abstract class Actions {
         eventWriter("Kitchen | " + cookName + " | has accepted dish | " + dishID);
     }
 
+
     /**
      * Writes to events.txt, simulating the input of a cook letting the server know that a dish is ready for serving.
      *
@@ -52,7 +54,8 @@ public abstract class Actions {
     }
 
 
-    // Server inputs:
+// --------------------------------------------------------------------------------
+    // Waiter inputs:
 
     /**
      * Writes to events.txt, simulating the input of a waiter asking to see a certain bill.
@@ -64,6 +67,7 @@ public abstract class Actions {
         eventWriter(waiter + " | requested bill | " + billNumber);
     }
 
+
     /**
      * Writes to events.txt, simulating the input of a server letting the kitchen know that a dish has been cancelled.
      *
@@ -72,6 +76,7 @@ public abstract class Actions {
     public void cancelDish(String dishID) {
         eventWriter("Kitchen | Dish | " + dishID + " | cancelled.");
     }
+
 
     /**
      * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with no substitutions for a certain table.
@@ -83,6 +88,7 @@ public abstract class Actions {
     public void orderDish(String waiter, String itemName, String tableNumber) {
         eventWriter(waiter + " | ordered | " + itemName + " | for table | " + tableNumber);
     }
+
 
     /**
      * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with substitutions for a certain table.
@@ -98,6 +104,7 @@ public abstract class Actions {
         eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | " + tableNumber);
     }
 
+
     /**
      * Writes to events.txt, simulating the input of waiter confirming that a dish has been delivered to its table.
      *
@@ -107,6 +114,7 @@ public abstract class Actions {
     public void confirmDelivery(String waiter, String dishID) {
         eventWriter(waiter + " | delivered dish | " + dishID);
     }
+
 
     /**
      * Writes to events.txt, simulating the input of a waiter letting the kitchen know that a client recalled a dish.
@@ -119,6 +127,43 @@ public abstract class Actions {
     }
 
 
+    /**
+     * Writes to events.txt, simulating the input of a waiter sitting people down at a table and beginning an order.
+     *
+     * @param waiter The waiter who starts the bill.
+     * @param tableNumber The number of the table that this waiter is serving.
+     */
+    public void newBill(String waiter, String tableNumber)
+    {
+        eventWriter(waiter + " | new bill | " + tableNumber);
+    }
+
+
+    /**
+     * Writes to events.txt, simulating the input of a waiter getting payment for a bill from customers.
+     *
+     * @param waiter The waiter whose bill gets paid.
+     * @param tableNumber The number of the table that pays for its bill.
+     */
+    public void  payBill(String waiter, String tableNumber)
+    {
+        eventWriter(waiter + " | pay bill | " + tableNumber);
+    }
+
+
+    /**
+     * Writes to events.txt, simulating the input of a waiter removing \ discarding a dish from a customer's table
+     * when the customer is very unsatisfied with the dish.
+     *
+     * @param waiter The waiter who is responsible fot this dish.
+     * @param dishID The ID of the dish that dissatisfied the customer.
+     */
+    public void removeDish(String waiter, String dishID)
+    {
+        eventWriter(waiter + " | removed dish | " + dishID);
+    }
+
+// --------------------------------------------------------------------------------
     // Receiver inputs:
 
     /**
@@ -129,6 +174,29 @@ public abstract class Actions {
      */
     public void addToInventory(String ingredient, String quantity) {
         eventWriter("Restaurant | addToInventory | " + ingredient + " | " + quantity);
+    }
+
+
+// --------------------------------------------------------------------------------
+    // Manager inputs:
+
+    /**
+     * Writes to events.txt, simulating the input of a manager adding a waiter into the system.
+     *
+     * @param waiter The name of the waiter the manager is adding into the system.
+     */
+    public void addWaiter(String waiter) {
+        eventWriter("Restaurant | addWaiter | " + waiter);
+    }
+
+
+    /**
+     * Writes to events.txt, simulating the input of a manager removing a waiter from the system.
+     *
+     * @param waiter The name of the waiter the manager is removing from the system.
+     */
+    public void removeWaiter(String waiter) {
+        eventWriter("Restaurant | removeWaiter | " + waiter);
     }
 
 }
