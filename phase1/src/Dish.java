@@ -42,7 +42,7 @@ public class Dish {
      * Precondition: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
      *               All substitutions are allowed.
      */
-    Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
+    public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
         this.name = dishName;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
@@ -152,10 +152,10 @@ public class Dish {
     public String toString() {
         String fullDish = this.name;
         for (String addition : this.additions) {
-            fullDish += "+" + addition;
+            fullDish += " +" + addition;
         }
         for (String eachSubtraction : this.subtractions) {
-            fullDish += "-" + eachSubtraction;
+            fullDish += " -" + eachSubtraction;
         }
         return fullDish;
     }
