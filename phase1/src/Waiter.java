@@ -90,24 +90,28 @@ public class Waiter implements Listener {
     private boolean madeSubstitutions(MenuItem menuItem, HashMap<String, Integer> ingredients,
                                                        ArrayList<String> additions, ArrayList<String> subtractions) {
         for (String addition : additions) {
-            if (menuItem.getAllowedAdditions().contains(addition)) {
-                if (ingredients.containsKey(addition)) {
-                    ingredients.put(addition, ingredients.get(addition) + 1);
+            if (!addition.equals("")) {
+                if (menuItem.getAllowedAdditions().contains(addition)) {
+                    if (ingredients.containsKey(addition)) {
+                        ingredients.put(addition, ingredients.get(addition) + 1);
+                    } else {
+                        ingredients.put(addition, 1);
+                    }
                 } else {
-                    ingredients.put(addition, 1);
+                    this.printToScreen("Can't order: You can't add " + addition + ".");
+                    return false;
                 }
-            } else {
-                this.printToScreen("Can't order: You can't add " + addition + ".");
-                return false;
             }
         }
         // removing <subtractions> from <ingredients>
         for (String subtraction : subtractions) {
-            if (menuItem.getAllowedSubtractions().contains(subtraction)) {
-                ingredients.remove(subtraction);
-            } else {
-                this.printToScreen("Can't order: You can't remove " + subtraction + ".");
-                return false;
+            if (!subtraction.equals("")) {
+                if (menuItem.getAllowedSubtractions().contains(subtraction)) {
+                    ingredients.remove(subtraction);
+                } else {
+                    this.printToScreen("Can't order: You can't remove " + subtraction + ".");
+                    return false;
+                }
             }
         }
         return true;
