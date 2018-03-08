@@ -287,7 +287,7 @@ public class Restaurant {
     }
 
     /**
-     * Getter for inventory
+     * Getter for inventory.
      * @return inventory
      */
     public static HashMap<String, InventoryItem> getInventory() {
@@ -295,7 +295,7 @@ public class Restaurant {
     }
 
     /**
-     * Getter for menu
+     * Getter for menu.
      * @return menu
      */
     public static HashMap<String, MenuItem> getMenu() {
