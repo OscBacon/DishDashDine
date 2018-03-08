@@ -11,7 +11,6 @@ public class Bill
 
     public Bill(int tableNumber, Waiter server) {
         this.tableNumber = tableNumber;
-        this.tableNumber = billId;
         this.server = server;
         numOfBills++;
     }
@@ -60,6 +59,5 @@ public class Bill
         currentBill += "TOTAL PRICE: " + totalBillPrice();
         return currentBill;
     }
-
 
 }
