@@ -40,8 +40,8 @@ public class Waiter implements Listener {
                     if (inputArray.length >= 6) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
                         // Create an array from the String of ingredients separated by commas
-                        String[] additionsArray = inputArray[2].split("(,)?");
-                        String[] subtractionsArray = inputArray[3].split("(,)?");
+                        String[] additionsArray = inputArray[2].split(",");
+                        String[] subtractionsArray = inputArray[3].split(",");
 
                         // Convert those arrays to ArrayLists to match with the necessary datatypes.
                         ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
@@ -92,7 +92,7 @@ public class Waiter implements Listener {
                     ingredients.put(addition, 1);
                 }
             } else {
-                this.printToScreen("Can't order: You can't add " + addition);
+                this.printToScreen("Can't order: You can't add " + addition + ".");
                 return false;
             }
         }
@@ -101,7 +101,7 @@ public class Waiter implements Listener {
             if (menuItem.getAllowedSubtractions().contains(subtraction)) {
                 ingredients.remove(subtraction);
             } else {
-                this.printToScreen("Can't order: You can't remove " + subtraction);
+                this.printToScreen("Can't order: You can't remove " + subtraction + ".");
                 return false;
             }
         }
@@ -131,6 +131,13 @@ public class Waiter implements Listener {
             else {
                 printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
             }
+<<<<<<< HEAD
+=======
+            printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
+            printToScreen("It has the following additions: " + additions + ", and substractions: " + subtractions + "!");
+        } else {
+            printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
+>>>>>>> 6740585625a215cc528ad2b18f3e3d5f5668783c
         }
     }
 
@@ -147,6 +154,7 @@ public class Waiter implements Listener {
                 Integer quantity = ingredients.get(ingredient);
                 Restaurant.removeFromInventory(ingredient, quantity);
             }
+            printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
         } else {
             printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
         }

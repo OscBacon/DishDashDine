@@ -68,3 +68,15 @@ Input format to events.txt:
             String ingredient, String quantity
 
             "Restaurant | addToInventory | " + ingredient + " | " + quantity
+
+
+Example scenario, to be entered line by line in events.txt:
+
+Waiter Dennis | new bill | 2
+Waiter Dennis | ordered | Kung Pao Chicken | for table | 2
+Kitchen | Mike | has accepted dish | 0
+Kitchen | Dish | 0 | is ready.
+Waiter Dennis | delivered dish | 0
+Waiter Dennis | requested bill | 2
+Waiter Dennis | ordered | Kung Pao Chicken | salad | | for table | 2
+Waiter Dennis | pay bill  | 2

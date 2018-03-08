@@ -6,6 +6,10 @@ public class Bill {
      */
     private static int numOfBills;
     /**
+     * This bill's unique ID.
+     */
+    private int billID;
+    /**
      * This Bill's table.
      */
     private int tableNumber;
@@ -22,6 +26,7 @@ public class Bill {
         this.tableNumber = tableNumber;
         this.waiter = waiter;
         this.dishList = new ArrayList<Dish>();
+        this.billID = numOfBills;
         numOfBills++;
     }
 
@@ -54,6 +59,14 @@ public class Bill {
             price += currentDish.getPrice();
         }
         return price;
+    }
+
+    /**
+     * Returns this bill's ID.
+     * @return An int representing this Bill's ID.
+     */
+    public int getBillID() {
+        return billID;
     }
 
     /**
