@@ -301,4 +301,23 @@ public class Restaurant {
     public static HashMap<String, MenuItem> getMenu() {
         return menu;
     }
+
+    /**
+     * Adds the given waiter to waiterListName and listenerList.
+     * @param name Name of the waiter to be added
+     */
+    public void addWaiter(String name) {
+        waiterNameList.add(name);
+        listenerList.put("Waiter " + name, new Waiter(name));
+        waiterListModified = true;
+    }
+
+    /**
+     * Removes the given waiter to waiterListName and listenerList.
+     * @param name Name of the waiter to be added
+     */
+    public void removeWaiter(String name) {
+        waiterNameList.remove(name);
+        listenerList.remove("Waiter " + name);
+    }
 }
