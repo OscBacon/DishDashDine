@@ -328,10 +328,11 @@ public class Restaurant {
      *
      * @param name Name of the waiter to be added
      */
-    public void addWaiter(String name) {
+    private static void addWaiter(String name) {
         waiterNameList.add(name);
         listenerList.put("Waiter " + name, new Waiter(name));
         waiterListModified = true;
+        System.out.println("Waiter " + name + " added.");
     }
 
     /**
@@ -339,8 +340,10 @@ public class Restaurant {
      *
      * @param name Name of the waiter to be added
      */
-    public void removeWaiter(String name) {
+    private static void removeWaiter(String name) {
         waiterNameList.remove(name);
         listenerList.remove("Waiter " + name);
+        waiterListModified = true;
+        System.out.println("Waiter " + name + " removed.");
     }
 }
