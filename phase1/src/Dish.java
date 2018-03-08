@@ -166,14 +166,22 @@ public class Dish {
      */
     @Override
     public String toString() {
-        String fullDish = this.name;
-        for (String addition : this.additions) {
-            fullDish += " +" + addition;
+        ArrayList<String> dishStrings = new ArrayList<>();
+        dishStrings.add(name);
+        if (!additions.isEmpty()) {
+            for (String addition : additions) {
+                if (!addition.equals("")) {
+                    dishStrings.add("+ " + addition);
+                }
+            }
         }
-        for (String eachSubtraction : this.subtractions) {
-            fullDish += " -" + eachSubtraction;
+        if (!subtractions.isEmpty()) {
+            for (String subtraction : subtractions) {
+                if (!subtraction.equals("")) {
+                    dishStrings.add("- " + subtraction);
+                }
+            }
         }
-        return fullDish;
+        return String.join(" ", dishStrings);
     }
-
 }
