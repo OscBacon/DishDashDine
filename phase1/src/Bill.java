@@ -36,7 +36,7 @@ public class Bill {
         }
     }
 
-    public int totalBillPrice() {
+    public int getTotalBillPrice() {
         int price = 0;
         for (Dish currentDish : dishList) {
             price += currentDish.getPrice();
@@ -56,7 +56,7 @@ public class Bill {
         for (Dish currentDish : dishList) {
             currentBill += "[" + currentDish + ": " + currentDish.getPrice() + "]" + "\n";
         }
-        currentBill += "TOTAL PRICE: " + totalBillPrice();
+        currentBill += "TOTAL PRICE: " + getTotalBillPrice();
         return currentBill;
     }
 
