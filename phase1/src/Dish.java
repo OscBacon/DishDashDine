@@ -42,7 +42,7 @@ public class Dish {
      * Precondition: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
      *               All substitutions are allowed.
      */
-    Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
+    public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
         this.name = dishName;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
