@@ -145,6 +145,6 @@ Input format to events.txt:
         Kitchen | Mike | has accepted dish | 0
         Kitchen | Dish | 0 | is ready.
         Waiter Dennis | delivered dish | 0
-        Waiter Dennis | requested bill | 2
+        Waiter Dennis | requested bill for table | 2
         Waiter Dennis | ordered | Kung Pao Chicken | salad | | for table | 2
         Waiter Dennis | pay bill  | 2
