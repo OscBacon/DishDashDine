@@ -31,8 +31,9 @@ Notes:
 Input format to events.txt:
 
     *** Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a
-        simple function call. We wrote it so that we could write simulations and test our program more easily, but you
-        are welcome to use it as well if you prefer!
+        simple function call. Unfortunately, as of yet, since we need to save the events.txt file after each input, the
+        Actions.java class is unfortunately not running with high reliability. We recommend you follow the template
+        below to manually write to the events.txt file.
 
 
     Kitchen inputs:

@@ -34,6 +34,11 @@
   "onions": {
     "quantity": 900,
     "threshold": 100
+  },
+
+  "raw sauce": {
+    "quantity": 100,
+    "threshold": 5
   }
 
 }
