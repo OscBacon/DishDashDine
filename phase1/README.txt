@@ -23,7 +23,7 @@ Input format to events.txt:
             "Kitchen | Dish | " + dishID + " | is ready."
 
 
-    Server inputs:
+    Waiter inputs:
 
         - When a waiter requests a bill, the format is as follows:
             String waiter, String billNumber
@@ -37,54 +37,34 @@ Input format to events.txt:
             "Kitchen | Dish | " + dishID + " | cancelled."
 
 
-        - When a waiter places a dish order, the format is as follows:
-            String waiter, String itemName
+        - When a waiter places a dish order without substitutions, the format is as follows:
+            String waiter, String itemName, String tableNumber
 
-            waiter + " | ordered | " + itemName
-    }
-
-    /**
-     * Writes to events.txt, simulating the input of a waiter placing an order of a menu item with substitutions.
-     *
-     * @param waiter       The waiter who places the order.
-     * @param itemName     The name of the menu item that is being ordered.
-     * @param additions    The ingredients that must be added to the ordered item.
-     * @param subtractions The ingredients that must be removed from the ordered item.
-     */
-    // Additions and/or subtractions can be empty strings.
-    public void orderDish(String waiter, String itemName, String additions, String subtractions) {
-        eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions);
-    }
-
-    /**
-     * Writes to events.txt, simulating the input of waiter confirming that a dish has been delivered to its table.
-     *
-     * @param waiter THe waiter who's serving the table and the dish.
-     * @param dishID The id of the dish that has been served.
-     */
-    public void confirmDelivery(String waiter, String dishID) {
-        eventWriter(waiter + " | delivered dish | " + dishID);
-    }
-
-    /**
-     * Writes to events.txt, simulating the input of a waiter letting the kitchen know that a client recalled a dish.
-     *
-     * @param waiter The waiter whose clients recalled the dish.
-     * @param dishID The id of the dish that was recalled.
-     */
-    public void dishRecall(String waiter, String dishID) {
-        eventWriter(waiter + " | recalled dish | " + dishID);
-    }
+            waiter + " | ordered | " + itemName + " | for table | " + tableNumber
 
 
-    // Receiver inputs:
+        - When a waiter places a dish order with substitutions, the format is as follows:
+            // Additions and/or subtractions can be empty strings.
+            String waiter, String itemName, String additions, String subtractions, String tableNumber
 
-    /**
-     * Writes to events.txt, simulating the input of a receiver inputting the arrival of some ingredient.
-     *
-     * @param ingredient The ingredient that has arrived.
-     * @param quantity   The quantity of this ingredient that has arrived.
-     */
-    public void addToInventory(String ingredient, String quantity) {
-        eventWriter("Restaurant | addToInventory | " + ingredient + " | " + quantity);
-    }
+            waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | " + tableNumber
+
+
+        - When a waiter confirms that a dish has been delivered, the format is as follows:
+            String waiter, String dishID
+
+            waiter + " | delivered dish | " + dishID
+
+
+        - When a waiter recalls a dish, the format is as follows:
+            String waiter, String dishID
+
+            waiter + " | recalled dish | " + dishID
+
+
+    Receiver inputs:
+
+         - When a receiver wishes to add an ingredient to inventory, the format is as follows:
+            String ingredient, String quantity
+
+            "Restaurant | addToInventory | " + ingredient + " | " + quantity
