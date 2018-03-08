@@ -275,9 +275,8 @@ public class Restaurant {
 
                     System.out.println();
 
-                } catch (IOException e) {
-                    System.out.print(".");
-                } catch (NullPointerException ignore) {
+                } catch (IOException | NullPointerException ignore) {
+
                 }
 
                 if (!lastLine.equals("")) {
