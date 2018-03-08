@@ -135,18 +135,12 @@ public class Waiter implements Listener {
                     Integer quantity = ingredients.get(ingredient);
                     Restaurant.removeFromInventory(ingredient, quantity);
                 }
+                printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber);
             }
             // There are insufficient ingredients to complete the order
             else {
                 printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
             }
-<<<<<<< HEAD
-=======
-            printToScreen(item + " (Dish id " + dish.getDishId() + ") was ordered for Table " + tableNumber + "!");
-            printToScreen("It has the following additions: " + additions + ", and substractions: " + subtractions + "!");
-        } else {
-            printToScreen("Can't order dish, insufficient ingredients: " + missingIngredients);
->>>>>>> 6740585625a215cc528ad2b18f3e3d5f5668783c
         }
     }
 
