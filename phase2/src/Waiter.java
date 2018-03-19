@@ -67,12 +67,12 @@ public class Waiter implements Listener {
                         ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
                         ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
 
-                        this.createDish(inputArray[1], add, sub, inputArray[5]);
+                        this.orderDish(inputArray[1], add, sub, inputArray[5]);
                     }
 
                     else if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
-                        this.createDish(inputArray[1], inputArray[3]);
+                        this.orderDish(inputArray[1], inputArray[3]);
                     }
                 }
                     break;
@@ -106,7 +106,7 @@ public class Waiter implements Listener {
 
 
     /**
-     * Helper for .createDish(), alters Ingredients based on additions and subtractions. Also makes sure all additions
+     * Helper for .orderDish(), alters Ingredients based on additions and subtractions. Also makes sure all additions
      * and subtractions to this menu item are valid.
      *
      * @param menuItem The name of the menu item that has been ordered.
@@ -157,7 +157,7 @@ public class Waiter implements Listener {
      * @param subtractions The ingredients the client wishes to remove from the dish.
      * @param tableNumber The number of the table that this dish is to be served to.
      */
-    private void createDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
+    private void orderDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
         // Item is in the menu
         if (Restaurant.getMenu().containsKey(item)) {
             MenuItem menuItem = Restaurant.getMenu().get(item);
@@ -200,9 +200,9 @@ public class Waiter implements Listener {
      * @param item The name of the item being ordered from the menu.
      * @param tableNumber The number of the table that this dish is to be served to.
      */
-    private void createDish(String item, String tableNumber) {
+    private void orderDish(String item, String tableNumber) {
         // creates a Dish with no additions or subtractions
-        createDish(item, new ArrayList<>(), new ArrayList<>(), tableNumber);
+        orderDish(item, new ArrayList<>(), new ArrayList<>(), tableNumber);
     }
 
 
@@ -294,7 +294,7 @@ public class Waiter implements Listener {
      */
     private void recallDish(int dishID) {
         Dish dish = dishList.get(dishID);
-        //createDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
+        //orderDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
         // Better to just call Kitchen.addDish?
         Kitchen.addDish(dish);
         Bill bill = billList.get(dish.getTableNumber());
