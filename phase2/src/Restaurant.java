@@ -251,7 +251,7 @@ public class Restaurant {
      */
     private static void writeRequest(String item) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("requests.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("requests.txt", true));
             writer.write(item.toUpperCase() + " is needed in 20 quantities.");
             writer.newLine();
             writer.close();
