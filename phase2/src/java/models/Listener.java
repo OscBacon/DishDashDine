@@ -1,3 +1,5 @@
+package java.models;
+
 public interface Listener {
     /**
      * Responds to input by calling appropriate methods with given parameters if there are any.

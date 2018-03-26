@@ -1,5 +1,12 @@
+package java.controllers;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.InventoryItem;
+import java.models.Listener;
+import java.MenuItem;
+import java.models.Kitchen;
+import java.models.Waiter;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -43,7 +50,7 @@ public class Restaurant {
     private static HashMap<String, Listener> listenerList = new HashMap<>();
 
     /**
-     * An attribute to keep track of whether or not this Restaurant is running.
+     * An attribute to keep track of whether or not this java.controllers.Restaurant is running.
      */
     private static boolean running = true;
 
@@ -84,13 +91,13 @@ public class Restaurant {
         BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
         waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
         if (!waiterNameList.isEmpty()) {
-            for (String waiterName : waiterNameList) listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
+            for (String waiterName : waiterNameList) listenerList.put("java.models.Waiter " + waiterName, new Waiter(waiterName));
         } else {
-            listenerList.put("Waiter", new Waiter(""));
+            listenerList.put("java.models.Waiter", new Waiter(""));
         }
 
-        // Adds an instance of Kitchen to be used
-        listenerList.put("Kitchen", new Kitchen());
+        // Adds an instance of java.models.Kitchen to be used
+        listenerList.put("java.models.Kitchen", new Kitchen());
 
         //System.out.println(printInventory());
 
@@ -118,7 +125,7 @@ public class Restaurant {
         String in = inputArray[0];
 
         switch (in) {
-            case "Restaurant":
+            case "java.controllers.Restaurant":
                 switch (inputArray[1]) {
                     case "add to inventory":
                         // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
@@ -138,7 +145,7 @@ public class Restaurant {
             default:
                 if (listenerList.get(in) != null) {
                     Listener calledListener = listenerList.get(in);
-                    // Calls the concerned Listener's handleEvent method
+                    // Calls the concerned java.models.Listener's handleEvent method
                     calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
                 } else {
                     System.out.println("Sorry, a line in events.txt has been written incorrectly, and the program " +
@@ -346,9 +353,9 @@ public class Restaurant {
     private static void addWaiter(String name) {
         if (!waiterNameList.contains(name)) {
             waiterNameList.add(name);
-            listenerList.put("Waiter " + name, new Waiter(name));
+            listenerList.put("java.models.Waiter " + name, new Waiter(name));
             waiterListModified = true;
-            System.out.println("Waiter " + name + " added.");
+            System.out.println("java.models.Waiter " + name + " added.");
         }
         else {
             System.out.println("Can't add " + name + ", a waiter with the same name already exists");
@@ -363,9 +370,9 @@ public class Restaurant {
     private static void removeWaiter(String name) {
         if (waiterNameList.contains(name)) {
             waiterNameList.remove(name);
-            listenerList.remove("Waiter " + name);
+            listenerList.remove("java.models.Waiter " + name);
             waiterListModified = true;
-            System.out.println("Waiter " + name + " removed.");
+            System.out.println("java.models.Waiter " + name + " removed.");
         }
         else {
             System.out.println(name + " is not waiter, cannot be removed.");

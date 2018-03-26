@@ -1,3 +1,5 @@
+package java;
+
 public class InventoryItem {
     private int quantity;
     private int threshold;

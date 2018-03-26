@@ -1,3 +1,8 @@
+package java.models;
+
+import java.Dish;
+import java.MenuItem;
+import java.controllers.Restaurant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -5,12 +10,12 @@ import java.util.HashMap;
 
 public class Waiter implements Listener {
     /**
-     * All unpaid, active Bills, accessible with the Bill's table number.
+     * All unpaid, active Bills, accessible with the java.models.Bill's table number.
       */
     private HashMap<Integer, Bill> billList;
 
     /**
-     * All the Bills that have ever been ordered through this waiter, accessible with the Bill id.
+     * All the Bills that have ever been ordered through this waiter, accessible with the java.models.Bill id.
      * Includes paid and unpaid bills.
      */
     private HashMap<Integer, Bill> allBillsList;
@@ -45,7 +50,7 @@ public class Waiter implements Listener {
 
 
     /**
-     * Makes calls to the appropriate functions in this Kitchen class depending on the input array of Strings.
+     * Makes calls to the appropriate functions in this java.models.Kitchen class depending on the input array of Strings.
      *
      * @param inputArray The input to be handled, split into an array of Strings.
      */
@@ -116,7 +121,7 @@ public class Waiter implements Listener {
      * @return True if all additions and subtractions to this menuItem are valid.
      */
     private boolean madeSubstitutions(MenuItem menuItem, HashMap<String, Integer> ingredients,
-                                                       ArrayList<String> additions, ArrayList<String> subtractions) {
+                                      ArrayList<String> additions, ArrayList<String> subtractions) {
         for (String addition : additions) {
             if (!addition.equals("")) {
                 if (menuItem.getAllowedAdditions().contains(addition)) {
@@ -148,7 +153,7 @@ public class Waiter implements Listener {
 
     /**
      * Checks that the ordered dish is valid and that there are enough ingredients to fulfill the dish, and then places
-     * the order by adding the constructed dish to the Kitchen's dishList and updating the restaurant's inventory.
+     * the order by adding the constructed dish to the java.models.Kitchen's dishList and updating the restaurant's inventory.
      *
      * Precondition: <item> is on the menu.
      *
@@ -176,7 +181,7 @@ public class Waiter implements Listener {
                         Integer quantity = ingredients.get(ingredient);
                         Restaurant.removeFromInventory(ingredient, quantity);
                     }
-                    printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber);
+                    printToScreen(item + " (java.Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber);
                 }
                 // There are insufficient ingredients to complete the order
                 else {
@@ -193,7 +198,7 @@ public class Waiter implements Listener {
 
     /**
      * Checks that there are enough ingredients to fulfill the ordered dish, and then places the order by adding the
-     * constructed dish to the Kitchen's dishList and updating the restaurant's inventory.
+     * constructed dish to the java.models.Kitchen's dishList and updating the restaurant's inventory.
      *
      * Precondition: <item> is on the menu.
      *
@@ -201,7 +206,7 @@ public class Waiter implements Listener {
      * @param tableNumber The number of the table that this dish is to be served to.
      */
     private void orderDish(String item, String tableNumber) {
-        // creates a Dish with no additions or subtractions
+        // creates a java.Dish with no additions or subtractions
         orderDish(item, new ArrayList<>(), new ArrayList<>(), tableNumber);
     }
 
@@ -220,10 +225,10 @@ public class Waiter implements Listener {
 
 
     /**
-     * Pays the Bill of the given table, and removes this bill and its dishes from this waiter's lists of active
+     * Pays the java.models.Bill of the given table, and removes this bill and its dishes from this waiter's lists of active
      * dishes and bills.
      *
-     * @param tableNum Number of the table whose Bill is paid
+     * @param tableNum Number of the table whose java.models.Bill is paid
      */
     private void payBill(int tableNum) {
         Bill bill = billList.get(tableNum); // Retrieve the bill object
@@ -249,7 +254,7 @@ public class Waiter implements Listener {
         Dish dish = dishList.get(dishID);
         Bill bill = billList.get(dish.getTableNumber());
         bill.addDish(dish);
-        printToScreen("Dish " + dishID + " delivered!");
+        printToScreen("java.Dish " + dishID + " delivered!");
     }
 
 
@@ -270,7 +275,7 @@ public class Waiter implements Listener {
             Restaurant.addToInventory(ingredient, quantity);
         }
 
-        printToScreen("Dish " + dishID + " has been cancelled.");
+        printToScreen("java.Dish " + dishID + " has been cancelled.");
     }
 
 
@@ -283,7 +288,7 @@ public class Waiter implements Listener {
         Dish dish = dishList.get(dishID);
         Bill bill = billList.get(dish.getTableNumber());
         bill.removeDish(dishID);
-        printToScreen("Dish " + dishID + " removed!");
+        printToScreen("java.Dish " + dishID + " removed!");
     }
 
 
@@ -295,11 +300,11 @@ public class Waiter implements Listener {
     private void recallDish(int dishID) {
         Dish dish = dishList.get(dishID);
         //orderDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
-        // Better to just call Kitchen.addDish?
+        // Better to just call java.models.Kitchen.addDish?
         Kitchen.addDish(dish);
         Bill bill = billList.get(dish.getTableNumber());
         bill.removeDish(dishID);
-        printToScreen("Dish " + dishID + " recalled!");
+        printToScreen("java.Dish " + dishID + " recalled!");
     }
 
 

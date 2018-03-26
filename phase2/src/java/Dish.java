@@ -1,8 +1,13 @@
+package java;
+
+import java.controllers.Restaurant;
+import java.models.Waiter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * A dish object is created when the customer (in the Restaurant) orders a dish and a Waiter initialises a new Dish.
+ * A dish object is created when the customer (in the java.controllers.Restaurant) orders a dish and a java.models.Waiter initialises a new java.Dish.
  * A waiter can initialise a dish with or without substitutions.
  */
 public class Dish {
@@ -12,21 +17,21 @@ public class Dish {
      */
      private static int numOfDishes;
      /**
-     * String name: This Dish's name
+     * String name: This java.Dish's name
      */
      private String name;
      /**
-     * ArrayList additions: All allowed additions required by the Restaurant's customer for this dish.
+     * ArrayList additions: All allowed additions required by the java.controllers.Restaurant's customer for this dish.
      */
      private ArrayList<String> additions;
      /**
-     * ArrayList subtractions: All allowed subtractions required by the Restaurant's customer for this dish.
+     * ArrayList subtractions: All allowed subtractions required by the java.controllers.Restaurant's customer for this dish.
      */
      private ArrayList<String> subtractions;
      /**int tableNumber: The table this dish belongs to.
      */
      private int tableNumber;
-     /** Waiter waiter: The particular waiter to handle this dish.
+     /** java.models.Waiter waiter: The particular waiter to handle this dish.
      */
      private Waiter waiter;
      /** String cook: The particular cook who accepts and prepares this dish.
@@ -49,13 +54,13 @@ public class Dish {
 
 
     /**
-     * Constructor for Dish object including allowed Additions and Subtractions.
+     * Constructor for java.Dish object including allowed Additions and Subtractions.
      * @param dishName The particular name of the dish from the menu.
-     * @param dishAdditions Dish additions requested by the customer.
-     * @param dishSubtractions Dish subtractions requested by the customer.
-     * @param waiter The waiter who assigned this Dish.
+     * @param dishAdditions java.Dish additions requested by the customer.
+     * @param dishSubtractions java.Dish subtractions requested by the customer.
+     * @param waiter The waiter who assigned this java.Dish.
      * @param tableNumber The tableNumber that this dish belongs to.
-     * Precondition: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
+     * Precondition: dishName is already in the menu. java.models.Waiter exists in the restaurant. tableNumber is in java.controllers.Restaurant.
      *               All substitutions are allowed.
      */
     public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
@@ -80,8 +85,8 @@ public class Dish {
     }
 
     /**
-     * Getter that returns the String for Dish name
-     * @return returns Dish name
+     * Getter that returns the String for java.Dish name
+     * @return returns java.Dish name
 
      */
     public String getName() {
@@ -97,7 +102,7 @@ public class Dish {
     }
 
     /**
-     * Returns all the subtractions required by the Restaurant's customer.
+     * Returns all the subtractions required by the java.controllers.Restaurant's customer.
      * @return subtractions
      */
     public ArrayList<String> getSubtractions() {
@@ -113,8 +118,8 @@ public class Dish {
     }
 
     /**
-     *  Getter that returns the Waiter that has assigned this Dish.
-     * @return Waiter
+     *  Getter that returns the java.models.Waiter that has assigned this java.Dish.
+     * @return java.models.Waiter
      */
     public Waiter getWaiter() {
         return waiter;
@@ -153,7 +158,7 @@ public class Dish {
     }
 
     /**
-     * Each particular ingredient of the Dish
+     * Each particular ingredient of the java.Dish
      * @return HashMap
      */
     public HashMap<String, Integer> getIngredients() {
