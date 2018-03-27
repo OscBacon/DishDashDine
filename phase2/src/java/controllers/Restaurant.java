@@ -365,6 +365,7 @@ public class Restaurant {
     /**
      * Getter for the waiterNameList
      * @return waiterNameList
+     */
     public static ArrayList<String> getWaiterNameList() {
         return waiterNameList;
 
