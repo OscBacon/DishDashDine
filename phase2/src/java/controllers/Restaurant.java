@@ -363,6 +363,14 @@ public class Restaurant {
     }
 
     /**
+     * Getter for the waiterNameList
+     * @return waiterNameList
+    public static ArrayList<String> getWaiterNameList() {
+        return waiterNameList;
+
+    }
+
+    /**
      * Removes the given waiter to waiterListName and listenerList.
      *
      * @param name Name of the waiter to be added
