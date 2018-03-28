@@ -1,4 +1,4 @@
-package java.controllers;
+package controllers;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -33,7 +33,7 @@ public abstract class Actions {
 
 
 // --------------------------------------------------------------------------------
-    // java.models.Kitchen inputs:
+    // Kitchen inputs:
 
     /**
      * Writes to events.txt, simulating the input of a cook confirming that he has seen the dish order.
@@ -42,7 +42,7 @@ public abstract class Actions {
      * @param dishID   The id of the dish that has just been confirmed.
      */
     public void acceptDish(String cookName, String dishID) {
-        eventWriter("java.models.Kitchen | " + cookName + " | has accepted dish | " + dishID);
+        eventWriter("Kitchen | " + cookName + " | has accepted dish | " + dishID);
     }
 
 
@@ -52,12 +52,12 @@ public abstract class Actions {
      * @param dishID The id of the dish that is to be picked-up.
      */
     public void finishDish(String dishID) {
-        eventWriter("java.models.Kitchen | java.Dish | " + dishID + " | is ready.");
+        eventWriter("Kitchen | Dish | " + dishID + " | is ready.");
     }
 
 
 // --------------------------------------------------------------------------------
-    // java.models.Waiter inputs:
+    // Waiter inputs:
 
     /**
      * Writes to events.txt, simulating the input of a waiter asking to see a certain bill.
@@ -186,7 +186,7 @@ public abstract class Actions {
      * @param quantity   The quantity of this ingredient that has arrived.
      */
     public void addToInventory(String ingredient, String quantity) {
-        eventWriter("java.controllers.Restaurant | add to inventory | " + ingredient + " | " + quantity);
+        eventWriter("Restaurant | add to inventory | " + ingredient + " | " + quantity);
     }
 
 
@@ -199,7 +199,7 @@ public abstract class Actions {
      * @param waiterName The name of the waiter the manager is adding into the system.
      */
     public void addWaiter(String waiterName) {
-        eventWriter("java.controllers.Restaurant | add waiter | " + waiterName);
+        eventWriter("Restaurant | add waiter | " + waiterName);
     }
 
 
@@ -209,7 +209,7 @@ public abstract class Actions {
      * @param waiterName The name of the waiter the manager is removing from the system.
      */
     public void removeWaiter(String waiterName) {
-        eventWriter("java.controllers.Restaurant | remove waiter | " + waiterName);
+        eventWriter("Restaurant | remove waiter | " + waiterName);
     }
 
 }

@@ -1,6 +1,4 @@
-package java.models;
-
-import java.Dish;
+package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,15 +13,15 @@ public class Bill {
      */
     private int billID;
     /**
-     * This java.models.Bill's table.
+     * This Bill's table.
      */
     private int tableNumber;
     /**
-     * This java.models.Bill's java.models.Waiter.
+     * This Bill's Waiter.
      */
     private Waiter waiter;
     /**
-     * A HashMap of this java.models.Bill's Dishes.
+     * A HashMap of this Bill's Dishes.
      */
     private HashMap<Integer, Dish> dishList;
 
@@ -37,25 +35,25 @@ public class Bill {
 
 
     /**
-     * Adds java.Dish to ArrayList of dishList
+     * Adds Dish to ArrayList of dishList
      *
-     * @param dish java.models.Waiter passes in a dish to the bill which is added to ArrayList dishList
+     * @param dish Waiter passes in a dish to the bill which is added to ArrayList dishList
      */
     public void addDish(Dish dish) {
         dishList.put(dish.getDishId(), dish);
     }
 
     /**
-     * Removes dish from java.models.Bill.
+     * Removes dish from Bill.
      *
-     * @param currentDishID specific java.Dish ID passed to remove the dish from this specific java.models.Bill.
+     * @param currentDishID specific Dish ID passed to remove the dish from this specific Bill.
      */
     public void removeDish(int currentDishID) {
         dishList.remove(currentDishID);
     }
 
     /**
-     * Returns this java.models.Bill's dishList.
+     * Returns this Bill's dishList.
      * @return dishList
      */
     public HashMap<Integer, Dish> getDishList() {
@@ -72,21 +70,21 @@ public class Bill {
 
     /**
      * Returns this bill's ID.
-     * @return An int representing this java.models.Bill's ID.
+     * @return An int representing this Bill's ID.
      */
     public int getBillID() {
         return billID;
     }
 
     /**
-     * Returns the formatted bill as a String containing each dish, each dish's Price, total Price, the java.models.Waiter,
+     * Returns the formatted bill as a String containing each dish, each dish's Price, total Price, the Waiter,
      * and the table number.
      *
      * @return String
      */
     public String toString() {
         ArrayList<String> billStrings = new ArrayList<>();
-        billStrings.add("Thank you for joining us today. Your java.models.Waiter today was " + this.waiter.getName());
+        billStrings.add("Thank you for joining us today. Your Waiter today was " + this.waiter.getName());
         billStrings.add("TABLE NUMBER: " + this.tableNumber);
         for (Integer key : dishList.keySet()) {
             String formattedPrice = String.format("%.2f",dishList.get(key).getPrice());

@@ -1,6 +1,4 @@
-package java.models;
-
-import java.Dish;
+package models;
 
 import java.util.HashMap;
 
@@ -14,7 +12,7 @@ public class Kitchen implements Listener {
     }
 
     /**
-     * Adds the java.Dish object parameter to this kitchen's list of active dishes (dishList).
+     * Adds the Dish object parameter to this kitchen's list of active dishes (dishList).
      *
      * @param dish The dish that has just been ordered.
      */
@@ -25,9 +23,9 @@ public class Kitchen implements Listener {
     }
 
     /**
-     * Removes the java.Dish object parameter from this kitchen's list of active dishes (dishList).
+     * Removes the Dish object parameter from this kitchen's list of active dishes (dishList).
      *
-     * @param dish The dish that is not to be prepared by the java.models.Kitchen anymore.
+     * @param dish The dish that is not to be prepared by the Kitchen anymore.
      */
     public static void removeDish(Dish dish) {
         String id = String.valueOf(dish.getDishId());
@@ -44,7 +42,7 @@ public class Kitchen implements Listener {
     private void readyDish(String dishID) {
         Dish dish = dishList.get(dishID);
 
-        dish.getWaiter().printToScreen("java.Dish " + dish.getName() + " (java.Dish id " + dishID + ") for Table " +
+        dish.getWaiter().printToScreen("Dish " + dish.getName() + " (Dish id " + dishID + ") for Table " +
                 dish.getTableNumber() + " is ready for pick-up.");
 
         removeDish(dish);
@@ -61,11 +59,11 @@ public class Kitchen implements Listener {
 
         dish.setCook(cook);
 
-        printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (java.Dish id " + dishID + ")!");
+        printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + dishID + ")!");
     }
 
     /**
-     * Makes calls to the appropriate functions in this java.models.Kitchen class depending on the input array of Strings.
+     * Makes calls to the appropriate functions in this Kitchen class depending on the input array of Strings.
      *
      * @param inputArray The input to be handled, split into an array.
      */
@@ -81,6 +79,6 @@ public class Kitchen implements Listener {
     }
 
     public void printToScreen(String s) {
-        System.out.println("java.models.Kitchen: " + s);
+        System.out.println("Kitchen: " + s);
     }
 }

@@ -1,4 +1,4 @@
-package java;
+package models;
 
 public class InventoryItem {
     private int quantity;

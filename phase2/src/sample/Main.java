@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.controllers.Restaurant;
-
 public class Main extends Application {
 
 

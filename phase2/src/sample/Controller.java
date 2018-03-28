@@ -1,12 +1,10 @@
 package sample;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.controllers.Restaurant;
-import java.models.Waiter;
+import controllers.Restaurant;
 
 public class Controller {
 
