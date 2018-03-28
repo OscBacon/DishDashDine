@@ -2,6 +2,7 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.application.Application;
 import models.InventoryItem;
 import models.Listener;
 import models.MenuItem;
@@ -14,8 +15,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Restaurant {
+public class Restaurant extends Application {
     /**
      * A HashMap representation of the inventory.
      */
@@ -63,36 +69,45 @@ public class Restaurant {
      */
     private static boolean waiterListModified;
 
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("../resources/views/EmployeeSelection.fxml"));
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 
     public static void main(String[] args) throws IOException {
-        /* Creation of individual Files is currently commented out in case they need to be created and formatted later.
-        File eventsFile = new File("events.txt");
-        File requestsFile = new File("requests.txt");
-        File menuFile = new File("menu.json");
-        File inventoryFile = new File("inventory.json");*/
-
         String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json", "bills.json"};
         for (String fileName : fileNames) {
-            File file = new File(fileName);
-            if (!file.isFile()) {
-                file.createNewFile();
+            InputStream in = Restaurant.class.getResourceAsStream(fileName);
+            if (in == null) {
+                File f = new File(Restaurant.class.getResource("../resources").getPath() + fileName);
+                f.createNewFile();
             }
         }
 
         Gson gson = new Gson();
 
-        menu = gson.fromJson(new FileReader("menu.json"), menuType);
+        menu = gson.fromJson(new FileReader(Restaurant.class.getResource("../menu.json").getFile()), menuType);
 
-        inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
+        inventory = gson.fromJson(new FileReader(Restaurant.class
+                .getResource("../inventory.json").getFile()),inventoryType);
+        if (inventory == null) {
+            inventory = new HashMap<>();
+        }
         // Checks inventory on launch to send out reorder requests ASAP
         checkInventory();
 
-        // Initialize all of the waiters on waiters.txt and add them to waitersList
-        BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
-        waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
-        if (!waiterNameList.isEmpty()) {
-            for (String waiterName : waiterNameList) listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
-        } else {
+        // Initialize all of the waiters in waiters.txt and add them to waitersList
+        BufferedReader reader = new BufferedReader(new FileReader(Restaurant.class
+                .getResource("../waiters.txt").getFile()));
+        try {
+            waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
+            for (String waiterName : waiterNameList) {
+                listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
+            }
+        }
+        catch (NullPointerException e) {
             listenerList.put("Waiter", new Waiter(""));
         }
 
@@ -100,6 +115,7 @@ public class Restaurant {
         listenerList.put("Kitchen", new Kitchen());
 
         //System.out.println(printInventory());
+        launch(args);
 
         run();
         System.out.println("Saving...");
@@ -311,18 +327,18 @@ public class Restaurant {
         Gson gson = new Gson();
 
         if (inventoryModified) {
-            FileWriter writer = new FileWriter("inventory.json");
+            FileWriter writer = new FileWriter("resources/inventory.json");
             gson.toJson(inventory, writer);
             writer.close();
         }
 
         if (waiterListModified) {
-            FileWriter writer = new FileWriter("waiters.txt");
+            FileWriter writer = new FileWriter("resources/waiters.txt");
             writer.write(String.join(", ", waiterNameList));
             writer.close();
         }
 
-        FileWriter eventsFile = new FileWriter("events.txt");
+        FileWriter eventsFile = new FileWriter("resources/events.txt");
         eventsFile.flush();
         eventsFile.close();
     }
