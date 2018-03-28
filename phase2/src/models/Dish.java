@@ -1,7 +1,6 @@
 package models;
 
 import controllers.Restaurant;
-import models.Waiter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
