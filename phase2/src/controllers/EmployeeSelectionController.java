@@ -57,13 +57,15 @@ public class EmployeeSelectionController {
 
                 dialogStage.showAndWait();
 
-                FXMLLoader waiterLoader = new FXMLLoader();
-                waiterLoader.setLocation(Restaurant.class.getResource("../resources/views/Waiter.fxml"));
-                Parent waiterPage = waiterLoader.load();
-                MainController waiterController = waiterLoader.getController();
-                waiterController.setName(dialogController.getName());
-                Restaurant.stage.getScene().setRoot(waiterPage);
-                Restaurant.stage.show();
+                if (dialogController.getName() != null) {
+                    FXMLLoader waiterLoader = new FXMLLoader();
+                    waiterLoader.setLocation(Restaurant.class.getResource("../resources/views/Waiter.fxml"));
+                    Parent waiterPage = waiterLoader.load();
+                    MainController waiterController = waiterLoader.getController();
+                    waiterController.setName(dialogController.getName());
+                    Restaurant.stage.getScene().setRoot(waiterPage);
+                    Restaurant.stage.show();
+                }
                 break;
             case "Kitchen":
                 Parent kitchenPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Kitchen.fxml"));
