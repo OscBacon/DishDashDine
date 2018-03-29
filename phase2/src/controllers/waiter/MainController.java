@@ -41,6 +41,10 @@ public class MainController {
             ObservableList currentBills = FXCollections.observableArrayList(currWaiter.getBillList());
             tablesList.setItems(currentBills);
         }
+    public void createList() {
+        currentBills = (HashMap<String,Bill>) currWaiter.getFormattedBillList();
+        currentTables = new ArrayList<>(currentBills.keySet());
+        tablesList.setItems(FXCollections.observableArrayList(currentTables));
     }
 
     /**
@@ -62,6 +66,8 @@ public class MainController {
         orderController.setDialogStage(orderStage);
         orderController.setName(name);
         orderStage.showAndWait();
+        createList();
+
     }
 
     /**
