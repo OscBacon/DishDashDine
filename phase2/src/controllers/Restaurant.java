@@ -22,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Restaurant extends Application {
+    static Stage stage;
+
     /**
      * A HashMap representation of the inventory.
      */
@@ -72,8 +74,9 @@ public class Restaurant extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../resources/views/EmployeeSelection.fxml"));
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        stage = primaryStage;
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     public static void main(String[] args) throws IOException {
