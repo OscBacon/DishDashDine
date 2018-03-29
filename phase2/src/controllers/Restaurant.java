@@ -207,7 +207,6 @@ public class Restaurant extends Application {
                 }
                 break;
             case "Message":
-                System.out.println(currentUser);
                 if (inputArray[1].equals(currentUser)) {
                     printToScreen(inputArray[2]);
                 }
@@ -241,8 +240,8 @@ public class Restaurant extends Application {
             int currQuantity = inventoryItem.getQuantity();
 
             if (currentUser.equals("Receiver")) {
-                printToScreen("" + quantity + " units of " + ingredient + " were added to the inventory.");
-                printToScreen("There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
+                printToScreen("" + quantity + " units of " + ingredient + " were added to the inventory. " +
+                        "There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
             }
 
             inventory.get(ingredient).setQuantity(currQuantity + quantity);
@@ -455,6 +454,14 @@ public class Restaurant extends Application {
     }
 
     /**
+     * Return the current user's name.
+     * @return a String representing the current user's name.
+     */
+    public static String getCurrentUser() {
+        return Restaurant.currentUser;
+    }
+
+    /**
      * Removes Dish dish from the HashMap of undeliveredDishes.
      * @param dish The Dish that has been delivered.
      */
@@ -467,7 +474,7 @@ public class Restaurant extends Application {
      * @param dish The Dish that has just been ordered.
      */
     public static void addToUndeliveredDishes(Dish dish){
-        undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + Integer.toString(dish.getTableNumber()));
+        undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + " " + Integer.toString(dish.getTableNumber()));
     }
 
     /**

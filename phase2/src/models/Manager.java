@@ -87,6 +87,8 @@ public class Manager implements Listener{
     }
 
     public void printToScreen(String s) {
-        Logging.message("Manager", s);
+        if(Restaurant.getCurrentUser().trim().equals(("Manager").trim())) {
+            Logging.message("Manager", s);
+        }
     }
 }

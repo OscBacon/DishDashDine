@@ -1,0 +1,8 @@
+Waiter Dennis | new bill | 8
+Message | Waiter Dennis | New bill created for Table 8!
+Waiter Dennis | ordered | Kung Pao Chicken | for table | 8
+Message | Waiter Dennis | Kung Pao Chicken (Dish id: 0) was ordered for Table 8
+Waiter Dennis | ordered | Kung Pao Chicken | for table | 8
+Message | Waiter Dennis | Kung Pao Chicken (Dish id: 1) was ordered for Table 8
+Waiter Dennis | ordered | Kung Pao Chicken | for table | 8
+Message | Waiter Dennis | Kung Pao Chicken (Dish id: 2) was ordered for Table 8
