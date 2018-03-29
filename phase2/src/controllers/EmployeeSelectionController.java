@@ -28,12 +28,12 @@ public class EmployeeSelectionController {
         String selectedEmployeeType = employeeTypeList.getSelectionModel().getSelectedItem();;
         switch (selectedEmployeeType) {
             case "Manager":
-                Parent managerPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Manager.fxml"));
+                Parent managerPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/ManagerHomepage.fxml"));
                 Restaurant.stage.getScene().setRoot(managerPage);
                 Restaurant.stage.show();
                 break;
             case "Waiter":
-                Parent waiterPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Waiter.fxml"));
+                Parent waiterPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/SelectWaiter.fxml"));
                 Restaurant.stage.getScene().setRoot(waiterPage);
                 Restaurant.stage.show();
                 break;
