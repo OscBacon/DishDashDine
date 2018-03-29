@@ -8,12 +8,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="227.0" layoutY="16.0" text="Waiter Print Bill">
+      <Label layoutX="214.0" layoutY="14.0" text="Waiter Current Bill">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <TextArea fx:id="printBill" layoutX="23.0" layoutY="54.0" prefHeight="282.0" prefWidth="555.0" />
-      <Button fx:id="RemoveDishbtn" layoutX="382.0" layoutY="347.0" mnemonicParsing="false" onAction="#RemoveCurrentDishFromBill" prefHeight="27.0" prefWidth="196.0" text="Remove Dish From Bill" />
+      <Button fx:id="RemoveDishbtn" layoutX="23.0" layoutY="347.0" mnemonicParsing="false" onAction="#RemoveCurrentDishFromBill" prefHeight="27.0" prefWidth="196.0" text="Remove Dish From Bill" />
+      <Button layoutX="417.0" layoutY="347.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="161.0" text="Print Bill" />
    </children>
 </AnchorPane>
