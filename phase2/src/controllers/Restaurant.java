@@ -42,6 +42,11 @@ public class Restaurant extends Application {
     private static ArrayList<String> waiterNameList;
 
     /**
+     * An Array of the Cooks' names.
+     */
+    private static ArrayList<String> cookNameList;
+
+    /**
      * The Type of menu.
      * This is used when parsing menu.json.
      */
@@ -73,6 +78,11 @@ public class Restaurant extends Application {
      */
     private static boolean waiterListModified;
 
+    /**
+     * Keeps track of whether or not cookList was modified since start.
+     */
+    private static boolean cookListModified;
+
     public static HashMap<String, String> undeliveredDishes;
 
     @Override
@@ -84,7 +94,7 @@ public class Restaurant extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json", "bills.json", "log.txt"};
+        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "cooks.txt", "inventory.json", "bills.json", "log.txt"};
         for (String fileName : fileNames) {
             File f = new File(fileName);
             if (!f.exists()) {
@@ -156,6 +166,12 @@ public class Restaurant extends Application {
                         break;
                     case "remove waiter":
                         removeWaiter(inputArray[2]);
+                        break;
+                    case "add cook":
+                        addCook(inputArray[2]);
+                        break;
+                    case "remove cook":
+                        removeCook(inputArray[2]);
                         break;
                 }
                 break;
@@ -339,6 +355,12 @@ public class Restaurant extends Application {
             writer.close();
         }
 
+        if (cookListModified) {
+            FileWriter writer = new FileWriter("cooks.txt");
+            writer.write(String.join(", ", cookNameList));
+            writer.close();
+        }
+
         FileWriter eventsFile = new FileWriter("events.txt");
         eventsFile.flush();
         eventsFile.close();
@@ -363,7 +385,7 @@ public class Restaurant extends Application {
     }
 
     /**
-     * Adds the given waiter to waiterListName and listenerList.
+     * Adds the given waiter to waiterNameList and listenerList.
      *
      * @param name Name of the waiter to be added
      */
@@ -380,22 +402,6 @@ public class Restaurant extends Application {
     }
 
     /**
-     * Getter for the waiterNameList
-     * @return waiterNameList
-     */
-    public static ArrayList<String> getWaiterNameList() {
-        return waiterNameList;
-    }
-
-    /**
-     * Getter for Listener List
-     * @return HashMap listenerList
-     */
-    public static HashMap<String, Listener> getListenerList() {
-        return listenerList;
-    }
-
-    /**
      * Removes the given waiter to waiterListName and listenerList.
      *
      * @param name Name of the waiter to be added
@@ -408,8 +414,64 @@ public class Restaurant extends Application {
             System.out.println("Waiter " + name + " removed.");
         }
         else {
-            System.out.println(name + " is not waiter, cannot be removed.");
+            System.out.println(name + " is not a waiter, cannot be removed.");
         }
+    }
+
+    /**
+     * Adds the given cook to cookNameList.
+     *
+     * @param name Name of the cook to be added
+     */
+    private static void addCook(String name) {
+        if (!cookNameList.contains(name)) {
+            cookNameList.add(name);
+            cookListModified = true;
+            System.out.println("Cook " + name + " added.");
+        }
+        else {
+            System.out.println("Can't add " + name + ", a cook with the same name already exists");
+        }
+    }
+
+    /**
+     * Removes the given Cook from cookNameList.
+     *
+     * @param name Name of the cook to be added
+     */
+    private static void removeCook(String name) {
+        if (cookNameList.contains(name)) {
+            cookNameList.remove(name);
+            cookListModified = true;
+            System.out.println("Cook " + name + " removed.");
+        }
+        else {
+            System.out.println(name + " is not a cook, cannot be removed.");
+        }
+    }
+
+    /**
+     * Getter for the waiterNameList
+     * @return waiterNameList
+     */
+    public static ArrayList<String> getWaiterNameList() {
+        return waiterNameList;
+    }
+
+    /**
+     * Getter for the cookNameList
+     * @return cookNameList
+     */
+    public static ArrayList<String> getCookNameList() {
+        return cookNameList;
+    }
+
+    /**
+     * Getter for Listener List
+     * @return HashMap listenerList
+     */
+    public static HashMap<String, Listener> getListenerList() {
+        return listenerList;
     }
 
     public static void removeFromUndeliveredDishes(Dish dish){
@@ -426,5 +488,9 @@ public class Restaurant extends Application {
 
     public static void setWaiterListModified(boolean waiterListModified) {
         Restaurant.waiterListModified = waiterListModified;
+    }
+
+    public static void setCookListModified(boolean cookListModified) {
+        Restaurant.cookListModified = cookListModified;
     }
 }
