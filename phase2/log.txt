@@ -1,3 +1,0 @@
-Manager | add cook | Tim
-Manager | remove waiter | Jen
-Manager | requested undelivered dishes

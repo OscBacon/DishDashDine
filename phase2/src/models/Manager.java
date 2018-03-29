@@ -22,10 +22,10 @@ public class Manager implements Listener{
             case "remove cook":
                 removeCook(inputArray[1]);
                 break;
-            case "requested undelivered dishes":
+            case "requested undelivered dishes.":
                 showUndeliveredDishes();
                 break;
-            case "requested all payments":
+            case "requested all payments.":
                 showAllPayments();
                 break;
         }

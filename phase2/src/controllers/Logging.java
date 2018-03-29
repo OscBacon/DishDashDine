@@ -30,6 +30,18 @@ public abstract class Logging {
 
 
 // --------------------------------------------------------------------------------
+    // Message:
+
+    /**
+     * @param user The user this message is dedicated to.
+     * @param message The String that is to be displayed to the user.
+     */
+    public static void message(String user, String message) {
+        eventWriter("Message | " + user + " | " + message);
+    }
+
+
+// --------------------------------------------------------------------------------
     // Kitchen inputs:
 
     /**
@@ -219,6 +231,16 @@ public abstract class Logging {
      */
     public static void removeCook(String cookName) {
         eventWriter("Manager | remove cook | " + cookName);
+    }
+
+
+    public static void showUndeliveredDishes() {
+        eventWriter("Manager | requested undelivered dishes.");
+    }
+
+
+    public static void showAllPayments() {
+        eventWriter("Manager | requested all payments.");
     }
 
 }
