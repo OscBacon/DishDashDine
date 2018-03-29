@@ -182,6 +182,7 @@ public class Waiter implements Listener {
                         Integer quantity = ingredients.get(ingredient);
                         Restaurant.removeFromInventory(ingredient, quantity);
                     }
+                    Restaurant.addToUndeliveredDishes(dish);
                     printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber);
                 }
                 // There are insufficient ingredients to complete the order
@@ -255,6 +256,7 @@ public class Waiter implements Listener {
         Dish dish = dishList.get(dishID);
         Bill bill = billList.get(dish.getTableNumber());
         bill.addDish(dish);
+        Restaurant.removeFromUndeliveredDishes(dish);
         printToScreen("Dish " + dishID + " delivered!");
     }
 
@@ -270,6 +272,7 @@ public class Waiter implements Listener {
         Dish dish = dishList.get(dishID);
 
         Kitchen.removeDish(dish);
+        Restaurant.removeFromUndeliveredDishes(dish);
 
         for (String ingredient : dish.getIngredients().keySet()) {
             Integer quantity = dish.getIngredients().get(ingredient);

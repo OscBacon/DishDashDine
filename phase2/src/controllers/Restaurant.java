@@ -8,6 +8,7 @@ import models.Listener;
 import models.MenuItem;
 import models.Kitchen;
 import models.Waiter;
+import models.Dish;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -70,6 +71,8 @@ public class Restaurant extends Application {
      * Keeps track of whether or not waiterList was modified since start.
      */
     private static boolean waiterListModified;
+
+    public static HashMap<String, String> undeliveredDishes;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -407,6 +410,18 @@ public class Restaurant extends Application {
         else {
             System.out.println(name + " is not waiter, cannot be removed.");
         }
+    }
+
+    public static void removeFromUndeliveredDishes(Dish dish){
+        undeliveredDishes.remove(Integer.toString(dish.getDishId()));
+    }
+
+    public static void addToUndeliveredDishes(Dish dish){
+        undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + Integer.toString(dish.getTableNumber()));
+    }
+
+    private HashMap<String, String> getUndeliveredDishes(){
+        return undeliveredDishes;
     }
 
 }
