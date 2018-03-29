@@ -81,7 +81,6 @@ public class Kitchen implements Listener {
      * @return the Dish that must be acknowledged by the kitchen next.
      */
     public Dish getFirstDish() {
-
         return (Dish) dishesToConfirm.keySet().toArray()[0];
     }
 
