@@ -63,7 +63,7 @@ public class Kitchen implements Listener {
      */
     private void acceptDish(String cook) {
 
-        if(dishesToConfirm.keySet().toArray().length > 0) {
+        if(dishesToConfirm.values().toArray().length > 0) {
 
             Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
 
@@ -87,7 +87,7 @@ public class Kitchen implements Listener {
      * Precondition: dishesToConfirm has been verified to not be empty.
      */
     public static Dish getFirstDish() {
-        return (Dish) dishesToConfirm.keySet().toArray()[0];
+        return (Dish) dishesToConfirm.values().toArray()[0];
     }
 
     /**
@@ -96,7 +96,7 @@ public class Kitchen implements Listener {
      * @return True if there are dishes to be confirmed in the kitchen.
      */
     public static boolean hasPendingDishes() {
-        return dishesToConfirm.keySet().toArray().length > 0;
+        return dishesToConfirm.values().toArray().length > 0;
     }
 
     /**
@@ -116,9 +116,16 @@ public class Kitchen implements Listener {
     public void handleEvent(String[] inputArray) {
         if (inputArray.length >= 3) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if (inputArray[2].equals("is ready.")) {
+            if (inputArray[2].equals("is ready."))
+            {
                 this.readyDish(inputArray[1]);
-            } else if (inputArray[1].equals("has accepted oldest dish.")) {
+            }
+        }
+
+        else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+        {
+            if(inputArray[1].equals("has accepted oldest dish."))
+            {
                 this.acceptDish(inputArray[0]);
             }
         }
