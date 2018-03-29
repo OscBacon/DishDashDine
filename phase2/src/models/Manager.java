@@ -23,7 +23,10 @@ public class Manager implements Listener{
                 removeCook(inputArray[1]);
                 break;
             case "requested undelivered dishes":
-                Restaurant.getUndeliveredDishes();
+                showUndeliveredDishes();
+                break;
+            case "requested all payments":
+                showAllPayments();
                 break;
         }
     }
@@ -72,6 +75,14 @@ public class Manager implements Listener{
         else {
             printToScreen(name + " is not a cook, cannot be removed.");
         }
+    }
+
+    private void showUndeliveredDishes(){
+        printToScreen("All undelivered dishes:\n" + Restaurant.getUndeliveredDishes().toString());
+    }
+
+    private void showAllPayments(){
+        printToScreen("All paid bills of the day:\n" + Restaurant.getPaidBills().toString());
     }
 
     public void printToScreen(String s) {

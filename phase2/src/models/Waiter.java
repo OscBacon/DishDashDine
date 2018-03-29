@@ -233,13 +233,13 @@ public class Waiter implements Listener {
      */
     private void payBill(int tableNum) {
         Bill bill = billList.get(tableNum); // Retrieve the bill object
-
         printToScreen(bill.toString()); // Print the bill to the screen
 
         for (Integer key : bill.getDishList().keySet()) {
             dishList.remove(key);   // Remove all dishes that were on this bill from this waiter's dishList.
         }
 
+        Restaurant.addToPaidBills(bill);
         billList.remove(tableNum); // Remove the bill from the active bills list
 
         printToScreen("Table " + tableNum + " has paid!");
@@ -347,11 +347,22 @@ public class Waiter implements Listener {
      * @return The billList
      */
     public ArrayList<Bill> getBillList() {
-        ArrayList<Bill> billListList = new ArrayList<Bill>();
-        for(int i = 0; i < billList.size(); i++) {
-            billListList.add(billList.get(i));
+        return new ArrayList<>(billList.values());
+    }
+
+    /**
+     * Returns a new HashMap consisting of the string "Table #" as key and current Bill object associated with that table.
+     *
+     * @return a HashMap<String, Bill>
+     */
+    public HashMap<String, Bill> getFormattedBillList() {
+        HashMap<String, Bill>  hmap = new HashMap<>();
+
+        for (int key : billList.keySet()) {
+            hmap.put("Table " + String.valueOf(key), billList.get(key));
         }
-        return billListList;
+
+        return hmap;
     }
 
     /**
