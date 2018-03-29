@@ -13,7 +13,7 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Button fx:id="loginButton" layoutX="277.0" layoutY="317.0" mnemonicParsing="false" text="Enter" />
+      <Button fx:id="loginButton" layoutX="277.0" layoutY="317.0" mnemonicParsing="false" onAction="#openEmployeeView" text="Enter" />
       <ListView fx:id="employeeTypeList" layoutY="140.0" prefHeight="120.0" prefWidth="600.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
    </children>
 </AnchorPane>
