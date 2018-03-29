@@ -7,11 +7,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import models.Bill;
 import models.Dish;
 
 import java.util.ArrayList;
 
 public class TableDetailsController {
+    private Bill bill;
+
+    private Stage dialogStage;
 
     @FXML
     private ListView<String> menuList;
@@ -37,6 +42,14 @@ public class TableDetailsController {
         menuList.setItems(menuItem);
 
         
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }
 
     @FXML
