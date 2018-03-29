@@ -65,15 +65,12 @@ public class TableDetailsController {
         if (dishName != null) {
             ArrayList<String> additions = new ArrayList<>(dishAddition.getSelectionModel().getSelectedItems());
             ArrayList<String> subtractions = new ArrayList<>(dishSubtraction.getSelectionModel().getSelectedItems());
-            System.out.println("subtractions");
-            System.out.println(subtractions);
             if (additions.isEmpty() && subtractions.isEmpty()) {
                 Logging.orderDish(bill.getWaiter().getName(), dishName, tableNumber);
             }
             else {
                 String additionsJoined = String.join(", ", additions);
                 String subtractionsJoined = String.join(", ", subtractions);
-                System.out.println(tableNumber);
                 Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber);
             }
         }

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class CreateEmployeeController {
@@ -36,4 +37,6 @@ public class CreateEmployeeController {
     }
 
 
+    public void setDialogStage(Stage stage) {
+    }
 }
