@@ -2,18 +2,18 @@ package models;
 
 import controllers.Logging;
 import controllers.Restaurant;
+import controllers.kitchen.MainController;
+import javafx.application.Application;
+import javafx.application.Platform;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Queue;
 
 public class Kitchen implements Listener {
 
     private static HashMap<String, Dish> dishList;  // This kitchen's list of active, accepted dishes
 
-    private static LinkedHashMap<String, Dish> dishesToConfirm; // This kitchen's list of dishes that must be accepted
+    public static LinkedHashMap<String, Dish> dishesToConfirm; // This kitchen's list of dishes that must be accepted
 
 
     public Kitchen() {
@@ -27,6 +27,7 @@ public class Kitchen implements Listener {
      * @param dish The dish that has just been ordered.
      */
     public static void addDish(Dish dish) {
+        System.out.println("Dish added!");
 
         String id = String.valueOf(dish.getDishId());
 
@@ -117,6 +118,16 @@ public class Kitchen implements Listener {
      * @param inputArray The input to be handled, split into an array.
      */
     public void handleEvent(String[] inputArray) {
+        if (inputArray[0].equals("has a new dish.")) {
+            System.out.println("Kitchen has a new dish.");
+            if (Restaurant.getCurrentUser().equals("Kitchen")) {
+                printToScreen("new dish arrived!");
+                Platform.runLater(() -> {
+                    MainController controller = (MainController) Restaurant.alertedController;
+                    controller.setPendingDishes();
+                });
+            }
+        }
         if (inputArray.length >= 3) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
             if (inputArray[2].equals("is ready."))
@@ -127,8 +138,7 @@ public class Kitchen implements Listener {
 
         else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if(inputArray[1].equals("has accepted oldest dish."))
-            {
+            if(inputArray[1].equals("has accepted oldest dish.")) {
                 this.acceptDish(inputArray[0]);
             }
         }
