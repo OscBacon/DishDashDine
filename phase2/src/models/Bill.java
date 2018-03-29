@@ -108,4 +108,12 @@ public class Bill {
         billStrings.add("\nTOTAL: $" + String.format("%.2f", (getTotalBillPrice()*0.13 + gratuity)));
         return System.lineSeparator() + String.join(System.lineSeparator(), billStrings);
     }
+
+    /**
+     * getWaiter, getter for the Waiter who is in charge of the bill.
+     * @return Waiter
+     */
+    public Waiter getWaiter() {
+        return waiter;
+    }
 }
