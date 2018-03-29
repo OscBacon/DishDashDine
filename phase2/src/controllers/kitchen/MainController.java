@@ -69,7 +69,7 @@ public class MainController {
         dishNameColumn.setCellValueFactory(new PropertyValueFactory<Dish, String>("name"));
         cookColumn.setCellValueFactory(new PropertyValueFactory<Dish, String>("cook"));
 
-        ObservableList<Dish> dishList = FXCollections.observableArrayList(Kitchen.getDishList().values);
+        ObservableList<Dish> dishList = FXCollections.observableArrayList(Kitchen.getDishList().values());
         acceptedDishesTable.setItems(dishList);
     }
 
