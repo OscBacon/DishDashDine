@@ -95,32 +95,51 @@ public class TableDetailsController {
     }
 
         @FXML
-        void showAllowedAdditions (){
-            dishAddition.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-            String dishName = menuList.getSelectionModel().getSelectedItem();
+    void showAllowedAdditions (){
+        dishAddition.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        String dishName = menuList.getSelectionModel().getSelectedItem();
+        if (dishName != null) {
             MenuItem dishItem = Restaurant.getMenu().get(dishName);
             ObservableList allowedAdditions = FXCollections.observableArrayList(dishItem.getAllowedAdditions());
             dishAddition.setItems(allowedAdditions);
         }
 
-        @FXML
-        void showAllowedSubtraction (){
-            dishSubtraction.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-            String dishName = menuList.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    void showAllowedSubtractions (){
+        dishSubtraction.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        String dishName = menuList.getSelectionModel().getSelectedItem();
+        if (dishName != null) {
             MenuItem dishItem = Restaurant.getMenu().get(dishName);
             ObservableList allowedSubtractions = FXCollections.observableArrayList(dishItem.getAllowedSubtractions());
             dishSubtraction.setItems(allowedSubtractions);
         }
+    }
 
-        public void showAllowedSubstitutions(MouseEvent mouseEvent) {
-            showAllowedSubtraction();
-            showAllowedAdditions();
-        }
+    public void showAllowedSubstitutions(MouseEvent mouseEvent) {
+        showAllowedSubtractions();
+        showAllowedAdditions();
+    }
 
-        @FXML
-        void showCurrentBill (ActionEvent event) throws IOException {
-
-        }
+    @FXML
+    void showCurrentBill (ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterPrintBill.fxml"));
+        AnchorPane billPage = loader.load();
+        Stage billStage = new Stage();
+        billStage.setTitle("Current Bill");
+        billStage.initModality(Modality.WINDOW_MODAL);
+        billStage.initOwner(Restaurant.stage);
+        Scene scene = new Scene(billPage);
+        billStage.setScene(scene);
+        CurrentOrderController billController = loader.getController();
+        billController.setDialogStage(billStage);
+        billController.setCurrWaiter(bill.getWaiter());
+        billController.setTableNumber(bill.getTableNumber());
+        billController.createBill();
+        billStage.showAndWait();
+    }
 
 
 }
