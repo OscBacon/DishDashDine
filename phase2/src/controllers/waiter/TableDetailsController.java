@@ -65,9 +65,11 @@ public class TableDetailsController {
             if ((dishAddition.getSelectionModel().getSelectedItems() == null) && (dishSubtraction.getSelectionModel().getSelectedItems() == null)) {
                 Logging.orderDish(currentBill.getWaiter().getName(), dishName, tableNumber);
             } else if ((dishAddition.getItems() != null) || (dishSubtraction.getItems() != null)){
-                ArrayList dishadd = (ArrayList) dishAddition.getSelectionModel().getSelectedItems();
-                ArrayList dishsubtract = (ArrayList) dishSubtraction.getSelectionModel().getSelectedItems();
-                Logging.orderDish(currentBill.getWaiter().getName(), dishName, dishadd.toString(), dishsubtract.toString(),tableNumber);
+                ArrayList dishAdd = (ArrayList) dishAddition.getSelectionModel().getSelectedItems();
+                ArrayList dishSubtract = (ArrayList) dishSubtraction.getSelectionModel().getSelectedItems();
+                Logging.orderDish(currentBill.getWaiter().getName(), dishName, dishAdd.toString().trim().
+                        substring(1, dishAdd.toString().trim().length()-1), dishSubtract.toString().trim().substring(1,
+                        dishSubtract.toString().trim().length()-1),tableNumber);
             }
         }
     }
