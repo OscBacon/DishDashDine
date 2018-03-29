@@ -467,7 +467,7 @@ public class Restaurant extends Application {
      * @param dish The Dish that has just been ordered.
      */
     public static void addToUndeliveredDishes(Dish dish){
-        undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + Integer.toString(dish.getTableNumber()));
+        undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + " " + Integer.toString(dish.getTableNumber()));
     }
 
     /**
