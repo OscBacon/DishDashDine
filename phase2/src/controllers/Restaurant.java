@@ -9,6 +9,7 @@ import models.MenuItem;
 import models.Kitchen;
 import models.Waiter;
 import models.Dish;
+import models.Manager;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -111,11 +112,11 @@ public class Restaurant extends Application {
             }
         }
         catch (NullPointerException e) {
-            listenerList.put("Waiter", new Waiter(""));
         }
 
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
+        listenerList.put("Manager", new Manager());
 
         //System.out.println(printInventory());
         launch(args);
@@ -384,7 +385,6 @@ public class Restaurant extends Application {
      */
     public static ArrayList<String> getWaiterNameList() {
         return waiterNameList;
-
     }
 
     /**
@@ -420,8 +420,11 @@ public class Restaurant extends Application {
         undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + Integer.toString(dish.getTableNumber()));
     }
 
-    private HashMap<String, String> getUndeliveredDishes(){
+    public static HashMap<String, String> getUndeliveredDishes(){
         return undeliveredDishes;
     }
 
+    public static void setWaiterListModified(boolean waiterListModified) {
+        Restaurant.waiterListModified = waiterListModified;
+    }
 }
