@@ -13,10 +13,19 @@ import models.Waiter;
 
 import java.util.ArrayList;
 
-
+/**
+ * Controller for WaiterCurrentOrder.fxml
+ */
 public class CurrentOrderController {
 
+    /**
+     * Waiter currWaiter passed into CurrentOrder Controller.
+     */
     private Waiter currWaiter;
+
+    /**
+     * int tableNumber of the
+     */
     private int tableNumber;
     private Bill bill;
     private ArrayList<Dish> dishList;
