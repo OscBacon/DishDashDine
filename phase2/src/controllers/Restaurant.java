@@ -82,19 +82,17 @@ public class Restaurant extends Application {
     public static void main(String[] args) throws IOException {
         String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json", "bills.json", "log.txt"};
         for (String fileName : fileNames) {
-            InputStream in = Restaurant.class.getResourceAsStream(fileName);
-            if (in == null) {
-                File f = new File(Restaurant.class.getResource("../").getPath() + fileName);
+            File f = new File(fileName);
+            if (!f.exists()) {
                 f.createNewFile();
             }
         }
 
         Gson gson = new Gson();
 
-        menu = gson.fromJson(new FileReader(Restaurant.class.getResource("../menu.json").getFile()), menuType);
+        menu = gson.fromJson(new FileReader("menu.json"), menuType);
 
-        inventory = gson.fromJson(new FileReader(Restaurant.class
-                .getResource("../inventory.json").getFile()),inventoryType);
+        inventory = gson.fromJson(new FileReader("inventory.json"),inventoryType);
         if (inventory == null) {
             inventory = new HashMap<>();
         }
@@ -102,8 +100,7 @@ public class Restaurant extends Application {
         checkInventory();
 
         // Initialize all of the waiters in waiters.txt and add them to waitersList
-        BufferedReader reader = new BufferedReader(new FileReader(Restaurant.class
-                .getResource("../waiters.txt").getFile()));
+        BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
         try {
             waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
             for (String waiterName : waiterNameList) {
@@ -327,18 +324,18 @@ public class Restaurant extends Application {
         Gson gson = new Gson();
 
         if (inventoryModified) {
-            FileWriter writer = new FileWriter("resources/inventory.json");
+            FileWriter writer = new FileWriter("inventory.json");
             gson.toJson(inventory, writer);
             writer.close();
         }
 
         if (waiterListModified) {
-            FileWriter writer = new FileWriter("resources/waiters.txt");
+            FileWriter writer = new FileWriter("waiters.txt");
             writer.write(String.join(", ", waiterNameList));
             writer.close();
         }
 
-        FileWriter eventsFile = new FileWriter("resources/events.txt");
+        FileWriter eventsFile = new FileWriter("events.txt");
         eventsFile.flush();
         eventsFile.close();
     }
