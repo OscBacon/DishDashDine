@@ -13,6 +13,11 @@ import models.Waiter;
 import javax.xml.ws.FaultAction;
 
 public class MainController {
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @FXML
     private Button selectTableBtn;
@@ -26,7 +31,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        Waiter currWaiter = Restaurant.getListenerList().get("Waiter " + name);
+        Waiter currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
         ObservableList currentBills = FXCollections.observableArrayList(currWaiter.getBillList());
         displayTablesList.setItems(currentBills);
     }
@@ -39,5 +44,4 @@ public class MainController {
     void waiterSelectsTable(ActionEvent event) {
 
     }
-
 }

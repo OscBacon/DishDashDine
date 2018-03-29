@@ -7,16 +7,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.SelectTablesController">
-
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.72" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controllers.waiter.MainController">
     <AnchorPane VBox.vgrow="ALWAYS">
         <Label layoutX="160.0" layoutY="21.0" text="Restaurant Tables" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="21.0">
             <font>
                 <Font size="37.0" />
             </font>
         </Label>
-        <ListView fx:id="displayTablesList" layoutY="81.0" prefHeight="266.0" prefWidth="640.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <Button fx:id="selectTableBtn" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#waiterSelectsTable" prefHeight="27.0" prefWidth="276.0" text="Select Order" />
-        <Button fx:id="createNewOrderBtn" layoutX="342.0" layoutY="359.0" mnemonicParsing="false" onAction="#createNewOrderForTable" prefHeight="27.0" prefWidth="276.0" text="Create New Order" />
+        <ListView layoutY="81.0" prefHeight="266.0" prefWidth="640.0" AnchorPane.bottomAnchor="53.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
     </AnchorPane>
 </VBox>
