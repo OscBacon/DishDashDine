@@ -143,8 +143,8 @@ public class TableDetailsController {
     }
 
     public void splitCurrentBill() {
-//        if(boolSplitBill.isSelected()) {
-//            }
+        Logging.splitBill(boolSplitBill.isSelected(), String.valueOf(bill.getBillID()));
+
     }
 
     public void uniquePersonIdentifier() {
