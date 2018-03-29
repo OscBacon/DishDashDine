@@ -1,10 +1,18 @@
 package controllers;
 
-public interface Alerted {
+import javafx.scene.control.Alert;
+
+public abstract class Alerted {
     /**
      * Creates a pop-up on the screen of the controller that implements this interface.
      *
      * @param message The String that will show up in the pop-up.
      */
-    void createAlert(String message);
+    public void createAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

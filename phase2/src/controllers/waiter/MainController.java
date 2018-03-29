@@ -1,10 +1,12 @@
 package controllers.waiter;
 
+import controllers.Alerted;
 import controllers.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import models.Bill;
@@ -19,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainController {
+public class MainController extends Alerted {
     private String name;
     private Waiter currWaiter;
     private HashMap<String, Bill> currentBills;
@@ -75,7 +77,6 @@ public class MainController {
         orderController.setName(name);
         orderStage.showAndWait();
         createList();
-
     }
 
     /**

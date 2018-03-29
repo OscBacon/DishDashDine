@@ -1,43 +1,60 @@
 package controllers.manager;
 
-
-import com.sun.deploy.util.FXLoader;
+import controllers.Alerted;
 import controllers.Restaurant;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
-
-    @FXML
-    private Button createEmployeebtn;
-
-    @FXML
-    private Button viewInventorybtn;
-
-    @FXML
-    private Button viewAllEmployeesbtn;
-
-    @FXML
-    void CreateNewEmployee(ActionEvent event) throws IOException {
-        Parent managerHomePage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/ManagerCreateEmployee.fxml"));
-        Restaurant.stage.getScene().setRoot(managerHomePage);
-        Restaurant.stage.show();
+public class MainController extends Alerted {
+    public void createNewEmployee(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerCreateEmployee.fxml"));
+        AnchorPane page = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Employee");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(Restaurant.stage);
+        Scene scene = new Scene(page);
+        stage.setScene(scene);
+        CreateEmployeeController controller = loader.getController();
+        controller.setDialogStage(stage);
+        stage.showAndWait();
     }
 
-    @FXML
-    void viewAllEmployees(ActionEvent event) {
-
+    public void viewInventory(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerViewInventory.fxml"));
+        AnchorPane page = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Inventory");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(Restaurant.stage);
+        Scene scene = new Scene(page);
+        stage.setScene(scene);
+        CreateEmployeeController controller = loader.getController();
+        controller.setDialogStage(stage);
+        stage.showAndWait();
     }
 
-    @FXML
-    void viewInventory(ActionEvent event) {
-
+    public void viewAllEmployees(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerViewEmployees.fxml"));
+        AnchorPane page = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Employees");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(Restaurant.stage);
+        Scene scene = new Scene(page);
+        stage.setScene(scene);
+        CreateEmployeeController controller = loader.getController();
+        controller.setDialogStage(stage);
+        stage.showAndWait();
     }
 
 }

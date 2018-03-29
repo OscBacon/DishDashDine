@@ -41,6 +41,7 @@ public class EmployeeSelectionController {
                 Parent managerPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Manager.fxml"));
                 Restaurant.stage.getScene().setRoot(managerPage);
                 Restaurant.stage.show();
+                Restaurant.setCurrentUser("Manager");
                 break;
             case "Waiter":
                 FXMLLoader loader = new FXMLLoader();
@@ -66,17 +67,20 @@ public class EmployeeSelectionController {
                     waiterController.createList();
                     Restaurant.stage.getScene().setRoot(waiterPage);
                     Restaurant.stage.show();
+                    Restaurant.setCurrentUser("Waiter "+ dialogController.getName());
                 }
                 break;
             case "Kitchen":
                 Parent kitchenPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Kitchen.fxml"));
                 Restaurant.stage.getScene().setRoot(kitchenPage);
                 Restaurant.stage.show();
+                Restaurant.setCurrentUser("Kitchen");
                 break;
             case "Receiver":
                 Parent receiverPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Receiver.fxml"));
                 Restaurant.stage.getScene().setRoot(receiverPage);
                 Restaurant.stage.show();
+                Restaurant.setCurrentUser("Receiver");
                 break;
 
         }

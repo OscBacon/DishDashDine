@@ -1,5 +1,6 @@
 package controllers.kitchen;
 
+import controllers.Alerted;
 import controllers.Logging;
 import controllers.Restaurant;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Queue;
 
-public class MainController {
+public class MainController extends Alerted {
     @FXML
     public Button readyDishButton;
     @FXML
