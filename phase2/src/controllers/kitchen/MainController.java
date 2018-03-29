@@ -3,6 +3,7 @@ package controllers.kitchen;
 import controllers.Alerted;
 import controllers.Logging;
 import controllers.Restaurant;
+import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableStringValue;
@@ -43,6 +44,7 @@ public class MainController extends Alerted {
 
     @FXML
     void initialize() {
+        Restaurant.setAlertedController(this);
         if (Kitchen.hasPendingDishes()) {
             ArrayList<String> nextDishProperties = new ArrayList<>();
             Dish nextDish = Kitchen.getFirstDish();

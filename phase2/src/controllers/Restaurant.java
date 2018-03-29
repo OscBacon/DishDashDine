@@ -3,6 +3,15 @@ package controllers;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableBooleanValue;
+import javafx.beans.value.ObservableStringValue;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.JavaFXBuilderFactory;
 import models.InventoryItem;
 import models.Listener;
 import models.MenuItem;
@@ -26,6 +35,12 @@ import javafx.stage.Stage;
 
 public class Restaurant extends Application {
     public static Stage stage;
+
+    public static void setAlertedController(Alerted alertedController) {
+        Restaurant.alertedController = alertedController;
+    }
+
+    public static Alerted alertedController;
 
     /**
      * A HashMap representation of the inventory.
@@ -184,8 +199,9 @@ public class Restaurant extends Application {
                 }
                 break;
             case "Message":
+                System.out.println(currentUser);
                 if (inputArray[1].equals(currentUser)) {
-                    printToScreen(inputArray[2]);
+                    Platform.runLater(() -> printToScreen(inputArray[2]));
                 }
                 break;
             case "Stop":
@@ -426,7 +442,7 @@ public class Restaurant extends Application {
      * @param currentUser String of the currentUser's name.
      */
     public static void setCurrentUser(String currentUser) {
-        currentUser = currentUser;
+        Restaurant.currentUser = currentUser;
     }
 
     public static void removeFromUndeliveredDishes(Dish dish){
@@ -458,9 +474,8 @@ public class Restaurant extends Application {
     }
 
     private static void printToScreen(String message) {
-        FXMLLoader loader = (FXMLLoader) stage.getScene().getUserData();
-        Alerted alertedController = loader.getController();
         alertedController.createAlert(message);
+
     }
 
     @Override
