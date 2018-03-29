@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="227.0" layoutY="16.0" text="Waiter Print Bill">
@@ -14,7 +13,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea layoutX="23.0" layoutY="54.0" prefHeight="318.0" prefWidth="555.0" />
-      <Button fx:id="PrintBillBackbtn" layoutX="23.0" layoutY="15.0" mnemonicParsing="false" onAction="#BackToTableDetails" text="Back" />
+      <TextArea fx:id="printBill" layoutX="23.0" layoutY="54.0" prefHeight="282.0" prefWidth="555.0" />
+      <Button fx:id="RemoveDishbtn" layoutX="382.0" layoutY="347.0" mnemonicParsing="false" onAction="#RemoveCurrentDishFromBill" prefHeight="27.0" prefWidth="196.0" text="Remove Dish From Bill" />
    </children>
 </AnchorPane>

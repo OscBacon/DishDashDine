@@ -19,6 +19,11 @@ public class NewTableOrder {
     @FXML
     private Button createBillButton;
 
+<<<<<<< HEAD
+        @FXML
+        void CreateNewBillForTable(ActionEvent event) {
+
+=======
     public void setDialogStage(Stage dialogStage) {
             this.dialogStage = dialogStage;
     }
@@ -37,6 +42,7 @@ public class NewTableOrder {
                 Logging.newBill(name, TableNumberInput.getText());
             }
             dialogStage.close();
+>>>>>>> 31a03563b8091286bfc4227af79006d361929539
         }
     }
 }
