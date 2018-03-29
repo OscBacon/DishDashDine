@@ -1,6 +1,5 @@
 package controllers.manager;
 
-import controllers.Logging;
 import controllers.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

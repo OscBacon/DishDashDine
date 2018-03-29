@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141"
+            fx:controller="controllers.manager.ViewTodaysBills">
+    <children>
+        <Label layoutX="215.0" layoutY="25.0" text="View Today's Bills">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <ListView fx:id="todayBills" layoutX="15.0" layoutY="70.0" prefHeight="314.0" prefWidth="568.0"
+                  AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+                  AnchorPane.topAnchor="60.0"/>
+    </children>
+</AnchorPane>

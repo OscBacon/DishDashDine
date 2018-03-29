@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Waiter implements Listener {
     /**
      * All unpaid, active Bills, accessible with the Bill's table number.
-      */
+     */
     private HashMap<Integer, Bill> billList;
 
     /**
@@ -21,7 +21,7 @@ public class Waiter implements Listener {
 
     /**
      * All dishes ever ordered through this waiter.
-      */
+     */
     private HashMap<Integer, Dish> dishList;
 
     /**
@@ -56,11 +56,10 @@ public class Waiter implements Listener {
 
         if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            switch (inputArray[0])
-            {
+            switch (inputArray[0]) {
                 case "ordered":     // When a customer orders some dish
-                    {
-                    if (inputArray.length >= 6) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+                {
+                    if (inputArray.length >= 7) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
                         // Create an array from the String of ingredients separated by commas
                         String[] additionsArray = inputArray[2].split(",");
@@ -70,15 +69,13 @@ public class Waiter implements Listener {
                         ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
                         ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
 
-                        this.orderDish(inputArray[1], add, sub, inputArray[5]);
-                    }
-
-                    else if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+                        this.orderDish(inputArray[1], add, sub, inputArray[5], inputArray[6]);
+                    } else if (inputArray.length >= 5) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
-                        this.orderDish(inputArray[1], inputArray[3]);
+                        this.orderDish(inputArray[1], inputArray[3], inputArray[4]);
                     }
                 }
-                    break;
+                break;
                 case "delivered dish":  // When a waiter delivers the dish to its table
                     this.confirmDishDelivery(Integer.valueOf(inputArray[1]));
                     break;
@@ -115,9 +112,9 @@ public class Waiter implements Listener {
      * Helper for .orderDish(), alters Ingredients based on additions and subtractions. Also makes sure all additions
      * and subtractions to this menu item are valid.
      *
-     * @param menuItem The name of the menu item that has been ordered.
-     * @param ingredients The ingredients and the quantities needed to make this menu item.
-     * @param additions The ingredients that the client wished to add to the item.
+     * @param menuItem     The name of the menu item that has been ordered.
+     * @param ingredients  The ingredients and the quantities needed to make this menu item.
+     * @param additions    The ingredients that the client wished to add to the item.
      * @param subtractions The ingredients that the client wished to remove from the item.
      * @return True if all additions and subtractions to this menuItem are valid.
      */
@@ -155,15 +152,15 @@ public class Waiter implements Listener {
     /**
      * Checks that the ordered dish is valid and that there are enough ingredients to fulfill the dish, and then places
      * the order by adding the constructed dish to the Kitchen's dishList and updating the restaurant's inventory.
-     *
+     * <p>
      * Precondition: <item> is on the menu.
      *
-     * @param item The name of the item being ordered from the menu.
-     * @param additions The ingredients the client wishes to add to the dish.
+     * @param item         The name of the item being ordered from the menu.
+     * @param additions    The ingredients the client wishes to add to the dish.
      * @param subtractions The ingredients the client wishes to remove from the dish.
-     * @param tableNumber The number of the table that this dish is to be served to.
+     * @param tableNumber  The number of the table that this dish is to be served to.
      */
-    private void orderDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
+    private void orderDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber, String person) {
         // Item is in the menu
         if (Restaurant.getMenu().containsKey(item)) {
             MenuItem menuItem = Restaurant.getMenu().get(item);
@@ -174,7 +171,7 @@ public class Waiter implements Listener {
                 ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
                 // There are sufficient ingredients, create the dish
                 if (missingIngredients.isEmpty()) {
-                    Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
+                    Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber), person);
                     dish.setIngredients(ingredients);
                     dishList.put(dish.getDishId(), dish);
                     Kitchen.addDish(dish);
@@ -183,6 +180,7 @@ public class Waiter implements Listener {
                         Restaurant.removeFromInventory(ingredient, quantity);
                     }
                     Restaurant.addToUndeliveredDishes(dish);
+                    Logging.hasNewDish();
                     printToScreen(item + " (Dish id: " + dish.getDishId() + ") was ordered for Table " + tableNumber);
                 }
                 // There are insufficient ingredients to complete the order
@@ -204,18 +202,18 @@ public class Waiter implements Listener {
     /**
      * Checks that there are enough ingredients to fulfill the ordered dish, and then places the order by adding the
      * constructed dish to the Kitchen's dishList and updating the restaurant's inventory.
-     *
+     * <p>
      * Precondition: <item> is on the menu.
      *
-     * @param item The name of the item being ordered from the menu.
+     * @param item        The name of the item being ordered from the menu.
      * @param tableNumber The number of the table that this dish is to be served to.
      */
-    private void orderDish(String item, String tableNumber) {
+    private void orderDish(String item, String tableNumber, String person) {
 
         ArrayList<String> empty = new ArrayList<>();
 
         // creates a Dish with no additions or subtractions
-        orderDish(item, empty, empty, tableNumber);
+        orderDish(item, empty, empty, tableNumber, person);
     }
 
     /**
@@ -269,7 +267,7 @@ public class Waiter implements Listener {
 
     /**
      * Cancels the dish by removing it from the kitchen's dishList.
-     *
+     * <p>
      * Precondition: the dish has not yet been started by the kitchen.
      *
      * @param dishID The id of the dish that is to be cancelled.
@@ -294,7 +292,7 @@ public class Waiter implements Listener {
      *
      * @param dishID The ID of the dish in question.
      */
-    private void removeDish(int dishID){
+    private void removeDish(int dishID) {
         Dish dish = dishList.get(dishID);
         Bill bill = billList.get(dish.getTableNumber());
         bill.removeDish(dishID);
@@ -350,6 +348,7 @@ public class Waiter implements Listener {
 
     /**
      * Create getter for billList
+     *
      * @return The billList
      */
     public ArrayList<Bill> getBillList() {
@@ -362,7 +361,7 @@ public class Waiter implements Listener {
      * @return a HashMap<String, Bill>
      */
     public HashMap<String, Bill> getFormattedBillList() {
-        HashMap<String, Bill>  hmap = new HashMap<>();
+        HashMap<String, Bill> hmap = new HashMap<>();
 
         for (int key : billList.keySet()) {
             hmap.put("Table " + String.valueOf(key), billList.get(key));
@@ -387,7 +386,7 @@ public class Waiter implements Listener {
      * @param s String to be printed.
      */
     public void printToScreen(String s) {
-        if(Restaurant.getCurrentUser().trim().equals(("Waiter " + this.name).trim())) {
+        if (Restaurant.getCurrentUser().trim().equals(("Waiter " + this.name).trim())) {
             Logging.message("Waiter " + this.name, s);
         }
     }

@@ -1,4 +1,5 @@
 package controllers.waiter;
+
 import controllers.Logging;
 import controllers.Restaurant;
 import javafx.collections.FXCollections;
@@ -6,11 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -18,21 +16,22 @@ import javafx.stage.Stage;
 import models.Bill;
 import models.Dish;
 import models.MenuItem;
-import models.Waiter;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TableDetailsController {
-    private Bill bill;
-
-    private Stage dialogStage;
-
     String tableNumber;
-
+    private Bill bill;
+    private Stage dialogStage;
     @FXML
     private ListView<String> menuList;
+
+    @FXML
+    private CheckBox boolSplitBill;
+
+    @FXML
+    private TextField uniquePersonBill;
 
     @FXML
     private ListView<String> dishAddition;
@@ -71,12 +70,11 @@ public class TableDetailsController {
             ArrayList<String> additions = new ArrayList<>(dishAddition.getSelectionModel().getSelectedItems());
             ArrayList<String> subtractions = new ArrayList<>(dishSubtraction.getSelectionModel().getSelectedItems());
             if (additions.isEmpty() && subtractions.isEmpty()) {
-                Logging.orderDish(bill.getWaiter().getName(), dishName, tableNumber);
-            }
-            else {
+                Logging.orderDish(bill.getWaiter().getName(), dishName, tableNumber, uniquePersonBill.getText());
+            } else {
                 String additionsJoined = String.join(", ", additions);
                 String subtractionsJoined = String.join(", ", subtractions);
-                Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber);
+                Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber, uniquePersonBill.getText());
             }
             createActiveDishesList();
         }
@@ -93,8 +91,8 @@ public class TableDetailsController {
         activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
     }
 
-        @FXML
-    void showAllowedAdditions (){
+    @FXML
+    void showAllowedAdditions() {
         dishAddition.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         String dishName = menuList.getSelectionModel().getSelectedItem();
         if (dishName != null) {
@@ -106,7 +104,7 @@ public class TableDetailsController {
     }
 
     @FXML
-    void showAllowedSubtractions (){
+    void showAllowedSubtractions() {
         dishSubtraction.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         String dishName = menuList.getSelectionModel().getSelectedItem();
         if (dishName != null) {
@@ -122,7 +120,7 @@ public class TableDetailsController {
     }
 
     @FXML
-    void showCurrentBill (ActionEvent event) throws IOException {
+    void showCurrentBill(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterCurrentOrder.fxml"));
         AnchorPane billPage = loader.load();
@@ -140,6 +138,13 @@ public class TableDetailsController {
         billStage.showAndWait();
     }
 
+    public void splitCurrentBill() {
+        Logging.splitBill(boolSplitBill.isSelected(), String.valueOf(bill.getBillID()));
 
+    }
+
+    public void uniquePersonIdentifier() {
+
+    }
 }
 

@@ -4,22 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableBooleanValue;
-import javafx.beans.value.ObservableStringValue;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.JavaFXBuilderFactory;
-import models.InventoryItem;
-import models.Listener;
-import models.MenuItem;
-import models.Kitchen;
-import models.Waiter;
-import models.Dish;
-import models.Manager;
-import models.Bill;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import models.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -27,69 +16,49 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 public class Restaurant extends Application {
     public static Stage stage;
-
-    public static void setAlertedController(Alerted alertedController) {
-        Restaurant.alertedController = alertedController;
-    }
-
     public static Alerted alertedController;
-
     /**
      * A HashMap representation of the inventory.
      */
     private static HashMap<String, InventoryItem> inventory;
-
     /**
      * A HashMap representation of the menu.
      */
     private static HashMap<String, MenuItem> menu;
-
     /**
      * An Array of the Waiters' names.
      */
     private static ArrayList<String> waiterNameList;
-
     /**
      * An Array of the Cooks' names.
      */
     private static ArrayList<String> cookNameList;
-
     /**
      * The Type of menu.
      * This is used when parsing menu.json.
      */
     private static Type menuType = new TypeToken<HashMap<String, MenuItem>>() {
     }.getType();
-
     /**
      * The Type of inventory.
      * This is used when parsing inventory.json.
      */
-    private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {}.getType();
-
+    private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {
+    }.getType();
     /**
      * A list of all objects that can listen to log.txt.
      */
     private static HashMap<String, Listener> listenerList = new HashMap<>();
-
     /**
      * An attribute to keep track of whether or not this Restaurant is running.
      */
     private static boolean running = true;
-
     /**
      * This restaurant instance only reacts
      */
     private static String currentUser = "";
-
     /**
      * Keeps track of whether or not menu was modified since start.
      */
@@ -98,33 +67,25 @@ public class Restaurant extends Application {
      * Keeps track of whether or not waiterList was modified since start.
      */
     private static boolean waiterListModified;
-
     /**
      * Keeps track of whether or not cookList was modified since start.
      */
     private static boolean cookListModified;
-
     /**
      * Keeps track of all dishes that have not yet been delivered.
      */
     private static HashMap<String, String> undeliveredDishes = new HashMap<>();
-
     /**
      * Keeps track of all payments that have been done to the restaurant today.
      */
     private static ArrayList<Bill> paidBills = new ArrayList<>();
-
     /**
      * Keeps track of the total sales made so far in the day
      */
     private static double totalSales = 0.0;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../resources/views/EmployeeSelection.fxml"));
-        stage = primaryStage;
-        stage.setScene(new Scene(root));
-        stage.show();
+    public static void setAlertedController(Alerted alertedController) {
+        Restaurant.alertedController = alertedController;
     }
 
     public static void main(String[] args) throws IOException {
@@ -140,12 +101,11 @@ public class Restaurant extends Application {
 
         menu = gson.fromJson(new FileReader("menu.json"), menuType);
 
-        inventory = gson.fromJson(new FileReader("inventory.json"),inventoryType);
+        inventory = gson.fromJson(new FileReader("inventory.json"), inventoryType);
         if (inventory == null) {
             inventory = new HashMap<>();
-        }
-        else {
-            for (String key: inventory.keySet()) {
+        } else {
+            for (String key : inventory.keySet()) {
                 inventory.get(key).setName(key);
             }
         }
@@ -159,16 +119,14 @@ public class Restaurant extends Application {
             for (String waiterName : waiterNameList) {
                 listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
             }
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
         }
 
         // Put all the names of all the cooks in cooks.txt and into cooksList
         try {
             BufferedReader reader = new BufferedReader(new FileReader("cooks.txt"));
             cookNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
         }
 
         // Adds an instance of Kitchen to be used
@@ -342,7 +300,8 @@ public class Restaurant extends Application {
             if (currentUser.equals("Manager")) {
                 printToScreen("Wrote request to stock inventory with " + item);
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
 
     /**
@@ -428,6 +387,7 @@ public class Restaurant extends Application {
 
     /**
      * Getter for the waiterNameList
+     *
      * @return waiterNameList
      */
     public static ArrayList<String> getWaiterNameList() {
@@ -436,6 +396,7 @@ public class Restaurant extends Application {
 
     /**
      * Getter for the cookNameList
+     *
      * @return cookNameList
      */
     public static ArrayList<String> getCookNameList() {
@@ -444,6 +405,7 @@ public class Restaurant extends Application {
 
     /**
      * Getter for Listener List
+     *
      * @return HashMap listenerList
      */
     public static HashMap<String, Listener> getListenerList() {
@@ -451,15 +413,8 @@ public class Restaurant extends Application {
     }
 
     /**
-     * Sets the currentUser attribute to the input parameter.
-     * @param currentUser String of the currentUser's name.
-     */
-    public static void setCurrentUser(String currentUser) {
-        Restaurant.currentUser = currentUser;
-    }
-
-    /**
      * Return the current user's name.
+     *
      * @return a String representing the current user's name.
      */
     public static String getCurrentUser() {
@@ -467,31 +422,44 @@ public class Restaurant extends Application {
     }
 
     /**
+     * Sets the currentUser attribute to the input parameter.
+     *
+     * @param currentUser String of the currentUser's name.
+     */
+    public static void setCurrentUser(String currentUser) {
+        Restaurant.currentUser = currentUser;
+    }
+
+    /**
      * Removes Dish dish from the HashMap of undeliveredDishes.
+     *
      * @param dish The Dish that has been delivered.
      */
-    public static void removeFromUndeliveredDishes(Dish dish){
+    public static void removeFromUndeliveredDishes(Dish dish) {
         undeliveredDishes.remove(Integer.toString(dish.getDishId()));
     }
 
     /**
      * Adds a dish to the HashMap of undeliveredDishes.
+     *
      * @param dish The Dish that has just been ordered.
      */
-    public static void addToUndeliveredDishes(Dish dish){
+    public static void addToUndeliveredDishes(Dish dish) {
         undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + " " + Integer.toString(dish.getTableNumber()));
     }
 
     /**
      * Returns the HashMap of undeliveredDishes.
+     *
      * @return a HashMap of the undelivered dishes.
      */
-    public static HashMap<String, String> getUndeliveredDishes(){
+    public static HashMap<String, String> getUndeliveredDishes() {
         return undeliveredDishes;
     }
 
     /**
      * Sets the value for waiterListModified.
+     *
      * @param waiterListModified boolean, true if waiterList has been modified since the start of the program.
      */
     public static void setWaiterListModified(boolean waiterListModified) {
@@ -500,6 +468,7 @@ public class Restaurant extends Application {
 
     /**
      * Sets the value for cookListModified.
+     *
      * @param cookListModified boolean, true if cookList has been modified since the start of the program.
      */
     public static void setCookListModified(boolean cookListModified) {
@@ -507,36 +476,48 @@ public class Restaurant extends Application {
     }
 
     /**
-     *  Adds the Bill bill to the ArrayList of paid bills.
+     * Adds the Bill bill to the ArrayList of paid bills.
+     *
      * @param bill A Bill that was just paid.
      */
-    public static void addToPaidBills(Bill bill){
+    public static void addToPaidBills(Bill bill) {
         paidBills.add(bill);
         totalSales += bill.getTotalBillPrice();
     }
 
     /**
      * A getter for the ArrayList of paid bills.
+     *
      * @return an ArrayList of Bill objects, each representing a bill that been paid for today.
      */
-    public static ArrayList<Bill> getPaidBills(){
+    public static ArrayList<Bill> getPaidBills() {
         return paidBills;
     }
 
     /**
      * A getter for the day's total sales so far
+     *
      * @return the total sales
      */
-    public static String getTotalSales(){
-        return "$"+ (Double.toString(totalSales));
+    public static String getTotalSales() {
+        return "$" + (Double.toString(totalSales));
     }
 
     /**
      * Prints to the screen of the currentUser of this program.
+     *
      * @param message The String that shall be printed to the currentUser's screen.
      */
     private static void printToScreen(String message) {
         Platform.runLater(() -> alertedController.createAlert(message));
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("../resources/views/EmployeeSelection.fxml"));
+        stage = primaryStage;
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @Override

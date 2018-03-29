@@ -34,7 +34,7 @@ public class EmployeeSelectionController {
      * Dialog page creation adapted from http://code.makery.ch/library/javafx-8-tutorial/part3/ on March 28th, 2018, 10:40 PM.
      * <p>
      */
-    public void openEmployeeView(ActionEvent actionEvent) throws IOException{
+    public void openEmployeeView(ActionEvent actionEvent) throws IOException {
         String selectedEmployeeType = employeeTypeList.getSelectionModel().getSelectedItem();
         switch (selectedEmployeeType) {
             case "Manager":
@@ -67,7 +67,7 @@ public class EmployeeSelectionController {
                     waiterController.createList();
                     Restaurant.stage.getScene().setRoot(waiterPage);
                     Restaurant.stage.show();
-                    Restaurant.setCurrentUser("Waiter "+ dialogController.getName());
+                    Restaurant.setCurrentUser("Waiter " + dialogController.getName());
                 }
                 break;
             case "Kitchen":
