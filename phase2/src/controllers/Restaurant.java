@@ -207,7 +207,6 @@ public class Restaurant extends Application {
                 }
                 break;
             case "Message":
-                System.out.println(currentUser);
                 if (inputArray[1].equals(currentUser)) {
                     printToScreen(inputArray[2]);
                 }

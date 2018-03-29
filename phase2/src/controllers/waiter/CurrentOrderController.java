@@ -9,7 +9,6 @@ import models.Bill;
 import models.Dish;
 import models.Waiter;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -32,6 +31,12 @@ public class CurrentOrderController {
     @FXML
     private Button RemoveDishbtn;
 
+
+    @FXML
+    void initialize() {
+
+    }
+
     public void setCurrWaiter(Waiter waiter) {
         this.currWaiter = waiter;
     }
@@ -40,10 +45,6 @@ public class CurrentOrderController {
         this.tableNumber = tableNumber;
     }
 
-    @FXML
-    void initialize() {
-
-    }
 
     void createBill(){
         bill = currWaiter.getActiveBill(tableNumber);
