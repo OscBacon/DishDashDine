@@ -6,11 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -18,8 +15,6 @@ import javafx.stage.Stage;
 import models.Bill;
 import models.Dish;
 import models.MenuItem;
-import models.Waiter;
-
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -33,6 +28,12 @@ public class TableDetailsController {
 
     @FXML
     private ListView<String> menuList;
+
+    @FXML
+    private CheckBox boolSplitBill;
+
+    @FXML
+    private TextField uniquePersonBill;
 
     @FXML
     private ListView<String> dishAddition;
@@ -141,6 +142,13 @@ public class TableDetailsController {
         billStage.showAndWait();
     }
 
+    public void splitCurrentBill() {
+//        if(boolSplitBill.isSelected()) {
+//            }
+    }
 
+    public void uniquePersonIdentifier() {
+        
+    }
 }
 
