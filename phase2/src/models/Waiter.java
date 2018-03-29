@@ -327,7 +327,7 @@ public class Waiter implements Listener {
      *
      * @param tableNum The table number of the bill that the waiter wishes to see.
      */
-    private void showBill(int tableNum) {
+    void showBill(int tableNum) {
         printToScreen(billList.get(tableNum).toString());
     }
 
@@ -352,6 +352,16 @@ public class Waiter implements Listener {
             billListList.add(billList.get(i));
         }
         return billListList;
+    }
+
+    /**
+     * Returns the current bill at table number tableNum.
+     *
+     * @param tableNum an int representing the table's number.
+     * @return the Bill of the table whose table number is tableNum.
+     */
+    public Bill getActiveBill(int tableNum) {
+        return billList.get(tableNum);
     }
 
     /**
