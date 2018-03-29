@@ -24,11 +24,11 @@ public class TableDetailsController {
     String tableNumber;
     private Bill bill;
     private Stage dialogStage;
+    ArrayList<Dish> activeDishList = new ArrayList<>();
     @FXML
     private ListView<String> menuList;
 
-    @FXML
-    private CheckBox boolSplitBill;
+
 
     @FXML
     private TextField uniquePersonBill;
@@ -44,6 +44,9 @@ public class TableDetailsController {
 
     @FXML
     private Button currentOrder;
+
+    @FXML
+    private Button cancelDish;
 
     @FXML
     private ListView<Dish> activeDishesToBeDelivered;
@@ -82,7 +85,6 @@ public class TableDetailsController {
 
     void createActiveDishesList() {
         ArrayList<Dish> dishList = new ArrayList<>(bill.getWaiter().getDishList().values());
-        ArrayList<Dish> activeDishList = new ArrayList<>();
         for (Dish dish: dishList) {
             if (String.valueOf(dish.getTableNumber()).equals(tableNumber) && !dish.getDelivered()) {
                 activeDishList.add(dish);
@@ -138,9 +140,14 @@ public class TableDetailsController {
         billStage.showAndWait();
     }
 
-    public void splitCurrentBill() {
-        Logging.splitBill(boolSplitBill.isSelected(), String.valueOf(bill.getBillID()));
 
+
+
+    public void cancelActiveDish(ActionEvent event) {
+        Dish removeDish = activeDishesToBeDelivered.getSelectionModel().getSelectedItem();
+        Logging.cancelDish(bill.getWaiter().getName(), String.valueOf(removeDish.getDishId()));
+        activeDishList.remove(removeDish);
+        activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
     }
 
 }
