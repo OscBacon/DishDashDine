@@ -73,12 +73,12 @@ public class TableDetailsController {
             ArrayList<String> additions = new ArrayList<>(dishAddition.getSelectionModel().getSelectedItems());
             ArrayList<String> subtractions = new ArrayList<>(dishSubtraction.getSelectionModel().getSelectedItems());
             if (additions.isEmpty() && subtractions.isEmpty()) {
-                Logging.orderDish(bill.getWaiter().getName(), dishName, tableNumber);
+                Logging.orderDish(bill.getWaiter().getName(), dishName, tableNumber, uniquePersonBill.getText());
             }
             else {
                 String additionsJoined = String.join(", ", additions);
                 String subtractionsJoined = String.join(", ", subtractions);
-                Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber);
+                Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber, uniquePersonBill.getText());
             }
         }
     }
@@ -148,7 +148,7 @@ public class TableDetailsController {
     }
 
     public void uniquePersonIdentifier() {
-        
+
     }
 }
 
