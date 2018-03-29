@@ -28,7 +28,7 @@ public class EmployeeSelectionController {
         String selectedEmployeeType = employeeTypeList.getSelectionModel().getSelectedItem();;
         switch (selectedEmployeeType) {
             case "Manager":
-                Parent managerPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/ManagerHomepage.fxml"));
+                Parent managerPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Manager.fxml"));
                 Restaurant.stage.getScene().setRoot(managerPage);
                 Restaurant.stage.show();
                 break;
