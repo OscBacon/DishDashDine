@@ -17,10 +17,10 @@ public class Manager implements Listener{
                 removeWaiter(inputArray[1]);
                 break;
             case "add cook":
-                addWaiter(inputArray[1]);
+                addCook(inputArray[1]);
                 break;
             case "remove cook":
-                removeWaiter(inputArray[1]);
+                removeCook(inputArray[1]);
                 break;
             case "requested undelivered dishes":
                 Restaurant.getUndeliveredDishes();
