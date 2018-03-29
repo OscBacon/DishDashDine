@@ -63,6 +63,7 @@ public class EmployeeSelectionController {
                     Parent waiterPage = waiterLoader.load();
                     MainController waiterController = waiterLoader.getController();
                     waiterController.setName(dialogController.getName());
+                    waiterController.createList();
                     Restaurant.stage.getScene().setRoot(waiterPage);
                     Restaurant.stage.show();
                 }
