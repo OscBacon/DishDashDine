@@ -10,6 +10,7 @@ import models.Kitchen;
 import models.Waiter;
 import models.Dish;
 import models.Manager;
+import models.Bill;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -87,6 +88,8 @@ public class Restaurant extends Application {
      * Keeps track of all dishes that have not yet been delivered.
      */
     private static HashMap<String, String> undeliveredDishes = new HashMap<>();
+
+    private static ArrayList<Bill> paidBills = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -509,6 +512,14 @@ public class Restaurant extends Application {
 
     public static void setCookListModified(boolean cookListModified) {
         Restaurant.cookListModified = cookListModified;
+    }
+
+    public static void addToPaidBills(Bill bill){
+        paidBills.add(bill);
+    }
+
+    public static ArrayList<Bill> getPaidBills(){
+        return paidBills;
     }
 
     @Override
