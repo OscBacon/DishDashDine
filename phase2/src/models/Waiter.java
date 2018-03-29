@@ -272,6 +272,7 @@ public class Waiter implements Listener {
         Dish dish = dishList.get(dishID);
 
         Kitchen.removeDish(dish);
+        Restaurant.removeFromUndeliveredDishes(dish);
 
         for (String ingredient : dish.getIngredients().keySet()) {
             Integer quantity = dish.getIngredients().get(ingredient);
