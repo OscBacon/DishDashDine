@@ -17,6 +17,8 @@
          </font>
       </Label>
       <Button fx:id="dish" layoutX="314.0" layoutY="318.0" mnemonicParsing="false" onAction="#addDishToBill" prefHeight="50.0" prefWidth="286.0" text="Add Dish" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="currentOrder" layoutX="314.0" layoutY="35.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="235.0" prefWidth="286.0" text="Current Order" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
+      <Button fx:id="currentOrder" layoutX="314.0" layoutY="239.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="112.0" prefWidth="286.0" text="Current Order" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="239.0" />
+      <ListView fx:id="activeDishesToBeDelivered" layoutX="313.0" layoutY="35.0" prefHeight="204.0" prefWidth="286.0" />
+      <Label layoutX="367.0" layoutY="13.0" text="Active Dishes to be Delivered" />
    </children>
 </AnchorPane>
