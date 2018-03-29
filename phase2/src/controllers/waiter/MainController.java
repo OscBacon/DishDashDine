@@ -2,12 +2,12 @@ package controllers.waiter;
 
 import controllers.Restaurant;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import models.Bill;
 import models.Waiter;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -16,13 +16,14 @@ import javafx.stage.Modality;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainController {
     private String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private Waiter currWaiter;
+    private HashMap<String, Bill> currentBills;
+    private ArrayList<String> currentTables;
 
     @FXML
     private Button selectTableBtn;
@@ -36,11 +37,18 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        if (name != null) {
-            Waiter currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
-            ObservableList currentBills = FXCollections.observableArrayList(currWaiter.getBillList());
-            tablesList.setItems(currentBills);
-        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        System.out.println(this.name);
+        currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
+    }
+
     public void createList() {
         currentBills = (HashMap<String,Bill>) currWaiter.getFormattedBillList();
         currentTables = new ArrayList<>(currentBills.keySet());
