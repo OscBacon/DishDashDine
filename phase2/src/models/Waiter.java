@@ -103,6 +103,13 @@ public class Waiter implements Listener {
                 case "removed dish":    // When the customer is unsatisfied and does not want a remake of the dish
                     this.removeDish(Integer.valueOf(inputArray[1]));
                     break;
+                case "wishes to split bill":    // The waiter wishes to split the bill
+                    this.splitBill(true, inputArray[1]);
+                    break;
+                case "wishes to not split bill":    // The waiter wishes to not split the bill
+                    this.splitBill(false, inputArray[1]);
+                    break;
+
             }
         }
     }
@@ -378,6 +385,21 @@ public class Waiter implements Listener {
      */
     public Bill getActiveBill(int tableNum) {
         return billList.get(tableNum);
+    }
+
+
+    /**
+     * Sets the bill's split attribute to the value of split.
+     *
+     * @param split Boolean; true if bill is to be split.
+     * @param billID The ID of the bill that is to be split or not.
+     */
+    private void splitBill(boolean split, String billID) {
+        int id = Integer.valueOf(billID);
+
+        if (this.billList.containsKey(id)) {
+            this.billList.get(id).setSplitBill(split);
+        }
     }
 
     /**
