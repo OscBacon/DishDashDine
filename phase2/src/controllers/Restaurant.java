@@ -60,7 +60,7 @@ public class Restaurant extends Application {
     private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {}.getType();
 
     /**
-     * A list of all objects that can listen to events.
+     * A list of all objects that can listen to log.txt.
      */
     private static HashMap<String, Listener> listenerList = new HashMap<>();
 
@@ -94,7 +94,7 @@ public class Restaurant extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "cooks.txt", "inventory.json", "bills.json", "log.txt"};
+        String[] fileNames = {"requests.txt", "menu.json", "waiters.txt", "cooks.txt", "inventory.json", "bills.json", "log.txt"};
         for (String fileName : fileNames) {
             File f = new File(fileName);
             if (!f.exists()) {
@@ -146,7 +146,7 @@ public class Restaurant extends Application {
     }
 
     /**
-     * Handles the input from a new event in event.txt.
+     * Handles the input from a new event in log.txt.
      * This sends the input to be handled to the appropriate Class or Object.
      * The input is separated by pipe symbols, and is appropriately spliced.
      *
@@ -169,18 +169,18 @@ public class Restaurant extends Application {
                         // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
                         addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
                         break;
-                    case "add waiter":
-                        addWaiter(inputArray[2]);
-                        break;
-                    case "remove waiter":
-                        removeWaiter(inputArray[2]);
-                        break;
-                    case "add cook":
-                        addCook(inputArray[2]);
-                        break;
-                    case "remove cook":
-                        removeCook(inputArray[2]);
-                        break;
+//                    case "add waiter":
+//                        addWaiter(inputArray[2]);
+//                        break;
+//                    case "remove waiter":
+//                        removeWaiter(inputArray[2]);
+//                        break;
+//                    case "add cook":
+//                        addCook(inputArray[2]);
+//                        break;
+//                    case "remove cook":
+//                        removeCook(inputArray[2]);
+//                        break;
                 }
                 break;
             case "Stop":
@@ -310,16 +310,16 @@ public class Restaurant extends Application {
     }
 
     /**
-     * This reads through events.txt and handles input when a new line is added to the file.
+     * This reads through log.txt and handles input when a new line is added to the file.
      */
     private static void run() {
-        File eventsFile = new File("events.txt");
-        long lastModified = eventsFile.lastModified();
+        File logFile = new File("log.txt");
+        long lastModified = logFile.lastModified();
         while (running) {
-            if (eventsFile.lastModified() != lastModified) {
+            if (logFile.lastModified() != lastModified) {
                 String lastLine = "";
                 try {
-                    BufferedReader reader = new BufferedReader(new FileReader("events.txt"));
+                    BufferedReader reader = new BufferedReader(new FileReader("log.txt"));
                     String currLine = reader.readLine();
                     while (currLine != null) {
                         if (!currLine.equals("")) {
@@ -336,7 +336,7 @@ public class Restaurant extends Application {
                 }
 
                 if (!lastLine.equals("")) {
-                    lastModified = eventsFile.lastModified();
+                    lastModified = logFile.lastModified();
                     handleInput(lastLine);
                 }
             }
@@ -346,7 +346,7 @@ public class Restaurant extends Application {
 
     /**
      * Saves the current state of menu, inventory, and waiters to their respective .json files.
-     * Flushes events.txt
+     * Flushes log.txt
      */
     private static void save() throws IOException {
         Gson gson = new Gson();
@@ -369,9 +369,9 @@ public class Restaurant extends Application {
             writer.close();
         }
 
-        FileWriter eventsFile = new FileWriter("events.txt");
-        eventsFile.flush();
-        eventsFile.close();
+        FileWriter logFile = new FileWriter("log.txt");
+        logFile.flush();
+        logFile.close();
     }
 
     /**
@@ -392,71 +392,71 @@ public class Restaurant extends Application {
         return menu;
     }
 
-    /**
-     * Adds the given waiter to waiterNameList and listenerList.
-     *
-     * @param name Name of the waiter to be added
-     */
-    private static void addWaiter(String name) {
-        if (!waiterNameList.contains(name)) {
-            waiterNameList.add(name);
-            listenerList.put("Waiter " + name, new Waiter(name));
-            waiterListModified = true;
-            System.out.println("Waiter " + name + " added.");
-        }
-        else {
-            System.out.println("Can't add " + name + ", a waiter with the same name already exists");
-        }
-    }
+//    /**
+//     * Adds the given waiter to waiterNameList and listenerList.
+//     *
+//     * @param name Name of the waiter to be added
+//     */
+//    private static void addWaiter(String name) {
+//        if (!waiterNameList.contains(name)) {
+//            waiterNameList.add(name);
+//            listenerList.put("Waiter " + name, new Waiter(name));
+//            waiterListModified = true;
+//            System.out.println("Waiter " + name + " added.");
+//        }
+//        else {
+//            System.out.println("Can't add " + name + ", a waiter with the same name already exists");
+//        }
+//    }
 
-    /**
-     * Removes the given waiter to waiterListName and listenerList.
-     *
-     * @param name Name of the waiter to be added
-     */
-    private static void removeWaiter(String name) {
-        if (waiterNameList.contains(name)) {
-            waiterNameList.remove(name);
-            listenerList.remove("Waiter " + name);
-            waiterListModified = true;
-            System.out.println("Waiter " + name + " removed.");
-        }
-        else {
-            System.out.println(name + " is not a waiter, cannot be removed.");
-        }
-    }
-
-    /**
-     * Adds the given cook to cookNameList.
-     *
-     * @param name Name of the cook to be added
-     */
-    private static void addCook(String name) {
-        if (!cookNameList.contains(name)) {
-            cookNameList.add(name);
-            cookListModified = true;
-            System.out.println("Cook " + name + " added.");
-        }
-        else {
-            System.out.println("Can't add " + name + ", a cook with the same name already exists");
-        }
-    }
-
-    /**
-     * Removes the given Cook from cookNameList.
-     *
-     * @param name Name of the cook to be added
-     */
-    private static void removeCook(String name) {
-        if (cookNameList.contains(name)) {
-            cookNameList.remove(name);
-            cookListModified = true;
-            System.out.println("Cook " + name + " removed.");
-        }
-        else {
-            System.out.println(name + " is not a cook, cannot be removed.");
-        }
-    }
+//    /**
+//     * Removes the given waiter to waiterListName and listenerList.
+//     *
+//     * @param name Name of the waiter to be added
+//     */
+//    private static void removeWaiter(String name) {
+//        if (waiterNameList.contains(name)) {
+//            waiterNameList.remove(name);
+//            listenerList.remove("Waiter " + name);
+//            waiterListModified = true;
+//            System.out.println("Waiter " + name + " removed.");
+//        }
+//        else {
+//            System.out.println(name + " is not a waiter, cannot be removed.");
+//        }
+//    }
+//
+//    /**
+//     * Adds the given cook to cookNameList.
+//     *
+//     * @param name Name of the cook to be added
+//     */
+//    private static void addCook(String name) {
+//        if (!cookNameList.contains(name)) {
+//            cookNameList.add(name);
+//            cookListModified = true;
+//            System.out.println("Cook " + name + " added.");
+//        }
+//        else {
+//            System.out.println("Can't add " + name + ", a cook with the same name already exists");
+//        }
+//    }
+//
+//    /**
+//     * Removes the given Cook from cookNameList.
+//     *
+//     * @param name Name of the cook to be added
+//     */
+//    private static void removeCook(String name) {
+//        if (cookNameList.contains(name)) {
+//            cookNameList.remove(name);
+//            cookListModified = true;
+//            System.out.println("Cook " + name + " removed.");
+//        }
+//        else {
+//            System.out.println(name + " is not a cook, cannot be removed.");
+//        }
+//    }
 
     /**
      * Getter for the waiterNameList

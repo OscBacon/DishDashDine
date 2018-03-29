@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import models.Dish;
 
 import java.util.ArrayList;
 
@@ -27,10 +28,15 @@ public class TableDetailsController {
     @FXML
     private Button currentOrder;
 
+    @FXML
+    private ListView<Dish> activeDishesToBeDelivered;
+
     public void initialize() {
         ArrayList<String> menuItemName = new ArrayList<String>(Restaurant.getMenu().keySet());
         ObservableList<String> menuItem = FXCollections.observableArrayList(menuItemName);
         menuList.setItems(menuItem);
+
+        
     }
 
     @FXML
