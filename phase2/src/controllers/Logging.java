@@ -59,7 +59,7 @@ public abstract class Logging {
      * @param tableNumber The bill this waiter wishes to see.
      */
     public static void requestActiveBill(String waiter, String tableNumber) {
-        eventWriter(waiter + " | requested bill for table | " + tableNumber);
+        eventWriter("Waiter " + waiter + " | requested bill for table | " + tableNumber);
     }
 
 
@@ -69,7 +69,7 @@ public abstract class Logging {
      * @param billNumber The bill this waiter wishes to see.
      */
     public static void requestBill(String waiter, String billNumber) {
-        eventWriter(waiter + " | requested bill | " + billNumber);
+        eventWriter("Waiter " + waiter + " | requested bill | " + billNumber);
     }
 
 
@@ -78,7 +78,7 @@ public abstract class Logging {
      * @param dishID The id of the dish that has been cancelled.
      */
     public static void cancelDish(String waiter, String dishID) {
-        eventWriter(waiter + " | cancelled dish | " + dishID);
+        eventWriter("Waiter " + waiter + " | cancelled dish | " + dishID);
     }
 
 
@@ -89,7 +89,7 @@ public abstract class Logging {
      * @param tableNumber The number of the table this dished has been ordered from.
      */
     public static void orderDish(String waiter, String itemName, String tableNumber) {
-        eventWriter(waiter + " | ordered | " + itemName + " | for table | " + tableNumber);
+        eventWriter("Waiter " + waiter + " | ordered | " + itemName + " | for table | " + tableNumber);
     }
 
 
@@ -103,7 +103,7 @@ public abstract class Logging {
      */
     // Additions and/or subtractions can be empty strings.
     public static void orderDish(String waiter, String itemName, String additions, String subtractions, String tableNumber) {
-        eventWriter(waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | " + tableNumber);
+        eventWriter("Waiter " + waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | " + tableNumber);
     }
 
 
@@ -113,7 +113,7 @@ public abstract class Logging {
      * @param dishID The id of the dish that has been served.
      */
     public static void confirmDelivery(String waiter, String dishID) {
-        eventWriter(waiter + " | delivered dish | " + dishID);
+        eventWriter("Waiter " + waiter + " | delivered dish | " + dishID);
     }
 
 
@@ -123,7 +123,7 @@ public abstract class Logging {
      * @param dishID The id of the dish that was recalled.
      */
     public static void dishRecall(String waiter, String dishID) {
-        eventWriter(waiter + " | recalled dish | " + dishID);
+        eventWriter("Waiter " + waiter + " | recalled dish | " + dishID);
     }
 
 
@@ -134,7 +134,7 @@ public abstract class Logging {
      */
     public static void newBill(String waiter, String tableNumber)
     {
-        eventWriter(waiter + " | new bill | " + tableNumber);
+        eventWriter("Waiter " + waiter + " | new bill | " + tableNumber);
     }
 
 
@@ -145,7 +145,7 @@ public abstract class Logging {
      */
     public static void newLargeBill(String waiter, String tableNumber)
     {
-        eventWriter(waiter + " | new large bill | " + tableNumber);
+        eventWriter("Waiter " + waiter + " | new large bill | " + tableNumber);
     }
 
 
@@ -156,7 +156,7 @@ public abstract class Logging {
      */
     public static void  payBill(String waiter, String tableNumber)
     {
-        eventWriter(waiter + " | pay bill | " + tableNumber);
+        eventWriter("Waiter " + waiter + " | pay bill | " + tableNumber);
     }
 
 
@@ -168,7 +168,7 @@ public abstract class Logging {
      */
     public static void removeDish(String waiter, String dishID)
     {
-        eventWriter(waiter + " | removed dish | " + dishID);
+        eventWriter("Waiter " + waiter + " | removed dish | " + dishID);
     }
 
 // --------------------------------------------------------------------------------
