@@ -117,7 +117,6 @@ public class Kitchen implements Listener {
      */
     public void handleEvent(String[] inputArray) {
         if (inputArray[0].equals("has a new dish.")) {
-            System.out.println("Kitchen has a new dish.");
             if (Restaurant.getCurrentUser().equals("Kitchen")) {
                 printToScreen("new dish arrived!");
                 Platform.runLater(() -> {
