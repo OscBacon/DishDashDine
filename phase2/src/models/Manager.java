@@ -23,7 +23,7 @@ public class Manager implements Listener{
                 removeCook(inputArray[1]);
                 break;
             case "requested undelivered dishes":
-                Restaurant.getUndeliveredDishes();
+                showUndeliveredDishes();
                 break;
         }
     }
@@ -72,6 +72,10 @@ public class Manager implements Listener{
         else {
             printToScreen(name + " is not a cook, cannot be removed.");
         }
+    }
+
+    private void showUndeliveredDishes(){
+        printToScreen(Restaurant.getUndeliveredDishes().toString());
     }
 
     public void printToScreen(String s) {
