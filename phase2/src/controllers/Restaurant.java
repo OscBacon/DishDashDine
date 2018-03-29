@@ -71,6 +71,11 @@ public class Restaurant extends Application {
     private static boolean running = true;
 
     /**
+     * This restaurant instance only reacts
+     */
+    private static String currentUser = "";
+
+    /**
      * Keeps track of whether or not menu was modified since start.
      */
     private static boolean inventoryModified;
@@ -140,9 +145,9 @@ public class Restaurant extends Application {
 
         // Adds an instance of Kitchen to be used
         listenerList.put("Kitchen", new Kitchen());
-        listenerList.put("Manager", new Manager());
 
-        //System.out.println(printInventory());
+        // Adds an instance of Manager to be used
+        listenerList.put("Manager", new Manager());
 
         Thread inputHandlingThread = new Thread(Restaurant::run);
 
@@ -151,10 +156,7 @@ public class Restaurant extends Application {
         launch(args);
 
 
-
-        System.out.println("Saving...");
         save();
-        System.out.println("Stopping...");
     }
 
     /**
@@ -176,23 +178,14 @@ public class Restaurant extends Application {
 
         switch (in) {
             case "Restaurant":
-                switch (inputArray[1]) {
-                    case "add to inventory":
-                        // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
-                        addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
-                        break;
-//                    case "add waiter":
-//                        addWaiter(inputArray[2]);
-//                        break;
-//                    case "remove waiter":
-//                        removeWaiter(inputArray[2]);
-//                        break;
-//                    case "add cook":
-//                        addCook(inputArray[2]);
-//                        break;
-//                    case "remove cook":
-//                        removeCook(inputArray[2]);
-//                        break;
+                if (inputArray[1].equals("add to inventory")) {
+                    // Precondition: inputArray[2] is an ingredient, inputArray[3] is a quantity
+                    addToInventory(inputArray[2], Integer.valueOf(inputArray[3]));
+                }
+                break;
+            case "Message":
+                if (inputArray[1].equals(currentUser)) {
+                    printToScreen(inputArray[2]);
                 }
                 break;
             case "Stop":
@@ -220,11 +213,12 @@ public class Restaurant extends Application {
         if (inventory.containsKey(ingredient)) {
             InventoryItem inventoryItem = inventory.get(ingredient);
 
-            System.out.println("" + quantity + " units of " + ingredient + " were added to the inventory.");
-
             int currQuantity = inventoryItem.getQuantity();
 
-            System.out.println("There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
+            if (currentUser.equals("Receiver")) {
+                printToScreen("" + quantity + " units of " + ingredient + " were added to the inventory.");
+                printToScreen("There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
+            }
 
             inventory.get(ingredient).setQuantity(currQuantity + quantity);
         } else {
@@ -315,10 +309,11 @@ public class Restaurant extends Application {
             writer.write(item.toUpperCase() + " is needed in 20 quantities.");
             writer.newLine();
             writer.close();
-            System.out.println("Wrote request to stock inventory with " + item);
-        } catch (IOException e) {
-            System.out.println("requests.txt is busy, can't add request");
-        }
+
+            if (currentUser.equals("Manager")) {
+                printToScreen("Wrote request to stock inventory with " + item);
+            }
+        } catch (IOException e) {}
     }
 
     /**
@@ -340,8 +335,6 @@ public class Restaurant extends Application {
                         currLine = reader.readLine();
                     }
                     reader.close();
-
-                    System.out.println();
 
                 } catch (IOException | NullPointerException ignore) {
 
@@ -404,72 +397,6 @@ public class Restaurant extends Application {
         return menu;
     }
 
-//    /**
-//     * Adds the given waiter to waiterNameList and listenerList.
-//     *
-//     * @param name Name of the waiter to be added
-//     */
-//    private static void addWaiter(String name) {
-//        if (!waiterNameList.contains(name)) {
-//            waiterNameList.add(name);
-//            listenerList.put("Waiter " + name, new Waiter(name));
-//            waiterListModified = true;
-//            System.out.println("Waiter " + name + " added.");
-//        }
-//        else {
-//            System.out.println("Can't add " + name + ", a waiter with the same name already exists");
-//        }
-//    }
-
-//    /**
-//     * Removes the given waiter to waiterListName and listenerList.
-//     *
-//     * @param name Name of the waiter to be added
-//     */
-//    private static void removeWaiter(String name) {
-//        if (waiterNameList.contains(name)) {
-//            waiterNameList.remove(name);
-//            listenerList.remove("Waiter " + name);
-//            waiterListModified = true;
-//            System.out.println("Waiter " + name + " removed.");
-//        }
-//        else {
-//            System.out.println(name + " is not a waiter, cannot be removed.");
-//        }
-//    }
-//
-//    /**
-//     * Adds the given cook to cookNameList.
-//     *
-//     * @param name Name of the cook to be added
-//     */
-//    private static void addCook(String name) {
-//        if (!cookNameList.contains(name)) {
-//            cookNameList.add(name);
-//            cookListModified = true;
-//            System.out.println("Cook " + name + " added.");
-//        }
-//        else {
-//            System.out.println("Can't add " + name + ", a cook with the same name already exists");
-//        }
-//    }
-//
-//    /**
-//     * Removes the given Cook from cookNameList.
-//     *
-//     * @param name Name of the cook to be added
-//     */
-//    private static void removeCook(String name) {
-//        if (cookNameList.contains(name)) {
-//            cookNameList.remove(name);
-//            cookListModified = true;
-//            System.out.println("Cook " + name + " removed.");
-//        }
-//        else {
-//            System.out.println(name + " is not a cook, cannot be removed.");
-//        }
-//    }
-
     /**
      * Getter for the waiterNameList
      * @return waiterNameList
@@ -492,6 +419,14 @@ public class Restaurant extends Application {
      */
     public static HashMap<String, Listener> getListenerList() {
         return listenerList;
+    }
+
+    /**
+     * Sets the currentUser attribute to the input parameter.
+     * @param currentUser String of the currentUser's name.
+     */
+    public static void setCurrentUser(String currentUser) {
+        currentUser = currentUser;
     }
 
     public static void removeFromUndeliveredDishes(Dish dish){
@@ -520,6 +455,12 @@ public class Restaurant extends Application {
 
     public static ArrayList<Bill> getPaidBills(){
         return paidBills;
+    }
+
+    private static void printToScreen(String message) {
+        FXMLLoader loader = (FXMLLoader) stage.getScene().getUserData();
+        Alerted alertedController = loader.getController();
+        alertedController.createAlert(message);
     }
 
     @Override
