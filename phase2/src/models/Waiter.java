@@ -197,6 +197,9 @@ public class Waiter implements Listener {
         }
     }
 
+    public HashMap<Integer, Dish> getDishList() {
+        return dishList;
+    }
 
     /**
      * Checks that there are enough ingredients to fulfill the ordered dish, and then places the order by adding the
@@ -214,7 +217,6 @@ public class Waiter implements Listener {
         // creates a Dish with no additions or subtractions
         orderDish(item, empty, empty, tableNumber);
     }
-
 
     /**
      * Creates a new bill in billList when this waiter starts serving a new table / arrival.
