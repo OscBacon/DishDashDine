@@ -28,7 +28,6 @@ public class Waiter implements Listener {
      */
     private String name;
 
-
     public Waiter(String name) {
         this.name = name;
         this.billList = new HashMap<>();
