@@ -3,6 +3,7 @@ package controllers.kitchen;
 import controllers.Alerted;
 import controllers.Logging;
 import controllers.Restaurant;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,24 +58,26 @@ public class MainController extends Alerted {
     @FXML
     private void createNextDishLabel() {
         if (!Kitchen.hasPendingDishes()) {
+            System.out.println("No dish pending.");
             nextDishLabel.setText("No dish pending.");
         } else {
+
             nextDishLabel.setText(Kitchen.getFirstDish().toString());
         }
     }
 
     @FXML
-    void acceptCurrentDish(ActionEvent event) {
+    void acceptCurrentDish() {
         String acceptedDishCookName = cooksComboBox.getSelectionModel().getSelectedItem();
-        if (!nextDishLabel.getText().equals("No dish pending.") && acceptedDishCookName != null) {
+        if (Kitchen.hasPendingDishes() && acceptedDishCookName != null) {
             dishList.add(Kitchen.getFirstDish());
             Logging.acceptDish(acceptedDishCookName);
-            acceptedDishesTable.refresh();
             createNextDishLabel();
+            acceptedDishesTable.refresh();
         }
     }
 
-    public void readyDish(ActionEvent actionEvent) {
+    public void readyDish() {
         Dish selectedDish = acceptedDishesTable.getSelectionModel().getSelectedItem();
         if (selectedDish != null) {
             Logging.finishDish(String.valueOf(selectedDish.getDishId()));
