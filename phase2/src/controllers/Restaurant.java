@@ -23,7 +23,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Restaurant extends Application {
-    static Stage stage;
+    public static Stage stage;
 
     /**
      * A HashMap representation of the inventory.

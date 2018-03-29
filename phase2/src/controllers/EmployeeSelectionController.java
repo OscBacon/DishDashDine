@@ -35,7 +35,7 @@ public class EmployeeSelectionController {
      * <p>
      */
     public void openEmployeeView(ActionEvent actionEvent) throws IOException{
-        String selectedEmployeeType = employeeTypeList.getSelectionModel().getSelectedItem();;
+        String selectedEmployeeType = employeeTypeList.getSelectionModel().getSelectedItem();
         switch (selectedEmployeeType) {
             case "Manager":
                 Parent managerPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Manager.fxml"));
