@@ -125,7 +125,7 @@ public class TableDetailsController {
     @FXML
     void showCurrentBill (ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterPrintBill.fxml"));
+        loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterCurrentOrder.fxml"));
         AnchorPane billPage = loader.load();
         Stage billStage = new Stage();
         billStage.setTitle("Current Bill");
