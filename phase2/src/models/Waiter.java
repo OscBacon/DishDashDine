@@ -209,8 +209,10 @@ public class Waiter implements Listener {
      */
     private void orderDish(String item, String tableNumber) {
 
+        ArrayList<String> empty = new ArrayList<>();
+
         // creates a Dish with no additions or subtractions
-        orderDish(item, new ArrayList<>(), new ArrayList<>(), tableNumber);
+        orderDish(item, empty, empty, tableNumber);
     }
 
 

@@ -114,6 +114,11 @@ public class Restaurant extends Application {
      */
     private static ArrayList<Bill> paidBills = new ArrayList<>();
 
+    /**
+     * Keeps track of the total sales made so far in the day
+     */
+    private static double totalSales = 0.0;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../resources/views/EmployeeSelection.fxml"));
@@ -311,7 +316,7 @@ public class Restaurant extends Application {
      * @return A string representation of the inventory
      */
     private static String printInventory() {
-        ArrayList<String> inventoryItems = new ArrayList<String>();
+        ArrayList<String> inventoryItems = new ArrayList<>();
         for (Object key : inventory.keySet()) {
             InventoryItem inventoryItem = inventory.get(key);
             inventoryItems.add(key + ": " + System.lineSeparator() +
@@ -507,6 +512,7 @@ public class Restaurant extends Application {
      */
     public static void addToPaidBills(Bill bill){
         paidBills.add(bill);
+        totalSales += bill.getTotalBillPrice();
     }
 
     /**
@@ -515,6 +521,14 @@ public class Restaurant extends Application {
      */
     public static ArrayList<Bill> getPaidBills(){
         return paidBills;
+    }
+
+    /**
+     * A getter for the day's total sales so far
+     * @return the total sales
+     */
+    public static String getTotalSales(){
+        return "$"+ (Double.toString(totalSales));
     }
 
     /**
