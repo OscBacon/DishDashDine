@@ -137,9 +137,15 @@ public class Restaurant extends Application {
         listenerList.put("Manager", new Manager());
 
         //System.out.println(printInventory());
+
+        Thread inputHandlingThread = new Thread(Restaurant::run);
+
+        inputHandlingThread.start();
+
         launch(args);
 
-        run();
+
+
         System.out.println("Saving...");
         save();
         System.out.println("Stopping...");
