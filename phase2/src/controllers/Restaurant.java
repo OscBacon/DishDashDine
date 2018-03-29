@@ -83,7 +83,10 @@ public class Restaurant extends Application {
      */
     private static boolean cookListModified;
 
-    public static HashMap<String, String> undeliveredDishes;
+    /**
+     * Keeps track of all dishes that have not yet been delivered.
+     */
+    private static HashMap<String, String> undeliveredDishes;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -101,6 +104,8 @@ public class Restaurant extends Application {
                 f.createNewFile();
             }
         }
+
+        undeliveredDishes = new HashMap<>();    // Instantiate it to an empty HashMap.
 
         Gson gson = new Gson();
 

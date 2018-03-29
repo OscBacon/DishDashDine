@@ -1,1 +1,3 @@
-Waiter Dennis | ordered | Kung Pao Chicken | for table | 11
+Manager | add cook | Tim
+Manager | remove waiter | Jen
+Manager | requested undelivered dishes
