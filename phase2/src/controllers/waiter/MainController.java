@@ -55,8 +55,19 @@ public class MainController {
     }
     @FXML
     void createNewOrderForTable(ActionEvent event) throws IOException{
-        //Switching scenes. Create new Table
-
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterNewTableOrder.fxml"));
+        AnchorPane orderPage = loader.load();
+        Stage orderStage = new Stage();
+        orderStage.setTitle("Table Order Creation");
+        orderStage.initModality(Modality.WINDOW_MODAL);
+        orderStage.initOwner(Restaurant.stage);
+        Scene scene = new Scene(orderPage);
+        orderStage.setScene(scene);
+        NewTableOrder orderController = loader.getController();
+        orderController.setDialogStage(orderStage);
+        orderController.setName(name);
+        orderStage.showAndWait();
     }
 
     @FXML
