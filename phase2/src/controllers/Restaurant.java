@@ -420,8 +420,11 @@ public class Restaurant extends Application {
         undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + Integer.toString(dish.getTableNumber()));
     }
 
-    private HashMap<String, String> getUndeliveredDishes(){
+    public static HashMap<String, String> getUndeliveredDishes(){
         return undeliveredDishes;
     }
 
+    public static void setWaiterListModified(boolean waiterListModified) {
+        Restaurant.waiterListModified = waiterListModified;
+    }
 }
