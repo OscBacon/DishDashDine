@@ -62,7 +62,7 @@ public class Kitchen implements Listener {
      */
     private void acceptDish(String cook) {
 
-        Dish dish = (Dish) dishesToConfirm.keySet().toArray()[0];   // Returns the oldest dish in dishesToConfirm
+        Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
 
         String id = String.valueOf(dish.getDishId());
 
