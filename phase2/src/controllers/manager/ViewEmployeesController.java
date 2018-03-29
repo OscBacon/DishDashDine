@@ -1,14 +1,19 @@
 package controllers.manager;
 
+import controllers.Restaurant;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 public class ViewEmployeesController {
-    private Stage dialogStage;
-    public ListView allWaitersList;
-    public ListView allCooksList;
+    public ListView<String> WaitersList;
+    public ListView<String> CooksList;
 
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
+    @FXML
+    public void initialize() {
+        WaitersList.setItems(FXCollections.observableArrayList(Restaurant.getWaiterNameList()));
+        CooksList.setItems(FXCollections.observableArrayList(Restaurant.getCookNameList()));
     }
+
 }

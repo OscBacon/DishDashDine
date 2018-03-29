@@ -43,7 +43,7 @@ public class MainController extends Alerted {
         stage.initOwner(Restaurant.stage);
         Scene scene = new Scene(page);
         stage.setScene(scene);
-        CreateEmployeeController controller = loader.getController();
+        ViewInventoryController controller = loader.getController();
         controller.setDialogStage(stage);
         stage.showAndWait();
     }
@@ -58,8 +58,7 @@ public class MainController extends Alerted {
         stage.initOwner(Restaurant.stage);
         Scene scene = new Scene(page);
         stage.setScene(scene);
-        CreateEmployeeController controller = loader.getController();
-        controller.setDialogStage(stage);
+        ViewEmployeesController controller = loader.getController();
         stage.showAndWait();
     }
 
