@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -62,23 +63,28 @@ public class Kitchen implements Listener {
      */
     private void acceptDish(String cook) {
 
-        Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
+        if(dishesToConfirm.keySet().toArray().length > 0) {
 
-        String id = String.valueOf(dish.getDishId());
+            Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
 
-        dishList.put(id, dish);
+            String id = String.valueOf(dish.getDishId());
 
-        dish.setCook(cook);
+            dishList.put(id, dish);
 
-        dishesToConfirm.remove(id);
+            dish.setCook(cook);
 
-        printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + id + ")!");
+            dishesToConfirm.remove(id);
+
+            printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + id + ")!");
+        }
     }
 
     /**
      * Returns the next dish that must be confirmed by the kitchen.
      *
      * @return the Dish that must be acknowledged by the kitchen next.
+     *
+     * Precondition: dishesToConfirm has been verified to not be empty.
      */
     public Dish getFirstDish() {
         return (Dish) dishesToConfirm.keySet().toArray()[0];
