@@ -86,8 +86,26 @@ public class Kitchen implements Listener {
      *
      * Precondition: dishesToConfirm has been verified to not be empty.
      */
-    public Dish getFirstDish() {
+    public static Dish getFirstDish() {
         return (Dish) dishesToConfirm.keySet().toArray()[0];
+    }
+
+    /**
+     * Returns true if there are dishes to be confirmed in the kitchen.
+     *
+     * @return True if there are dishes to be confirmed in the kitchen.
+     */
+    public static boolean hasPendingDishes() {
+        return dishesToConfirm.keySet().toArray().length > 0;
+    }
+
+    /**
+     * Returns the Kitchen's list of active dishes.
+     *
+     * @return a Hashmap of the Kitchen's dishList.
+     */
+    public static HashMap<String, Dish> getDishList() {
+        return dishList;
     }
 
     /**

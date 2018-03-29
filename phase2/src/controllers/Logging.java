@@ -10,8 +10,8 @@ import java.io.IOException;
 public abstract class Logging {
     /**
      * Adapted from http://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java on March 7th, 2018, 8:05 AM.
-     * <p>
      *
+     * Precondition: log.txt exists.
      */
     private static void eventWriter(String s) {
         try {
@@ -140,6 +140,17 @@ public abstract class Logging {
 
     /**
      *
+     * @param waiter The waiter who starts this bill for 8 or more people.
+     * @param tableNumber The number of the table that this waiter is serving.
+     */
+    public static void newLargeBill(String waiter, String tableNumber)
+    {
+        eventWriter(waiter + " | new large bill | " + tableNumber);
+    }
+
+
+    /**
+     *
      * @param waiter The waiter whose bill gets paid.
      * @param tableNumber The number of the table that pays for its bill.
      */
@@ -191,6 +202,23 @@ public abstract class Logging {
      */
     public static void removeWaiter(String waiterName) {
         eventWriter("Manager | remove waiter | " + waiterName);
+    }
+
+    /**
+     *
+     * @param cookName The name of the cook the manager is adding into the system.
+     */
+    public static void addCook(String cookName) {
+        eventWriter("Manager | add cook | " + cookName);
+    }
+
+
+    /**
+     *
+     * @param cookName The name of the cook the manager is removing from the system.
+     */
+    public static void removeCook(String cookName) {
+        eventWriter("Manager | remove cook | " + cookName);
     }
 
 }
