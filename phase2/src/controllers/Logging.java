@@ -10,7 +10,7 @@ import java.io.IOException;
 public abstract class Logging {
     /**
      * Adapted from http://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java on March 7th, 2018, 8:05 AM.
-     *
+     * <p>
      * Precondition: log.txt exists.
      */
     private static void eventWriter(String s) {
@@ -33,7 +33,7 @@ public abstract class Logging {
     // Message:
 
     /**
-     * @param user The user this message is dedicated to.
+     * @param user    The user this message is dedicated to.
      * @param message The String that is to be displayed to the user.
      */
     public static void message(String user, String message) {
@@ -45,7 +45,6 @@ public abstract class Logging {
     // Kitchen inputs:
 
     /**
-     *
      * @param cookName The name of the cook who has confirmed the dish.
      */
     public static void acceptDish(String cookName) {
@@ -54,7 +53,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param dishID The id of the dish that is to be picked-up.
      */
     public static void finishDish(String dishID) {
@@ -71,8 +69,7 @@ public abstract class Logging {
     // Waiter inputs:
 
     /**
-     *
-     * @param waiter     The waiter that wants to see a bill.
+     * @param waiter      The waiter that wants to see a bill.
      * @param tableNumber The bill this waiter wishes to see.
      */
     public static void requestActiveBill(String waiter, String tableNumber) {
@@ -81,7 +78,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param waiter     The waiter that wants to see a bill.
      * @param billNumber The bill this waiter wishes to see.
      */
@@ -91,7 +87,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param dishID The id of the dish that has been cancelled.
      */
     public static void cancelDish(String waiter, String dishID) {
@@ -100,9 +95,8 @@ public abstract class Logging {
 
 
     /**
-     *
-     * @param waiter   The waiter who places the order.
-     * @param itemName The name of the menu item that is being ordered.
+     * @param waiter      The waiter who places the order.
+     * @param itemName    The name of the menu item that is being ordered.
      * @param tableNumber The number of the table this dished has been ordered from.
      */
     public static void orderDish(String waiter, String itemName, String tableNumber, String person) {
@@ -111,12 +105,11 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param waiter       The waiter who places the order.
      * @param itemName     The name of the menu item that is being ordered.
      * @param additions    The ingredients that must be added to the ordered item.
      * @param subtractions The ingredients that must be removed from the ordered item.
-     * @param tableNumber The number of the table this dished has been ordered from.
+     * @param tableNumber  The number of the table this dished has been ordered from.
      */
     // Additions and/or subtractions can be empty strings.
     public static void orderDish(String waiter, String itemName, String additions, String subtractions, String tableNumber, String person) {
@@ -126,7 +119,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param waiter The waiter who's serving the table and the dish.
      * @param dishID The id of the dish that has been served.
      */
@@ -136,7 +128,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param waiter The waiter whose clients recalled the dish.
      * @param dishID The id of the dish that was recalled.
      */
@@ -146,34 +137,28 @@ public abstract class Logging {
 
 
     /**
-     *
-     * @param waiter The waiter who starts the bill.
+     * @param waiter      The waiter who starts the bill.
      * @param tableNumber The number of the table that this waiter is serving.
      */
-    public static void newBill(String waiter, String tableNumber)
-    {
+    public static void newBill(String waiter, String tableNumber) {
         eventWriter("Waiter " + waiter + " | new bill | " + tableNumber);
     }
 
 
     /**
-     *
-     * @param waiter The waiter who starts this bill for 8 or more people.
+     * @param waiter      The waiter who starts this bill for 8 or more people.
      * @param tableNumber The number of the table that this waiter is serving.
      */
-    public static void newLargeBill(String waiter, String tableNumber)
-    {
+    public static void newLargeBill(String waiter, String tableNumber) {
         eventWriter("Waiter " + waiter + " | new large bill | " + tableNumber);
     }
 
 
     /**
-     *
-     * @param waiter The waiter whose bill gets paid.
+     * @param waiter      The waiter whose bill gets paid.
      * @param tableNumber The number of the table that pays for its bill.
      */
-    public static void  payBill(String waiter, String tableNumber)
-    {
+    public static void payBill(String waiter, String tableNumber) {
         eventWriter("Waiter " + waiter + " | pay bill | " + tableNumber);
     }
 
@@ -184,22 +169,19 @@ public abstract class Logging {
      * @param waiter The waiter who is responsible fot this dish.
      * @param dishID The ID of the dish that dissatisfied the customer.
      */
-    public static void removeDish(String waiter, String dishID)
-    {
+    public static void removeDish(String waiter, String dishID) {
         eventWriter("Waiter " + waiter + " | removed dish | " + dishID);
     }
 
 
     /**
-     *
-     * @param split True if the bill is to be split.
+     * @param split  True if the bill is to be split.
      * @param billID The ID of the bill that is to be split or not.
      */
     public static void splitBill(boolean split, String billID) {
-        if(split) {
+        if (split) {
             eventWriter("Waiter | wishes to split bill | " + billID);
-        }
-        else {
+        } else {
             eventWriter("Waiter | wishes to not split bill | " + billID);
         }
     }
@@ -208,7 +190,6 @@ public abstract class Logging {
     // Receiver inputs:
 
     /**
-     *
      * @param ingredient The ingredient that has arrived.
      * @param quantity   The quantity of this ingredient that has arrived.
      */
@@ -221,7 +202,6 @@ public abstract class Logging {
     // Manager inputs:
 
     /**
-     *
      * @param waiterName The name of the waiter the manager is adding into the system.
      */
     public static void addWaiter(String waiterName) {
@@ -230,7 +210,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param waiterName The name of the waiter the manager is removing from the system.
      */
     public static void removeWaiter(String waiterName) {
@@ -238,7 +217,6 @@ public abstract class Logging {
     }
 
     /**
-     *
      * @param cookName The name of the cook the manager is adding into the system.
      */
     public static void addCook(String cookName) {
@@ -247,7 +225,6 @@ public abstract class Logging {
 
 
     /**
-     *
      * @param cookName The name of the cook the manager is removing from the system.
      */
     public static void removeCook(String cookName) {

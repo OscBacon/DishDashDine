@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class SelectNameController {
     public ListView<String> waiterNamesListView = new ListView<String>();
     public Button selectWaiterBtn;

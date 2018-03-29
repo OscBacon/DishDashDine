@@ -6,16 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import models.Bill;
-import models.Waiter;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-
+import javafx.stage.Stage;
+import models.Bill;
+import models.Waiter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,7 +51,7 @@ public class MainController extends Alerted {
     }
 
     public void createList() {
-        currentBills = (HashMap<String,Bill>) currWaiter.getFormattedBillList();
+        currentBills = (HashMap<String, Bill>) currWaiter.getFormattedBillList();
         currentTables = new ArrayList<>(currentBills.keySet());
         tablesList.setItems(FXCollections.observableArrayList(currentTables));
     }
@@ -63,7 +61,7 @@ public class MainController extends Alerted {
      * <p>
      */
     @FXML
-    void createNewOrder(ActionEvent event) throws IOException{
+    void createNewOrder(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterNewTableOrder.fxml"));
         AnchorPane orderPage = loader.load();
@@ -85,7 +83,7 @@ public class MainController extends Alerted {
      * <p>
      */
     @FXML
-    void selectTable(ActionEvent event) throws IOException{
+    void selectTable(ActionEvent event) throws IOException {
         String table = tablesList.getSelectionModel().getSelectedItem();
         if (table != null) {
             FXMLLoader loader = new FXMLLoader();
