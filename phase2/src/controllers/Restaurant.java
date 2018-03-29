@@ -109,6 +109,9 @@ public class Restaurant extends Application {
      */
     private static HashMap<String, String> undeliveredDishes = new HashMap<>();
 
+    /**
+     * Keeps track of all payments that have been done to the restaurant today.
+     */
     private static ArrayList<Bill> paidBills = new ArrayList<>();
 
     @Override
@@ -451,34 +454,66 @@ public class Restaurant extends Application {
         Restaurant.currentUser = currentUser;
     }
 
+    /**
+     * Removes Dish dish from the HashMap of undeliveredDishes.
+     * @param dish The Dish that has been delivered.
+     */
     public static void removeFromUndeliveredDishes(Dish dish){
         undeliveredDishes.remove(Integer.toString(dish.getDishId()));
     }
 
+    /**
+     * Adds a dish to the HashMap of undeliveredDishes.
+     * @param dish The Dish that has just been ordered.
+     */
     public static void addToUndeliveredDishes(Dish dish){
         undeliveredDishes.put(Integer.toString(dish.getDishId()), dish.getName() + Integer.toString(dish.getTableNumber()));
     }
 
+    /**
+     * Returns the HashMap of undeliveredDishes.
+     * @return a HashMap of the undelivered dishes.
+     */
     public static HashMap<String, String> getUndeliveredDishes(){
         return undeliveredDishes;
     }
 
+    /**
+     * Sets the value for waiterListModified.
+     * @param waiterListModified boolean, true if waiterList has been modified since the start of the program.
+     */
     public static void setWaiterListModified(boolean waiterListModified) {
         Restaurant.waiterListModified = waiterListModified;
     }
 
+    /**
+     * Sets the value for cookListModified.
+     * @param cookListModified boolean, true if cookList has been modified since the start of the program.
+     */
     public static void setCookListModified(boolean cookListModified) {
         Restaurant.cookListModified = cookListModified;
     }
 
+    /**
+     *  Adds the Bill bill to the ArrayList of paid bills.
+     * @param bill A Bill that was just paid.
+     */
     public static void addToPaidBills(Bill bill){
         paidBills.add(bill);
     }
 
+    /**
+     * A getter for the ArrayList of paid bills.
+     * @return an ArrayList of Bill objects, each representing a bill that been paid for today.
+     */
     public static ArrayList<Bill> getPaidBills(){
         return paidBills;
     }
 
+    /**
+     * Prints to the screen of the currentUser of this program.
+     * @param message The String that shall be printed to the currentUser's screen.
+     */
     private static void printToScreen(String message) {
         Platform.runLater(() -> alertedController.createAlert(message));
     }
