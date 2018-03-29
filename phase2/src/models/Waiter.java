@@ -89,7 +89,10 @@ public class Waiter implements Listener {
                     this.cancelDish(Integer.valueOf(inputArray[1]));
                     break;
                 case "new bill":    // When the waiter sits new customers down at a table
-                    this.createBill(Integer.valueOf(inputArray[1]));
+                    this.createBill(Integer.valueOf(inputArray[1]), false);
+                    break;
+                case "new large bill":    // When the waiter sits 8 or more new customers down at a table
+                    this.createBill(Integer.valueOf(inputArray[1]), true);
                     break;
                 case "pay bill":    // When a customer pays a bill
                     this.payBill(Integer.valueOf(inputArray[1]));
@@ -214,8 +217,8 @@ public class Waiter implements Listener {
      *
      * @param tableNum The number of the table this bill is tied to.
      */
-    private void createBill(int tableNum) {
-        Bill bill = new Bill(tableNum, this);
+    private void createBill(int tableNum, boolean people8) {
+        Bill bill = new Bill(tableNum, this, people8);  // people8 is true if there are 8 or more persons in this bill.
         billList.put(tableNum, bill);                   // Add this bill to this waiter's active bills.
         allBillsList.put(bill.getBillID(), bill);       // Add this bill to all bills ever created for this waiter.
         printToScreen("New bill created for Table " + tableNum + "!");
