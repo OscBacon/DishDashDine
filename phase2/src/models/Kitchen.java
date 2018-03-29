@@ -116,14 +116,16 @@ public class Kitchen implements Listener {
     public void handleEvent(String[] inputArray) {
         if (inputArray.length >= 3) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if (inputArray[2].equals("is ready.")) {
+            if (inputArray[2].equals("is ready."))
+            {
                 this.readyDish(inputArray[1]);
             }
         }
 
         else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if(inputArray[1].equals("has accepted oldest dish.")) {
+            if(inputArray[1].equals("has accepted oldest dish."))
+            {
                 this.acceptDish(inputArray[0]);
             }
         }
