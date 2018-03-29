@@ -201,9 +201,9 @@ public class Restaurant extends Application {
             case "Message":
                 System.out.println(currentUser);
                 if (inputArray[1].equals(currentUser)) {
-                    Platform.runLater(() -> printToScreen(inputArray[2]));
-
+                    printToScreen(inputArray[2]);
                 }
+
                 break;
             case "Stop":
                 running = false;
@@ -475,8 +475,7 @@ public class Restaurant extends Application {
     }
 
     private static void printToScreen(String message) {
-        alertedController.createAlert(message);
-
+        Platform.runLater(() -> alertedController.createAlert(message));
     }
 
     @Override
