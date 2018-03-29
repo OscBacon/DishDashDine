@@ -114,8 +114,8 @@ public class Restaurant extends Application {
         checkInventory();
 
         // Initialize all of the waiters in waiters.txt and add them to waitersList
-        BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
         try {
+            BufferedReader reader = new BufferedReader(new FileReader("waiters.txt"));
             waiterNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
             for (String waiterName : waiterNameList) {
                 listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
@@ -125,8 +125,8 @@ public class Restaurant extends Application {
         }
 
         // Put all the names of all the cooks in cooks.txt and into cooksList
-        BufferedReader reader2 = new BufferedReader(new FileReader("cooks.txt"));
         try {
+            BufferedReader reader = new BufferedReader(new FileReader("cooks.txt"));
             cookNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
         }
         catch (NullPointerException e) {
