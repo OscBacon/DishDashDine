@@ -30,7 +30,7 @@
         <ListView fx:id="dishSubtraction" layoutX="153.0" layoutY="270.0" prefHeight="130.0" prefWidth="153.0"/>
         <CheckBox fx:id="boolSplitBill" layoutX="313.0" layoutY="247.0" mnemonicParsing="false"
                   onAction="#splitCurrentBill" text="Split Bill"/>
-        <TextField fx:id="uniquePersonBill" layoutX="413.0" layoutY="243.0" onAction="#uniquePersonIdentifier"
+        <TextField fx:id="uniquePersonBill" layoutX="413.0" layoutY="243.0"
                    prefHeight="27.0" prefWidth="174.0"/>
     </children>
 </AnchorPane>
