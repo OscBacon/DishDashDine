@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class SelectName {
+public class SelectNameController {
     public ListView<String> waiterNamesListView = new ListView<String>();
     public Button selectWaiterBtn;
     private String name;
@@ -26,7 +26,6 @@ public class SelectName {
     @FXML
     public void selectWaiterName(ActionEvent actionEvent) {
         name = waiterNamesListView.getSelectionModel().getSelectedItem();
-        System.out.println(name);
         if (name != null) {
             dialogStage.close();
         }

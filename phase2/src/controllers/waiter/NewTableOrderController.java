@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 
-public class NewTableOrder {
+public class NewTableOrderController {
     public CheckBox largeGroupCheckBox;
     private Stage dialogStage;
     private String name;

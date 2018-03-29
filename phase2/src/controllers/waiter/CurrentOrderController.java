@@ -11,7 +11,7 @@ import models.Waiter;
 import javax.swing.text.html.ListView;
 
 
-public class WaiterCurrentOrder {
+public class CurrentOrderController {
 
         private Waiter currWaiter;
         private int tableNumber;

@@ -1,7 +1,7 @@
 package controllers;
 
 import controllers.waiter.MainController;
-import controllers.waiter.SelectName;
+import controllers.waiter.SelectNameController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,18 +52,20 @@ public class EmployeeSelectionController {
                 dialogStage.initOwner(Restaurant.stage);
                 Scene scene = new Scene(dialogPage);
                 dialogStage.setScene(scene);
-                SelectName dialogController = loader.getController();
+                SelectNameController dialogController = loader.getController();
                 dialogController.setDialogStage(dialogStage);
 
                 dialogStage.showAndWait();
 
-                FXMLLoader waiterLoader = new FXMLLoader();
-                waiterLoader.setLocation(Restaurant.class.getResource("../resources/views/Waiter.fxml"));
-                Parent waiterPage = waiterLoader.load();
-                MainController waiterController = waiterLoader.getController();
-                waiterController.setName(dialogController.getName());
-                Restaurant.stage.getScene().setRoot(waiterPage);
-                Restaurant.stage.show();
+                if (dialogController.getName() != null) {
+                    FXMLLoader waiterLoader = new FXMLLoader();
+                    waiterLoader.setLocation(Restaurant.class.getResource("../resources/views/Waiter.fxml"));
+                    Parent waiterPage = waiterLoader.load();
+                    MainController waiterController = waiterLoader.getController();
+                    waiterController.setName(dialogController.getName());
+                    Restaurant.stage.getScene().setRoot(waiterPage);
+                    Restaurant.stage.show();
+                }
                 break;
             case "Kitchen":
                 Parent kitchenPage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/Kitchen.fxml"));
