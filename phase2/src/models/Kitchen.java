@@ -1,15 +1,20 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Queue;
 
 public class Kitchen implements Listener {
 
-    private static HashMap<String, Dish> dishList;  // This kitchen's list of active dishes
+    private static HashMap<String, Dish> dishList;  // This kitchen's list of active, accepted dishes
+
+    private static LinkedHashMap<String, Dish> dishesToConfirm; // This kitchen's list of dishes that must be accepted
 
 
     public Kitchen() {
         dishList = new HashMap<>();
+        dishesToConfirm = new LinkedHashMap<>();
     }
 
     /**
@@ -18,9 +23,10 @@ public class Kitchen implements Listener {
      * @param dish The dish that has just been ordered.
      */
     public static void addDish(Dish dish) {
+
         String id = String.valueOf(dish.getDishId());
 
-        dishList.put(id, dish);
+        dishesToConfirm.put(id, dish);
     }
 
     /**
@@ -50,17 +56,33 @@ public class Kitchen implements Listener {
     }
 
     /**
-     * This method allows to record which cook confirmed to cook the dish whose id is dishID.
+     * This method allows to record which cook confirmed to cook the oldest dish.
      *
      * @param cook   The cook that will cook the dish whose ID is dishID.
-     * @param dishID The ID of the dish.
      */
-    private void acceptDish(String cook, String dishID) {
-        Dish dish = dishList.get(dishID);
+    private void acceptDish(String cook) {
+
+        Dish dish = (Dish) dishesToConfirm.keySet().toArray()[0];   // Returns the oldest dish in dishesToConfirm
+
+        String id = String.valueOf(dish.getDishId());
+
+        dishList.put(id, dish);
 
         dish.setCook(cook);
 
-        printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + dishID + ")!");
+        dishesToConfirm.remove(id);
+
+        printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + id + ")!");
+    }
+
+    /**
+     * Returns the next dish that must be confirmed by the kitchen.
+     *
+     * @return the Dish that must be acknowledged by the kitchen next.
+     */
+    public Dish getFirstDish() {
+
+        return (Dish) dishesToConfirm.keySet().toArray()[0];
     }
 
     /**
@@ -73,8 +95,8 @@ public class Kitchen implements Listener {
         {
             if (inputArray[2].equals("is ready.")) {
                 this.readyDish(inputArray[1]);
-            } else if (inputArray[1].equals("has accepted dish")) {
-                this.acceptDish(inputArray[0], inputArray[2]);
+            } else if (inputArray[1].equals("has accepted oldest dish.")) {
+                this.acceptDish(inputArray[0]);
             }
         }
     }
