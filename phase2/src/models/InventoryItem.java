@@ -3,15 +3,18 @@ package models;
 public class InventoryItem {
     private int quantity;
     private int threshold;
+    private String name;
 
-    public InventoryItem(int quantity) {
+    public InventoryItem(String name, int quantity) {
         this.quantity = quantity;
         threshold = 10;
+        this.name = name;
     }
 
-    public InventoryItem(int quantity, int threshold) {
+    public InventoryItem(String name, int quantity, int threshold) {
         this.quantity = quantity;
         this.threshold = threshold;
+        this.name = name;
     }
 
     public int getQuantity() {
@@ -26,9 +29,17 @@ public class InventoryItem {
         return threshold;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "{" +
+        return name + ": {" +
                 "quantity=" + quantity +
                 ", threshold=" + threshold +
                 '}';

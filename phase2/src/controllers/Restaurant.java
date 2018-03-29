@@ -139,6 +139,11 @@ public class Restaurant extends Application {
         if (inventory == null) {
             inventory = new HashMap<>();
         }
+        else {
+            for (String key: inventory.keySet()) {
+                inventory.get(key).setName(key);
+            }
+        }
         // Checks inventory on launch to send out reorder requests ASAP
         checkInventory();
 
@@ -242,7 +247,7 @@ public class Restaurant extends Application {
 
             inventory.get(ingredient).setQuantity(currQuantity + quantity);
         } else {
-            inventory.put(ingredient, new InventoryItem(quantity));
+            inventory.put(ingredient, new InventoryItem(ingredient, quantity));
         }
 
         inventoryModified = true;
