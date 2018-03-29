@@ -15,6 +15,6 @@
          </font>
       </Label>
       <TextArea layoutX="23.0" layoutY="54.0" prefHeight="318.0" prefWidth="555.0" />
-      <Button layoutX="23.0" layoutY="15.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="PrintBillBackbtn" layoutX="23.0" layoutY="15.0" mnemonicParsing="false" onAction="#BackToTableDetails" text="Back" />
    </children>
 </AnchorPane>
