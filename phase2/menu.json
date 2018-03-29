@@ -1,0 +1,53 @@
+{
+  "Kung Pao Chicken": {
+    "price": 10,
+    "ingredients": {
+      "chicken": 1,
+      "salad": 1,
+      "pineapple": 1
+    },
+    "allowedAdditions": [
+      "salad",
+      "pineapple"
+    ],
+    "allowedSubtractions": [
+      "salad",
+      "pineapple"
+    ]
+  },
+  "Pasta": {
+    "price": 5,
+    "ingredients": {
+      "pasta": 11,
+      "red sauce": 9,
+      "salt": 1
+    },
+    "allowedAdditions": [
+      "mushrooms",
+      "pineapple"
+    ],
+    "allowedSubtractions": [
+      "salt",
+      "red sauce"
+    ]
+  },
+  "Quiche": {
+    "price": 8.99,
+    "ingredients": {
+      "potatoes": 5,
+      "onions": 2,
+      "raw sauce": 9,
+      "salt": 12
+    },
+    "allowedAdditions": [
+      "mushrooms",
+      "pineapple",
+      "chicken"
+    ],
+    "allowedSubtractions": [
+      "salt",
+      "onions",
+      "raw sauce"
+    ]
+  }
+}

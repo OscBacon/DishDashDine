@@ -15,7 +15,7 @@ public class NewTableOrder {
 
         @FXML
         void CreateNewBillForTable(ActionEvent event) {
-            
+
         }
 }
 
