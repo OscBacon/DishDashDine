@@ -13,10 +13,10 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="createEmployeebtn" layoutX="400.0" layoutY="85.0" mnemonicParsing="false" onAction="#CreateNewEmployee" text="Create Employee" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" />
+      <Button fx:id="createEmployeebtn" layoutX="400.0" layoutY="89.0" mnemonicParsing="false" onAction="#CreateNewEmployee" text="Create Employee" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" />
       <Button fx:id="viewInventorybtn" layoutX="400.0" layoutY="190.0" mnemonicParsing="false" onAction="#viewInventory" text="View Inventory" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" />
       <Button fx:id="viewAllEmployeesbtn" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#viewAllEmployees" text="View All Employees" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" />
       <ListView layoutX="21.0" layoutY="81.0" prefHeight="292.0" prefWidth="365.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
-      <Label layoutX="157.0" layoutY="56.0" text="Restaurant Log" />
+      <Label layoutX="153.0" layoutY="65.0" text="Restaurant Log" />
    </children>
 </AnchorPane>
