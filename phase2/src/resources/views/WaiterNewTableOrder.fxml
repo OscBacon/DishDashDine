@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
-            fx:controller="controllers.waiter.NewTableOrderController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.NewTableOrderController">
     <Label layoutX="186.0" layoutY="22.0" text="Create New Table Bill">
         <font>
-            <Font size="20.0"/>
+            <Font size="20.0" />
         </font>
     </Label>
-    <TextField fx:id="TableNumberInput" layoutX="197.0" layoutY="168.0" prefHeight="65.0" prefWidth="206.0"
-               promptText="Table Number"/>
-    <Label layoutX="197.0" layoutY="140.0" text="Table Number for New Bill"/>
-    <Button fx:id="createBillButton" layoutX="469.0" layoutY="336.0" mnemonicParsing="false" onAction="#createBill"
-            text="Create Order"/>
-    <CheckBox fx:id="largeGroupCheckBox" layoutX="197.0" layoutY="254.0" mnemonicParsing="false"
-              text="Large group (&gt;8)"/>
+    <TextField fx:id="TableNumberInput" layoutX="185.0" layoutY="129.0" prefHeight="65.0" prefWidth="206.0" promptText="Table Number" />
+    <Label layoutX="186.0" layoutY="95.0" text="Table Number for New Bill" />
+    <Button fx:id="createBillButton" layoutX="17.0" layoutY="329.0" mnemonicParsing="false" onAction="#createBill" prefHeight="27.0" prefWidth="561.0" text="Create Order" />
+    <CheckBox fx:id="largeGroupCheckBox" layoutX="197.0" layoutY="213.0" mnemonicParsing="false" text="Large group (&gt;8)" />
+   <CheckBox fx:id="boolSplitBill" layoutX="196.0" layoutY="260.0" mnemonicParsing="false" onAction="#splitCurrentBill" prefHeight="18.0" prefWidth="203.0" text="Split Bill" />
 </AnchorPane>

@@ -392,13 +392,15 @@ public class Waiter implements Listener {
      * Sets the bill's split attribute to the value of split.
      *
      * @param split Boolean; true if bill is to be split.
-     * @param billID The ID of the bill that is to be split or not.
+     * @param tableNum The table number of the bill that is to be split or not.
      */
-    private void splitBill(boolean split, String billID) {
-        int id = Integer.valueOf(billID);
+    private void splitBill(boolean split, String tableNum) {
+        int id = Integer.valueOf(tableNum);
 
-        if (this.billList.containsKey(id)) {
-            this.billList.get(id).setSplitBill(split);
+        for (Bill bill : this.billList.values()) {
+            if (bill.getTableNumber() == id) {
+                bill.setSplitBill(split);
+            }
         }
     }
 
