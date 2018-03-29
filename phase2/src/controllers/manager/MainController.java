@@ -59,7 +59,6 @@ public class MainController extends Alerted {
         Scene scene = new Scene(page);
         stage.setScene(scene);
         ViewEmployeesController controller = loader.getController();
-        controller.setDialogStage(stage);
         stage.showAndWait();
     }
 
