@@ -501,4 +501,9 @@ public class Restaurant extends Application {
     public static void setCookListModified(boolean cookListModified) {
         Restaurant.cookListModified = cookListModified;
     }
+
+    @Override
+    public void stop() throws IOException {
+        running = false;
+    }
 }
