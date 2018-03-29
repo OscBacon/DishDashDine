@@ -29,7 +29,7 @@ public class MainController {
     private Button selectTableBtn;
 
     @FXML
-    private ListView<String> tablesList = new ListView<String>();
+    private ListView<String> tablesList = new ListView<>();
 
     @FXML
     private Button createNewOrderBtn;
@@ -95,9 +95,9 @@ public class MainController {
             detailsStage.initOwner(Restaurant.stage);
             Scene scene = new Scene(detailsPage);
             detailsStage.setScene(scene);
-            NewTableOrderController detailsController = loader.getController();
+            TableDetailsController detailsController = loader.getController();
             detailsController.setDialogStage(detailsStage);
-            detailsController.setName(name);
+            detailsController.setBill(currentBills.get(table));
             detailsStage.showAndWait();
         }
     }
