@@ -355,6 +355,16 @@ public class Waiter implements Listener {
     }
 
     /**
+     * Returns the current bill at table number tableNum.
+     *
+     * @param tableNum an int representing the table's number.
+     * @return the Bill of the table whose table number is tableNum.
+     */
+    public Bill getActiveBill(int tableNum) {
+        return billList.get(tableNum);
+    }
+
+    /**
      * Method that standardizes the way we print messages to a waiter instance.
      *
      * @param s String to be printed.
