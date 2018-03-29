@@ -184,7 +184,7 @@ public class Restaurant extends Application {
                 }
                 break;
             case "Message":
-                if (inputArray[1].equals(currentUser)) {
+                if (inputArray[1].equals(currentUser.trim())) {
                     printToScreen(inputArray[2]);
                 }
                 break;
@@ -423,10 +423,10 @@ public class Restaurant extends Application {
 
     /**
      * Sets the currentUser attribute to the input parameter.
-     * @param currentUser String of the currentUser's name.
+     * @param currUser String of the currentUser's name.
      */
-    public static void setCurrentUser(String currentUser) {
-        currentUser = currentUser;
+    public static void setCurrentUser(String currUser) {
+        currentUser = currUser;
     }
 
     public static void removeFromUndeliveredDishes(Dish dish){

@@ -1,5 +1,6 @@
 package models;
 
+import controllers.Logging;
 import controllers.Restaurant;
 
 import java.util.ArrayList;
@@ -381,6 +382,6 @@ public class Waiter implements Listener {
      * @param s String to be printed.
      */
     public void printToScreen(String s) {
-        System.out.println(name + ": " + s);
+        Logging.message("Waiter " + this.name, s);
     }
 }
