@@ -26,7 +26,6 @@ public class SelectName {
     @FXML
     public void selectWaiterName(ActionEvent actionEvent) {
         name = waiterNamesListView.getSelectionModel().getSelectedItem();
-        System.out.println(name);
         if (name != null) {
             dialogStage.close();
         }
