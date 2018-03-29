@@ -351,6 +351,21 @@ public class Waiter implements Listener {
     }
 
     /**
+     * Returns a new HashMap consisting of the string "Table #" as key and current Bill object associated with that table.
+     *
+     * @return a HashMap<String, Bill>
+     */
+    public HashMap<String, Bill> getFormattedBillList() {
+        HashMap<String, Bill>  hmap = new HashMap<>();
+
+        for (int key : billList.keySet()) {
+            hmap.put("Table " + String.valueOf(key), billList.get(key));
+        }
+
+        return hmap;
+    }
+
+    /**
      * Returns the current bill at table number tableNum.
      *
      * @param tableNum an int representing the table's number.
