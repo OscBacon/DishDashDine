@@ -55,9 +55,8 @@ public class MainController {
     }
     @FXML
     void createNewOrderForTable(ActionEvent event) throws IOException{
-        Parent tablePage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/WaiterTableDetails.fxml"));
-        Restaurant.stage.getScene().setRoot(tablePage);
-        Restaurant.stage.show();
+        //Switching scenes. Create new Table
+
     }
 
     @FXML
