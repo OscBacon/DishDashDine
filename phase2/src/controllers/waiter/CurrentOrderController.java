@@ -1,12 +1,9 @@
 package controllers.waiter;
-import controllers.Logging;
-import controllers.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import models.Bill;
 import models.Dish;
 import models.Waiter;
@@ -17,6 +14,7 @@ import javax.swing.text.html.ListView;
 public class CurrentOrderController {
 
         private Waiter currWaiter;
+        private int tableNumber;
 
         @FXML
         private ListView currentBill;
@@ -26,12 +24,13 @@ public class CurrentOrderController {
 
         @FXML
         void initialize() {
-
+            Bill bill = currWaiter.getActiveBill(tableNumber);
+            ObservableList <Dish> dish = FXCollections.observableArrayList(bill.getDishList().values());
+            currentBill.
         }
 
         @FXML
         void RemoveCurrentDishFromBill(ActionEvent event) {
-            Logging.removeDish(currWaiter.getName(), );
 
     }
 }

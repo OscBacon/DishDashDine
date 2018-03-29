@@ -46,6 +46,10 @@ public class Dish {
      *             particular dish.
      */
      private int dishId;
+    /**
+     * boolean delivered: True if this Dish has been delivered to its table.
+     */
+    private boolean delivered;
      /**
      * HashMap ingredients: The ingredients required to prepare this dish, including the substitutions.
      */
@@ -71,6 +75,7 @@ public class Dish {
         this.dishId = numOfDishes;
         this.tableNumber = tableNumber;
         this.ingredients = new HashMap<>();
+        this.delivered = false;
         numOfDishes++;
     }
 
@@ -154,6 +159,21 @@ public class Dish {
      */
     public int getDishId() {
         return dishId;
+    }
+
+    /**
+     * Sets this Dish's delivered attribute to the input parameter delivered.
+     */
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
+    }
+
+    /**
+     * Returns this Dish's delivered attribute.
+     * @return boolean this.delivered
+     */
+    public boolean getDelivered() {
+        return this.delivered;
     }
 
     /**

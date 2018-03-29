@@ -28,7 +28,6 @@ public class Waiter implements Listener {
      */
     private String name;
 
-
     public Waiter(String name) {
         this.name = name;
         this.billList = new HashMap<>();
@@ -257,6 +256,7 @@ public class Waiter implements Listener {
         Bill bill = billList.get(dish.getTableNumber());
         bill.addDish(dish);
         Restaurant.removeFromUndeliveredDishes(dish);
+        dish.setDelivered(true);
         printToScreen("Dish " + dishID + " delivered!");
     }
 
