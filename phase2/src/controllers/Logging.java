@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * This class makes simulating input much easier by writing lines to events.txt according to the specified template.
  */
-public abstract class Actions {
+public abstract class Logging {
     /**
      * Adapted from http://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java on March 7th, 2018, 8:05 AM.
      * <p>
@@ -18,7 +18,7 @@ public abstract class Actions {
      */
     private void eventWriter(String s) {
         try {
-            FileWriter writer = new FileWriter("events.txt", true);
+            FileWriter writer = new FileWriter("log.txt", true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
             bufferedWriter.write(s);
