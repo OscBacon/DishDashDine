@@ -52,12 +52,12 @@ public class Restaurant extends Application {
      */
     private static Type menuType = new TypeToken<HashMap<String, MenuItem>>() {
     }.getType();
+
     /**
      * The Type of inventory.
      * This is used when parsing inventory.json.
      */
     private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {}.getType();
-
 
     /**
      * A list of all objects that can listen to events.
@@ -120,6 +120,14 @@ public class Restaurant extends Application {
             for (String waiterName : waiterNameList) {
                 listenerList.put("Waiter " + waiterName, new Waiter(waiterName));
             }
+        }
+        catch (NullPointerException e) {
+        }
+
+        // Put all the names of all the cooks in cooks.txt and into cooksList
+        BufferedReader reader2 = new BufferedReader(new FileReader("cooks.txt"));
+        try {
+            cookNameList = new ArrayList<String>(Arrays.asList(reader.readLine().split(",[ ]?")));
         }
         catch (NullPointerException e) {
         }
