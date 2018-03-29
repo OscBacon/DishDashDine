@@ -1,6 +1,7 @@
 package models;
 
 import controllers.Logging;
+import controllers.Restaurant;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -134,6 +135,8 @@ public class Kitchen implements Listener {
     }
 
     public void printToScreen(String s) {
-        Logging.message("Kitchen", s);
+        if(Restaurant.getCurrentUser().trim().equals(("Kitchen").trim())) {
+            Logging.message("Kitchen", s);
+        }
     }
 }

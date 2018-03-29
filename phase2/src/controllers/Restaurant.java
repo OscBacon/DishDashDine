@@ -240,8 +240,8 @@ public class Restaurant extends Application {
             int currQuantity = inventoryItem.getQuantity();
 
             if (currentUser.equals("Receiver")) {
-                printToScreen("" + quantity + " units of " + ingredient + " were added to the inventory.");
-                printToScreen("There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
+                printToScreen("" + quantity + " units of " + ingredient + " were added to the inventory. " +
+                        "There are now " + (currQuantity + quantity) + " units of " + ingredient + " in stock.");
             }
 
             inventory.get(ingredient).setQuantity(currQuantity + quantity);
@@ -451,6 +451,14 @@ public class Restaurant extends Application {
      */
     public static void setCurrentUser(String currentUser) {
         Restaurant.currentUser = currentUser;
+    }
+
+    /**
+     * Return the current user's name.
+     * @return a String representing the current user's name.
+     */
+    public static String getCurrentUser() {
+        return Restaurant.currentUser;
     }
 
     /**

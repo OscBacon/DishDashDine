@@ -208,6 +208,7 @@ public class Waiter implements Listener {
      * @param tableNumber The number of the table that this dish is to be served to.
      */
     private void orderDish(String item, String tableNumber) {
+
         // creates a Dish with no additions or subtractions
         orderDish(item, new ArrayList<>(), new ArrayList<>(), tableNumber);
     }
@@ -382,6 +383,8 @@ public class Waiter implements Listener {
      * @param s String to be printed.
      */
     public void printToScreen(String s) {
-        Logging.message("Waiter " + this.name, s);
+        if(Restaurant.getCurrentUser().trim().equals(("Waiter " + this.name).trim())) {
+            Logging.message("Waiter " + this.name, s);
+        }
     }
 }
