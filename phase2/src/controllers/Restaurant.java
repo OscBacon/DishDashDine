@@ -49,12 +49,8 @@ public class Restaurant extends Application {
      * The Type of inventory.
      * This is used when parsing inventory.json.
      */
-    private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {
-    }.getType();
+    private static Type inventoryType = new TypeToken<HashMap<String, InventoryItem>>() {}.getType();
 
-    public static HashMap<String, Listener> getListenerList() {
-        return listenerList;
-    }
 
     /**
      * A list of all objects that can listen to events.
@@ -386,6 +382,14 @@ public class Restaurant extends Application {
     public static ArrayList<String> getWaiterNameList() {
         return waiterNameList;
 
+    }
+
+    /**
+     * Getter for Listener List
+     * @return HashMap listenerList
+     */
+    public static HashMap<String, Listener> getListenerList() {
+        return listenerList;
     }
 
     /**
