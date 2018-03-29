@@ -50,10 +50,9 @@ public class TableDetailsController {
     private ListView<Dish> activeDishesToBeDelivered;
 
     public void initialize() {
-        ArrayList<String> menuItemName = new ArrayList<String>(Restaurant.getMenu().keySet());
+        ArrayList<String> menuItemName = new ArrayList<>(Restaurant.getMenu().keySet());
         ObservableList<String> menuItem = FXCollections.observableArrayList(menuItemName);
         menuList.setItems(menuItem);
-
     }
 
     public void setBill(Bill bill) {
@@ -79,18 +78,18 @@ public class TableDetailsController {
                 String subtractionsJoined = String.join(", ", subtractions);
                 Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber);
             }
+            createActiveDishesList();
         }
     }
 
     void createActiveDishesList() {
-        ArrayList<Dish> dishList = new ArrayList<>(bill.getDishList().values());
+        ArrayList<Dish> dishList = new ArrayList<>(bill.getWaiter().getDishList().values());
         ArrayList<Dish> activeDishList = new ArrayList<>();
         for (Dish dish: dishList) {
-            if (!dish.getDelivered()) {
+            if (String.valueOf(dish.getTableNumber()).equals(tableNumber) && !dish.getDelivered()) {
                 activeDishList.add(dish);
             }
         }
-
         activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
     }
 
