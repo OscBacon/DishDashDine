@@ -4,20 +4,26 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import models.Bill;
 import models.Dish;
 import models.Waiter;
 
-import javax.swing.text.html.ListView;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class CurrentOrderController {
 
         private Waiter currWaiter;
         private int tableNumber;
+        private Bill bill;
+        private ArrayList<Dish> dishList;
+
+
 
         @FXML
-        private ListView currentBill;
+        private ListView<Dish> billView = new ListView<>();
 
         @FXML
         private Button RemoveDishbtn;
@@ -25,8 +31,10 @@ public class CurrentOrderController {
         @FXML
         void initialize() {
             Bill bill = currWaiter.getActiveBill(tableNumber);
-            ObservableList <Dish> dish = FXCollections.observableArrayList(bill.getDishList().values());
+            dishList = new ArrayList<>(bill.getDishList().values());
 
+            ObservableList <Dish> observableList = FXCollections.observableArrayList(dishList);
+            billView.setItems(observableList);
         }
 
         @FXML

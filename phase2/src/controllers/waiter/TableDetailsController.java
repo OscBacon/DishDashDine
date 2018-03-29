@@ -5,16 +5,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Bill;
 import models.Dish;
 import models.MenuItem;
 import models.Waiter;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -94,14 +100,16 @@ public class TableDetailsController {
             dishSubtraction.setItems(allowedSubtractions);
         }
 
+        public void showAllowedSubstitutions(MouseEvent mouseEvent) {
+            showAllowedSubtraction();
+            showAllowedAdditions();
+        }
+
         @FXML
-        void showCurrentBill (ActionEvent event){
+        void showCurrentBill (ActionEvent event) throws IOException {
 
         }
 
-    public void showAllowedSubstitutions(MouseEvent mouseEvent) {
-        showAllowedSubtraction();
-        showAllowedAdditions();
-    }
+
 }
 
