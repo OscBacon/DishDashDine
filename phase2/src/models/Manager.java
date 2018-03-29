@@ -26,11 +26,9 @@ public class Manager implements Listener{
             case "requested undelivered dishes.":
                 showUndeliveredDishes();
                 break;
-            case "requested all payments":
+            case "requested all payments.":
                 showAllPayments();
                 break;
-            case "get total sales":
-                printToScreen("Today's total sales: " + Restaurant.getTotalSales());
         }
     }
 
