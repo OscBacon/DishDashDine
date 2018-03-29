@@ -6,26 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Window;
 import models.Waiter;
 import javafx.stage.Stage;
-import controllers.waiter.MainController;
-import controllers.waiter.SelectName;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 
 
 import java.io.IOException;
@@ -41,7 +28,7 @@ public class MainController {
     private Button selectTableBtn;
 
     @FXML
-    private ListView<String> displayTablesList = new ListView<String>();
+    private ListView<String> tablesList = new ListView<String>();
 
     @FXML
     private Button createNewOrderBtn;
@@ -51,10 +38,15 @@ public class MainController {
     public void initialize() {
         Waiter currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
         ObservableList currentBills = FXCollections.observableArrayList(currWaiter.getBillList());
-        displayTablesList.setItems(currentBills);
+        tablesList.setItems(currentBills);
     }
+
+    /**
+     * Page creation adapted from http://code.makery.ch/library/javafx-8-tutorial/part3/ on March 28th, 2018, 10:40 PM.
+     * <p>
+     */
     @FXML
-    void createNewOrderForTable(ActionEvent event) throws IOException{
+    void createNewOrder(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterNewTableOrder.fxml"));
         AnchorPane orderPage = loader.load();
@@ -70,8 +62,27 @@ public class MainController {
         orderStage.showAndWait();
     }
 
+    /**
+     * Page creation adapted from http://code.makery.ch/library/javafx-8-tutorial/part3/ on March 28th, 2018, 10:40 PM.
+     * <p>
+     */
     @FXML
-    void waiterSelectsTable(ActionEvent event) {
-
+    void selectTable(ActionEvent event) throws IOException{
+        String table = tablesList.getSelectionModel().getSelectedItem();
+        if (table != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterTableDetails.fxml"));
+            AnchorPane detailsPage = loader.load();
+            Stage detailsStage = new Stage();
+            detailsStage.setTitle("Table Details");
+            detailsStage.initModality(Modality.WINDOW_MODAL);
+            detailsStage.initOwner(Restaurant.stage);
+            Scene scene = new Scene(detailsPage);
+            detailsStage.setScene(scene);
+            NewTableOrder detailsController = loader.getController();
+            detailsController.setDialogStage(detailsStage);
+            detailsController.setName(name);
+            detailsStage.showAndWait();
+        }
     }
 }
