@@ -75,7 +75,7 @@ public class Manager implements Listener{
     }
 
     private void showUndeliveredDishes(){
-        printToScreen(Restaurant.getUndeliveredDishes().toString());
+        printToScreen("All undelivered dishes:\n" + Restaurant.getUndeliveredDishes().toString());
     }
 
     public void printToScreen(String s) {
