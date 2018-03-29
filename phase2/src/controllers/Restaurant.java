@@ -80,7 +80,7 @@ public class Restaurant extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json", "bills.json"};
+        String[] fileNames = {"events.txt", "requests.txt", "menu.json", "waiters.txt", "inventory.json", "bills.json", "log.txt"};
         for (String fileName : fileNames) {
             InputStream in = Restaurant.class.getResourceAsStream(fileName);
             if (in == null) {
@@ -166,9 +166,6 @@ public class Restaurant extends Application {
                     Listener calledListener = listenerList.get(in);
                     // Calls the concerned Listener's handleEvent method
                     calledListener.handleEvent(Arrays.copyOfRange(inputArray, 1, inputArray.length));
-                } else {
-                    System.out.println("Sorry, a line in events.txt has been written incorrectly, and the program " +
-                            "could not process the input. Worry not, though! Everything is under control.");
                 }
 
                 break;
