@@ -65,7 +65,7 @@ public class Bill {
         return dishList;
     }
 
-    private double getTotalBillPrice() {
+    public double getTotalBillPrice() {
         double price = 0.0;
         for (Integer key : dishList.keySet()) {
             price += dishList.get(key).getPrice();
