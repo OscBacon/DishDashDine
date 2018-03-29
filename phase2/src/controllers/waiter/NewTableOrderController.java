@@ -41,9 +41,12 @@ public class NewTableOrderController {
         }
     }
 
+    public TextField getTableNumberInput() {
+        return TableNumberInput;
+    }
+
     public void splitCurrentBill() {
         Logging.splitBill(boolSplitBill.isSelected(), TableNumberInput.getText());
-
     }
 }
 
