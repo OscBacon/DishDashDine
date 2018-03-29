@@ -60,7 +60,7 @@ public class Waiter implements Listener {
             {
                 case "ordered":     // When a customer orders some dish
                     {
-                    if (inputArray.length >= 6) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+                    if (inputArray.length >= 7) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
                         // Create an array from the String of ingredients separated by commas
                         String[] additionsArray = inputArray[2].split(",");
@@ -70,12 +70,12 @@ public class Waiter implements Listener {
                         ArrayList<String> add = new ArrayList<>(Arrays.asList(additionsArray));
                         ArrayList<String> sub = new ArrayList<>(Arrays.asList(subtractionsArray));
 
-                        this.orderDish(inputArray[1], add, sub, inputArray[5]);
+                        this.orderDish(inputArray[1], add, sub, inputArray[5], inputArray[6]);
                     }
 
-                    else if (inputArray.length >= 4) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+                    else if (inputArray.length >= 5) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
                     {
-                        this.orderDish(inputArray[1], inputArray[3]);
+                        this.orderDish(inputArray[1], inputArray[3], inputArray[4]);
                     }
                 }
                     break;
@@ -163,7 +163,7 @@ public class Waiter implements Listener {
      * @param subtractions The ingredients the client wishes to remove from the dish.
      * @param tableNumber The number of the table that this dish is to be served to.
      */
-    private void orderDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber) {
+    private void orderDish(String item, ArrayList<String> additions, ArrayList<String> subtractions, String tableNumber, String person) {
         // Item is in the menu
         if (Restaurant.getMenu().containsKey(item)) {
             MenuItem menuItem = Restaurant.getMenu().get(item);
@@ -174,7 +174,7 @@ public class Waiter implements Listener {
                 ArrayList<String> missingIngredients = Restaurant.checkIngredientsInventory(ingredients);
                 // There are sufficient ingredients, create the dish
                 if (missingIngredients.isEmpty()) {
-                    Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber));
+                    Dish dish = new Dish(item, additions, subtractions, this, Integer.valueOf(tableNumber), person);
                     dish.setIngredients(ingredients);
                     dishList.put(dish.getDishId(), dish);
                     Kitchen.addDish(dish);
@@ -207,12 +207,12 @@ public class Waiter implements Listener {
      * @param item The name of the item being ordered from the menu.
      * @param tableNumber The number of the table that this dish is to be served to.
      */
-    private void orderDish(String item, String tableNumber) {
+    private void orderDish(String item, String tableNumber, String person) {
 
         ArrayList<String> empty = new ArrayList<>();
 
         // creates a Dish with no additions or subtractions
-        orderDish(item, empty, empty, tableNumber);
+        orderDish(item, empty, empty, tableNumber, person);
     }
 
 

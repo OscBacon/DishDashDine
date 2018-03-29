@@ -54,6 +54,10 @@ public class Dish {
      * HashMap ingredients: The ingredients required to prepare this dish, including the substitutions.
      */
      private HashMap<String, Integer> ingredients;
+    /**
+     * The person that ordered this dish.
+     */
+    private String person;
 
 
     /**
@@ -66,7 +70,7 @@ public class Dish {
      * Precondition: dishName is already in the menu. Waiter exists in the restaurant. tableNumber is in Restaurant.
      *               All substitutions are allowed.
      */
-    public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber) {
+    public Dish(String dishName, ArrayList<String> dishAdditions, ArrayList<String> dishSubtractions, Waiter waiter, int tableNumber, String person) {
         this.name = dishName;
         this.additions = dishAdditions;
         this.subtractions = dishSubtractions;
@@ -76,6 +80,7 @@ public class Dish {
         this.tableNumber = tableNumber;
         this.ingredients = new HashMap<>();
         this.delivered = false;
+        this.person = person;
         numOfDishes++;
     }
 
@@ -178,16 +183,25 @@ public class Dish {
 
     /**
      * Each particular ingredient of the Dish
-     * @return HashMap
+     * @return HashMap of ingredients
      */
     public HashMap<String, Integer> getIngredients() {
         return ingredients;
     }
 
     /**
+     * Returns the person who ordered this Dish.
+     * @return A String representing a person.
+     */
+    public String getPerson() {
+        return person;
+    }
+
+    /**
      * The standard toString method has been overridden to show all the additions and subtractions of each dish.
      * @return String representation of the particular dish.
      */
+
     @Override
     public String toString() {
         ArrayList<String> dishStrings = new ArrayList<>();

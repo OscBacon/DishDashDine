@@ -100,8 +100,8 @@ public abstract class Logging {
      * @param itemName The name of the menu item that is being ordered.
      * @param tableNumber The number of the table this dished has been ordered from.
      */
-    public static void orderDish(String waiter, String itemName, String tableNumber) {
-        eventWriter("Waiter " + waiter + " | ordered | " + itemName + " | for table | " + tableNumber);
+    public static void orderDish(String waiter, String itemName, String tableNumber, String person) {
+        eventWriter("Waiter " + waiter + " | ordered | " + itemName + " | for table | " + tableNumber + " | Person: " + person);
     }
 
 
@@ -114,8 +114,9 @@ public abstract class Logging {
      * @param tableNumber The number of the table this dished has been ordered from.
      */
     // Additions and/or subtractions can be empty strings.
-    public static void orderDish(String waiter, String itemName, String additions, String subtractions, String tableNumber) {
-        eventWriter("Waiter " + waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | " + tableNumber);
+    public static void orderDish(String waiter, String itemName, String additions, String subtractions, String tableNumber, String person) {
+        eventWriter("Waiter " + waiter + " | ordered | " + itemName + " | " + additions + " | " + subtractions + " | for table | "
+                + tableNumber + " | Person: " + person);
     }
 
 
