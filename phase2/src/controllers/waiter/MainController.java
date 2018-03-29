@@ -46,7 +46,6 @@ public class MainController extends Alerted {
 
     public void setName(String name) {
         this.name = name;
-        System.out.println(this.name);
         currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
     }
 

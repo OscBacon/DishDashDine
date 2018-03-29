@@ -3,5 +3,5 @@ workspace.xml
 out/
 .DS_Store
 
-events.txt
+log.txt
 requests.txt

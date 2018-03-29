@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -20,12 +19,11 @@
       <Button fx:id="currentOrder" layoutX="313.0" layoutY="300.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="50.0" prefWidth="286.0" text="Current Bill" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="300.0" />
       <ListView fx:id="activeDishesToBeDelivered" layoutX="313.0" layoutY="35.0" prefHeight="204.0" prefWidth="286.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="35.0" />
       <Label layoutX="367.0" layoutY="13.0" text="Active Dishes to be Delivered" />
-      <Label layoutX="8.0" layoutY="239.0" text="Additions" />
-      <Label layoutX="180.0" layoutY="239.0" text="Subtractions" />
+      <Label layoutX="48.0" layoutY="248.0" text="Additions" />
+      <Label layoutX="180.0" layoutY="248.0" text="Subtractions" />
       <ListView fx:id="dishAddition" layoutY="270.0" prefHeight="130.0" prefWidth="153.0" />
       <ListView fx:id="dishSubtraction" layoutX="153.0" layoutY="270.0" prefHeight="130.0" prefWidth="153.0" />
-      <CheckBox fx:id="boolSplitBill" layoutX="313.0" layoutY="247.0" mnemonicParsing="false" onAction="#splitCurrentBill" text="Split Bill" />
-      <TextField fx:id="uniquePersonBill" layoutX="413.0" layoutY="243.0" prefHeight="27.0" prefWidth="174.0" promptText="Unique Client I.D" />
+      <TextField fx:id="uniquePersonBill" layoutX="313.0" layoutY="243.0" prefHeight="27.0" prefWidth="280.0" promptText="Unique Client I.D" />
       <Button fx:id="cancelDish" layoutX="312.0" layoutY="274.0" mnemonicParsing="false" onAction="#cancelActiveDish" prefHeight="27.0" prefWidth="286.0" text="Cancel Dish" />
    </children>
 </AnchorPane>
