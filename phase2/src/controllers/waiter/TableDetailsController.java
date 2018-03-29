@@ -1,17 +1,56 @@
 package controllers.waiter;
 
+import controllers.Restaurant;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+
+import java.util.ArrayList;
 
 public class TableDetailsController {
-    public void showAllowedAdditions(ActionEvent actionEvent) {
+
+    @FXML
+    private ListView<String> menuList;
+
+    @FXML
+    private Button dishAddition;
+
+    @FXML
+    private Button dishSubtraction;
+
+    @FXML
+    private Button dish;
+
+    @FXML
+    private Button currentOrder;
+
+    public void initialize() {
+        ArrayList<String> menuItemName = new ArrayList<String>(Restaurant.getMenu().keySet());
+        ObservableList<String> menuItem = FXCollections.observableArrayList(menuItemName);
+        menuList.setItems(menuItem);
     }
 
-    public void showAllowedSubtraction(ActionEvent actionEvent) {
+    @FXML
+    void addDishToBill(ActionEvent event) {
+
     }
 
-    public void addDishToBill(ActionEvent actionEvent) {
+    @FXML
+    void showAllowedAdditions(ActionEvent event) {
+
     }
 
-    public void printCurrentBill(ActionEvent actionEvent) {
+    @FXML
+    void showAllowedSubtraction(ActionEvent event) {
+
     }
+
+    @FXML
+    void showCurrentBill(ActionEvent event) {
+
+    }
+
 }

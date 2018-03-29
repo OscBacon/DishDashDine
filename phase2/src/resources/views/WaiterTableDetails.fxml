@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.TableDetailsController">
    <children>
-      <ListView layoutX="6.0" layoutY="35.0" prefHeight="316.0" prefWidth="313.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0" />
+      <ListView fx:id="menuList" layoutX="6.0" layoutY="35.0" prefHeight="316.0" prefWidth="313.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0" />
       <Button fx:id="dishAddition" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#showAllowedAdditions" prefHeight="27.0" prefWidth="100.0" text="Additions" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="486.0" />
       <Button fx:id="dishSubtraction" layoutX="124.0" layoutY="359.0" mnemonicParsing="false" onAction="#showAllowedSubtraction" text="Subtractions" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="376.0" />
       <Label layoutX="114.0" layoutY="7.0" text="MENU" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="7.0">
@@ -16,8 +16,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="dish" layoutX="314.0" layoutY="318.0" mnemonicParsing="false" onAction="#addDishToBill" prefHeight="82.0" prefWidth="286.0" text="Add Dish" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="currentBill" layoutX="314.0" layoutY="236.0" mnemonicParsing="false" onAction="#printCurrentBill" prefHeight="82.0" prefWidth="286.0" text="Print Bill" AnchorPane.bottomAnchor="82.0" AnchorPane.rightAnchor="0.0" />
-      <Button layoutX="314.0" layoutY="1.0" mnemonicParsing="false" prefHeight="235.0" prefWidth="286.0" text="Current Order" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Button fx:id="dish" layoutX="314.0" layoutY="318.0" mnemonicParsing="false" onAction="#addDishToBill" prefHeight="50.0" prefWidth="286.0" text="Add Dish" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button fx:id="currentOrder" layoutX="314.0" layoutY="35.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="235.0" prefWidth="286.0" text="Current Order" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
    </children>
 </AnchorPane>
