@@ -20,7 +20,7 @@ public class MainController extends Alerted {
     @FXML
     private Label nextDishLabel = new Label("No dish pending.");
     @FXML
-    private TableView<Dish> acceptedDishesTable;
+    private TableView<Dish> acceptedDishesTable = new TableView<>();
     @FXML
     private TableColumn<Dish, Integer> dishIdColumn;
     @FXML
@@ -29,6 +29,8 @@ public class MainController extends Alerted {
     private TableColumn<Dish, String> cookColumn;
     @FXML
     private ComboBox<String> cooksComboBox = new ComboBox<>();
+
+    ObservableList<Dish> dishList;
 
     @FXML
     void initialize() {
@@ -48,7 +50,7 @@ public class MainController extends Alerted {
 
     @FXML
     private void createAcceptedDishesTable() {
-        ObservableList<Dish> dishList = FXCollections.observableArrayList(Kitchen.getDishList().values());
+        dishList = FXCollections.observableArrayList(Kitchen.getDishList().values());
         acceptedDishesTable.setItems(dishList);
     }
 
@@ -65,8 +67,9 @@ public class MainController extends Alerted {
     void acceptCurrentDish(ActionEvent event) {
         String acceptedDishCookName = cooksComboBox.getSelectionModel().getSelectedItem();
         if (!nextDishLabel.getText().equals("No dish pending.") && acceptedDishCookName != null) {
+            dishList.add(Kitchen.getFirstDish());
             Logging.acceptDish(acceptedDishCookName);
-            createAcceptedDishesTable();
+            acceptedDishesTable.refresh();
             createNextDishLabel();
         }
     }
@@ -75,7 +78,8 @@ public class MainController extends Alerted {
         Dish selectedDish = acceptedDishesTable.getSelectionModel().getSelectedItem();
         if (selectedDish != null) {
             Logging.finishDish(String.valueOf(selectedDish.getDishId()));
-            createAcceptedDishesTable();
+            dishList.remove(selectedDish);
+            acceptedDishesTable.refresh();
         }
     }
 
