@@ -6,14 +6,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.manager.CreateEmployeeController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="controllers.manager.CreateEmployeeController">
     <Label layoutX="31.0" layoutY="31.0" text="Manager: Create Employee">
         <font>
-          <Font size="19.0" />
+            <Font size="19.0"/>
         </font>
     </Label>
-    <TextField fx:id="newEmployeeName" layoutX="37.0" layoutY="106.0" prefHeight="27.0" prefWidth="527.0" promptText="Employee Name" />
-    <Button layoutX="239.0" layoutY="296.0" mnemonicParsing="false" onAction="#createEmployee" text="Create Employee" />
-   <ListView fx:id="employeeTypeView" layoutX="31.0" layoutY="196.0" prefHeight="68.0" prefWidth="527.0" />
+    <TextField fx:id="newEmployeeName" layoutX="37.0" layoutY="106.0" prefHeight="27.0" prefWidth="527.0"
+               promptText="Employee Name"/>
+    <Button layoutX="239.0" layoutY="296.0" mnemonicParsing="false" onAction="#createEmployee" text="Create Employee"/>
+    <ListView fx:id="employeeTypeView" layoutX="31.0" layoutY="196.0" prefHeight="68.0" prefWidth="527.0"/>
 </AnchorPane>

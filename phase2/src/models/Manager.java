@@ -3,7 +3,7 @@ package models;
 import controllers.Logging;
 import controllers.Restaurant;
 
-public class Manager implements Listener{
+public class Manager implements Listener {
 
     public Manager() {
     }
@@ -40,8 +40,7 @@ public class Manager implements Listener{
             Restaurant.getListenerList().put("Waiter " + name, new Waiter(name));
             Restaurant.setWaiterListModified(true);
             printToScreen("Waiter " + name + " added.");
-        }
-        else {
+        } else {
             printToScreen("Can't add " + name + ", a waiter with the same name already exists");
         }
     }
@@ -52,8 +51,7 @@ public class Manager implements Listener{
             Restaurant.getListenerList().remove("Waiter " + name);
             Restaurant.setWaiterListModified(true);
             printToScreen("Waiter " + name + " removed.");
-        }
-        else {
+        } else {
             printToScreen(name + " is not a waiter, cannot be removed.");
         }
     }
@@ -63,8 +61,7 @@ public class Manager implements Listener{
             Restaurant.getCookNameList().add(name);
             Restaurant.setCookListModified(true);
             printToScreen("Cook " + name + " added.");
-        }
-        else {
+        } else {
             printToScreen("Can't add " + name + ", a cook with the same name already exists");
         }
     }
@@ -74,22 +71,21 @@ public class Manager implements Listener{
             Restaurant.getCookNameList().remove(name);
             Restaurant.setCookListModified(true);
             printToScreen("Cook " + name + " removed.");
-        }
-        else {
+        } else {
             printToScreen(name + " is not a cook, cannot be removed.");
         }
     }
 
-    private void showUndeliveredDishes(){
+    private void showUndeliveredDishes() {
         printToScreen("All undelivered dishes:\n" + Restaurant.getUndeliveredDishes().toString());
     }
 
-    private void showAllPayments(){
+    private void showAllPayments() {
         printToScreen("All paid bills of the day:\n" + Restaurant.getPaidBills().toString());
     }
 
     public void printToScreen(String s) {
-        if(Restaurant.getCurrentUser().trim().equals(("Manager").trim())) {
+        if (Restaurant.getCurrentUser().trim().equals(("Manager").trim())) {
             Logging.message("Manager", s);
         }
     }

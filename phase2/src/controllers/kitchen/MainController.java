@@ -3,19 +3,8 @@ package controllers.kitchen;
 import controllers.Alerted;
 import controllers.Logging;
 import controllers.Restaurant;
-
-import javafx.beans.Observable;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableBooleanValue;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -30,10 +19,6 @@ public class MainController extends Alerted {
     public Button readyDishButton;
     @FXML
     private Label nextDishLabel = new Label("No dish pending.");
-
-    @FXML
-    private Button acceptDishButton;
-
     @FXML
     private TableView<Dish> acceptedDishesTable;
     @FXML
@@ -71,11 +56,10 @@ public class MainController extends Alerted {
     private void createNextDishLabel() {
         if (!Kitchen.hasPendingDishes()) {
             nextDishLabel.setText("No dish pending.");
-        }
-        else {
+        } else {
             nextDishLabel.setText(Kitchen.getFirstDish().toString());
         }
-}
+    }
 
     @FXML
     void acceptCurrentDish(ActionEvent event) {

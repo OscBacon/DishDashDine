@@ -1,12 +1,11 @@
 package controllers.waiter;
+
 import controllers.Logging;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.awt.event.ActionEvent;
 
 public class NewTableOrderController {
     public CheckBox largeGroupCheckBox;
@@ -20,7 +19,7 @@ public class NewTableOrderController {
     private Button createBillButton;
 
     public void setDialogStage(Stage dialogStage) {
-            this.dialogStage = dialogStage;
+        this.dialogStage = dialogStage;
     }
 
     public void setName(String name) {
@@ -32,8 +31,7 @@ public class NewTableOrderController {
         if (!TableNumberInput.getText().equals("")) {
             if (largeGroupCheckBox.isSelected()) {
                 Logging.newLargeBill(name, TableNumberInput.getText());
-            }
-            else {
+            } else {
                 Logging.newBill(name, TableNumberInput.getText());
             }
             dialogStage.close();

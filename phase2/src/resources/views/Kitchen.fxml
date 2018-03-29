@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.kitchen.MainController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="controllers.kitchen.MainController">
     <Label layoutX="14.0" layoutY="14.0" text="Kitchen">
         <font>
-          <Font size="19.0" />
+            <Font size="19.0"/>
         </font>
     </Label>
-    <Button fx:id="acceptDishButton" layoutX="21.0" layoutY="346.0" mnemonicParsing="false" onAction="#acceptCurrentDish" prefHeight="27.0" prefWidth="236.0" text="Accept Dish" />
-    <TableView fx:id="acceptedDishesTable" layoutX="276.0" layoutY="53.0" prefHeight="280.0" prefWidth="300.0" AnchorPane.rightAnchor="20.0">
-      <columns>
-         <TableColumn fx:id="dishIdColumn" minWidth="-1.0" prefWidth="50.0" text="Id" />
-          <TableColumn fx:id="dishNameColumn" minWidth="-1.0" prefWidth="125.0" text="Dish" />
-          <TableColumn fx:id="cookColumn" minWidth="-Infinity" prefWidth="125.0" text="Cook" />
-      </columns>
+    <Button fx:id="acceptDishButton" layoutX="21.0" layoutY="346.0" mnemonicParsing="false"
+            onAction="#acceptCurrentDish" prefHeight="27.0" prefWidth="236.0" text="Accept Dish"/>
+    <TableView fx:id="acceptedDishesTable" layoutX="276.0" layoutY="53.0" prefHeight="280.0" prefWidth="300.0"
+               AnchorPane.rightAnchor="20.0">
+        <columns>
+            <TableColumn fx:id="dishIdColumn" minWidth="-1.0" prefWidth="50.0" text="Id"/>
+            <TableColumn fx:id="dishNameColumn" minWidth="-1.0" prefWidth="125.0" text="Dish"/>
+            <TableColumn fx:id="cookColumn" minWidth="-Infinity" prefWidth="125.0" text="Cook"/>
+        </columns>
     </TableView>
-   <Button fx:id="readyDishButton" layoutX="344.0" layoutY="346.0" mnemonicParsing="false" onAction="#readyDish" prefHeight="27.0" prefWidth="236.0" text="Ready Dish" AnchorPane.rightAnchor="20.0" />
-   <ComboBox fx:id="cooksComboBox" layoutX="14.0" layoutY="54.0" prefHeight="31.0" prefWidth="250.0" />
-   <Label fx:id="nextDishLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="112.0" prefHeight="223.0" prefWidth="250.0" />
+    <Button fx:id="readyDishButton" layoutX="344.0" layoutY="346.0" mnemonicParsing="false" onAction="#readyDish"
+            prefHeight="27.0" prefWidth="236.0" text="Ready Dish" AnchorPane.rightAnchor="20.0"/>
+    <ComboBox fx:id="cooksComboBox" layoutX="14.0" layoutY="54.0" prefHeight="31.0" prefWidth="250.0"/>
+    <Label fx:id="nextDishLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="112.0" prefHeight="223.0"
+           prefWidth="250.0"/>
 </AnchorPane>

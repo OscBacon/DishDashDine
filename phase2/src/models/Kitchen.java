@@ -3,7 +3,6 @@ package models;
 import controllers.Logging;
 import controllers.Restaurant;
 import controllers.kitchen.MainController;
-import javafx.application.Application;
 import javafx.application.Platform;
 
 import java.util.HashMap;
@@ -11,9 +10,8 @@ import java.util.LinkedHashMap;
 
 public class Kitchen implements Listener {
 
-    private static HashMap<String, Dish> dishList;  // This kitchen's list of active, accepted dishes
-
     public static LinkedHashMap<String, Dish> dishesToConfirm; // This kitchen's list of dishes that must be accepted
+    private static HashMap<String, Dish> dishList;  // This kitchen's list of active, accepted dishes
 
 
     public Kitchen() {
@@ -46,48 +44,10 @@ public class Kitchen implements Listener {
     }
 
     /**
-     * Informs the appropriate waiter that the dish whose id is the dishID parameter is ready for pick-up.
-     * Then, calls removeDish() to remove the dish corresponding to dishID from this kitchen's dishList.
-     *
-     * @param dishID The id of the dish that has just been prepared by the kitchen.
-     */
-    private void readyDish(String dishID) {
-        Dish dish = dishList.get(dishID);
-
-        dish.getWaiter().printToScreen("Dish " + dish.getName() + " (Dish id " + dishID + ") for Table " +
-                dish.getTableNumber() + " is ready for pick-up.");
-
-        removeDish(dish);
-    }
-
-    /**
-     * This method allows to record which cook confirmed to cook the oldest dish.
-     *
-     * @param cook   The cook that will cook the dish whose ID is dishID.
-     */
-    private void acceptDish(String cook) {
-
-        if(dishesToConfirm.values().toArray().length > 0) {
-
-            Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
-
-            String id = String.valueOf(dish.getDishId());
-
-            dishList.put(id, dish);
-
-            dish.setCook(cook);
-
-            dishesToConfirm.remove(id);
-
-            printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + id + ")!");
-        }
-    }
-
-    /**
      * Returns the next dish that must be confirmed by the kitchen.
      *
      * @return the Dish that must be acknowledged by the kitchen next.
-     *
+     * <p>
      * Precondition: dishesToConfirm has been verified to not be empty.
      */
     public static Dish getFirstDish() {
@@ -113,6 +73,44 @@ public class Kitchen implements Listener {
     }
 
     /**
+     * Informs the appropriate waiter that the dish whose id is the dishID parameter is ready for pick-up.
+     * Then, calls removeDish() to remove the dish corresponding to dishID from this kitchen's dishList.
+     *
+     * @param dishID The id of the dish that has just been prepared by the kitchen.
+     */
+    private void readyDish(String dishID) {
+        Dish dish = dishList.get(dishID);
+
+        dish.getWaiter().printToScreen("Dish " + dish.getName() + " (Dish id " + dishID + ") for Table " +
+                dish.getTableNumber() + " is ready for pick-up.");
+
+        removeDish(dish);
+    }
+
+    /**
+     * This method allows to record which cook confirmed to cook the oldest dish.
+     *
+     * @param cook The cook that will cook the dish whose ID is dishID.
+     */
+    private void acceptDish(String cook) {
+
+        if (dishesToConfirm.values().toArray().length > 0) {
+
+            Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
+
+            String id = String.valueOf(dish.getDishId());
+
+            dishList.put(id, dish);
+
+            dish.setCook(cook);
+
+            dishesToConfirm.remove(id);
+
+            printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + id + ")!");
+        }
+    }
+
+    /**
      * Makes calls to the appropriate functions in this Kitchen class depending on the input array of Strings.
      *
      * @param inputArray The input to be handled, split into an array.
@@ -130,22 +128,19 @@ public class Kitchen implements Listener {
         }
         if (inputArray.length >= 3) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if (inputArray[2].equals("is ready."))
-            {
+            if (inputArray[2].equals("is ready.")) {
                 this.readyDish(inputArray[1]);
             }
-        }
-
-        else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
+        } else if (inputArray.length >= 2) // Makes sure the inputArray is not erroneous to avoid an OutOfBounds exception.
         {
-            if(inputArray[1].equals("has accepted oldest dish.")) {
+            if (inputArray[1].equals("has accepted oldest dish.")) {
                 this.acceptDish(inputArray[0]);
             }
         }
     }
 
     public void printToScreen(String s) {
-        if(Restaurant.getCurrentUser().trim().equals(("Kitchen").trim())) {
+        if (Restaurant.getCurrentUser().trim().equals(("Kitchen").trim())) {
             Logging.message("Kitchen", s);
         }
     }
