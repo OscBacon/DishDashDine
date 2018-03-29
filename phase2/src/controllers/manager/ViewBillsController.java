@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
-public class ViewTodaysBills {
+public class ViewBillsController {
 
     @FXML
     private ListView<?> todayBills;

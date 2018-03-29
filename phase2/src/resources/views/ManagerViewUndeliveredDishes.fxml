@@ -4,17 +4,16 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141"
-            fx:controller="controllers.manager.ViewUndeliveredDishes">
-    <children>
-        <Label layoutX="177.0" layoutY="26.0" text="View Un-Delivered Dishes">
-            <font>
-                <Font size="20.0"/>
-            </font>
-        </Label>
-        <ListView fx:id="unDeliveredDishes" layoutX="29.0" layoutY="73.0" prefHeight="301.0" prefWidth="545.0"
-                  AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
-                  AnchorPane.topAnchor="60.0"/>
-    </children>
+            fx:controller="controllers.manager.ViewUndeliveredDishesController">
+    <Label layoutX="177.0" layoutY="26.0" text="View Un-Delivered Dishes">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+    <ListView fx:id="unDeliveredDishes" layoutX="29.0" layoutY="73.0" prefHeight="301.0" prefWidth="545.0"
+              AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+              AnchorPane.topAnchor="60.0"/>
 </AnchorPane>
