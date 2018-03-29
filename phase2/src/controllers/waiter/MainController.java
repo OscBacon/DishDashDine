@@ -39,6 +39,7 @@ public class MainController extends Alerted {
 
     @FXML
     public void initialize() {
+        Restaurant.setAlertedController(this);
     }
 
     public String getName() {

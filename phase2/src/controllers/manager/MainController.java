@@ -3,6 +3,7 @@ package controllers.manager;
 import controllers.Alerted;
 import controllers.Restaurant;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -12,6 +13,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController extends Alerted {
+    @FXML
+    public void initialize() {
+        Restaurant.setAlertedController(this);
+    }
+
     public void createNewEmployee(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerCreateEmployee.fxml"));
