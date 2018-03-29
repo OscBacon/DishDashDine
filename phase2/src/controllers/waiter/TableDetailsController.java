@@ -147,8 +147,5 @@ public class TableDetailsController {
 
     }
 
-    public void uniquePersonIdentifier() {
-
-    }
 }
 
