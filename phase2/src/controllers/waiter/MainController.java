@@ -36,9 +36,11 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        Waiter currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
-        ObservableList currentBills = FXCollections.observableArrayList(currWaiter.getBillList());
-        tablesList.setItems(currentBills);
+        if (name != null) {
+            Waiter currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
+            ObservableList currentBills = FXCollections.observableArrayList(currWaiter.getBillList());
+            tablesList.setItems(currentBills);
+        }
     }
 
     /**
