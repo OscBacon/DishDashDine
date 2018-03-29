@@ -38,7 +38,7 @@ public class MenuItem {
                 "price=" + price +
                 ", ingredients=" + ingredients +
                 ", allowedAdditions=" + allowedAdditions.toString() +
-                ", allowedSubstractions=" + allowedSubtractions.toString() +
+                ", allowedSubtractions=" + allowedSubtractions.toString() +
                 '}';
     }
 }
