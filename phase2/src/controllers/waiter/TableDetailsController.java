@@ -82,6 +82,18 @@ public class TableDetailsController {
         }
     }
 
+    void createActiveDishesList() {
+        ArrayList<Dish> dishList = new ArrayList<>(bill.getDishList().values());
+        ArrayList<Dish> activeDishList = new ArrayList<>();
+        for (Dish dish: dishList) {
+            if (!dish.getDelivered()) {
+                activeDishList.add(dish);
+            }
+        }
+
+        activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
+    }
+
         @FXML
         void showAllowedAdditions (){
             dishAddition.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

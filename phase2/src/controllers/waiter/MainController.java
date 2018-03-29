@@ -100,6 +100,7 @@ public class MainController extends Alerted {
             TableDetailsController detailsController = loader.getController();
             detailsController.setDialogStage(detailsStage);
             detailsController.setBill(currentBills.get(table));
+            detailsController.createActiveDishesList();
             detailsStage.showAndWait();
         }
     }
