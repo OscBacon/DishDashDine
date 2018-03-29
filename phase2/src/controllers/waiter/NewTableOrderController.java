@@ -37,5 +37,9 @@ public class NewTableOrderController {
             dialogStage.close();
         }
     }
+
+    public TextField getTableNumberInput() {
+        return TableNumberInput;
+    }
 }
 

@@ -74,7 +74,9 @@ public class MainController extends Alerted {
         orderController.setDialogStage(orderStage);
         orderController.setName(name);
         orderStage.showAndWait();
+        currentTables.add("Table " + String.valueOf(orderController.getTableNumberInput()));
         createList();
+        tablesList.refresh();
     }
 
     /**
