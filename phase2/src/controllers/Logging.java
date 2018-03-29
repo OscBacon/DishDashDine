@@ -62,6 +62,11 @@ public abstract class Logging {
     }
 
 
+    public static void hasNewDish() {
+        eventWriter("Kitchen | has a new dish.");
+    }
+
+
 // --------------------------------------------------------------------------------
     // Waiter inputs:
 
@@ -182,6 +187,21 @@ public abstract class Logging {
     public static void removeDish(String waiter, String dishID)
     {
         eventWriter("Waiter " + waiter + " | removed dish | " + dishID);
+    }
+
+
+    /**
+     *
+     * @param split True if the bill is to be split.
+     * @param billID The ID of the bill that is to be split or not.
+     */
+    public static void splitBill(boolean split, String billID) {
+        if(split) {
+            eventWriter("Waiter | wishes to split bill | " + billID);
+        }
+        else {
+            eventWriter("Waiter | wishes to not split bill | " + billID);
+        }
     }
 
 // --------------------------------------------------------------------------------
