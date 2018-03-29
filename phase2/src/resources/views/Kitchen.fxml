@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.kitchen.MainController">
    <children>
-      <Label layoutX="257.0" layoutY="14.0" text="Kitchen">
+      <Label layoutX="14.0" layoutY="14.0" text="Kitchen">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="NextDishtoAccept" layoutX="14.0" layoutY="38.0" onMousePressed="#showAllCooks" prefHeight="52.0" prefWidth="250.0" />
-      <Button fx:id="CookAcceptsDishbtn" layoutX="21.0" layoutY="347.0" mnemonicParsing="false" onAction="#CookAcceptsCurrentDish" prefHeight="27.0" prefWidth="236.0" text="Accept Dish" />
+      <ChoiceBox fx:id="AllCooks" layoutX="14.0" layoutY="104.0" onMousePressed="#showAllCooks" prefHeight="52.0" prefWidth="250.0" />
+      <Button fx:id="CookAcceptsDishbtn" layoutX="21.0" layoutY="347.0" mnemonicParsing="false" onAction="#cookAcceptsCurrentDish" prefHeight="27.0" prefWidth="236.0" text="Accept Dish" />
       <TableView fx:id="AcceptedDishesTable" layoutX="276.0" layoutY="38.0" prefHeight="339.0" prefWidth="309.0">
         <columns>
           <TableColumn prefWidth="151.0" text="Dish" />
           <TableColumn minWidth="9.0" prefWidth="140.0" text="Cook" />
         </columns>
       </TableView>
+      <Label fx:id="nextDishToAccept" layoutX="14.0" layoutY="71.0" prefHeight="17.0" prefWidth="250.0" text="Dish" />
    </children>
 </AnchorPane>
