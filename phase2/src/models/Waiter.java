@@ -347,11 +347,7 @@ public class Waiter implements Listener {
      * @return The billList
      */
     public ArrayList<Bill> getBillList() {
-        ArrayList<Bill> billListList = new ArrayList<Bill>();
-        for(int i = 0; i < billList.size(); i++) {
-            billListList.add(billList.get(i));
-        }
-        return billListList;
+        return new ArrayList<>(billList.values());
     }
 
     /**
