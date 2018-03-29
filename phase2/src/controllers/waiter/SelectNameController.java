@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class SelectName {
+public class SelectNameController {
     public ListView<String> waiterNamesListView = new ListView<String>();
     public Button selectWaiterBtn;
     private String name;

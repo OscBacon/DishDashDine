@@ -58,7 +58,7 @@ public class MainController {
         orderStage.initOwner(Restaurant.stage);
         Scene scene = new Scene(orderPage);
         orderStage.setScene(scene);
-        NewTableOrder orderController = loader.getController();
+        NewTableOrderController orderController = loader.getController();
         orderController.setDialogStage(orderStage);
         orderController.setName(name);
         orderStage.showAndWait();
@@ -81,7 +81,7 @@ public class MainController {
             detailsStage.initOwner(Restaurant.stage);
             Scene scene = new Scene(detailsPage);
             detailsStage.setScene(scene);
-            NewTableOrder detailsController = loader.getController();
+            NewTableOrderController detailsController = loader.getController();
             detailsController.setDialogStage(detailsStage);
             detailsController.setName(name);
             detailsStage.showAndWait();

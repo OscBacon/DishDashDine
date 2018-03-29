@@ -1,7 +1,7 @@
 package controllers;
 
 import controllers.waiter.MainController;
-import controllers.waiter.SelectName;
+import controllers.waiter.SelectNameController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,7 +52,7 @@ public class EmployeeSelectionController {
                 dialogStage.initOwner(Restaurant.stage);
                 Scene scene = new Scene(dialogPage);
                 dialogStage.setScene(scene);
-                SelectName dialogController = loader.getController();
+                SelectNameController dialogController = loader.getController();
                 dialogController.setDialogStage(dialogStage);
 
                 dialogStage.showAndWait();
