@@ -81,7 +81,7 @@ public class Restaurant extends Application {
         for (String fileName : fileNames) {
             InputStream in = Restaurant.class.getResourceAsStream(fileName);
             if (in == null) {
-                File f = new File(Restaurant.class.getResource("../resources").getPath() + fileName);
+                File f = new File(Restaurant.class.getResource("../").getPath() + fileName);
                 f.createNewFile();
             }
         }
