@@ -356,13 +356,13 @@ public class Waiter implements Listener {
      * @return a HashMap<String, Bill>
      */
     public HashMap<String, Bill> getFormattedBillList() {
-        HashMap<String, Bill>  hm = new HashMap<>();
+        HashMap<String, Bill>  hmap = new HashMap<>();
 
         for (int key : billList.keySet()) {
-            hm.put("Table " + String.valueOf(key), billList.get(key));
+            hmap.put("Table " + String.valueOf(key), billList.get(key));
         }
 
-        return hm;
+        return hmap;
     }
 
     /**
