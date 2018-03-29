@@ -1,5 +1,6 @@
 package models;
 
+import controllers.Logging;
 import controllers.Restaurant;
 
 public class Manager implements Listener{
@@ -86,6 +87,6 @@ public class Manager implements Listener{
     }
 
     public void printToScreen(String s) {
-        System.out.println("Manager: " + s);
+        Logging.message("Manager", s);
     }
 }

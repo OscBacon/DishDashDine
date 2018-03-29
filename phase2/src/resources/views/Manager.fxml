@@ -5,17 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.manager.MainController">
    <children>
       <Label layoutX="21.0" layoutY="22.0" text="Manager Homepage">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="createEmployeebtn" layoutX="210.0" layoutY="74.0" mnemonicParsing="false" onAction="#CreateNewEmployee" text="Create Employee" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" />
+      <Button fx:id="createEmployeebtn" layoutX="210.0" layoutY="74.0" mnemonicParsing="false" onAction="#createNewEmployee" text="Create Employee" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" />
       <Button fx:id="viewInventorybtn" layoutX="210.0" layoutY="137.0" mnemonicParsing="false" onAction="#viewInventory" text="View Inventory" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" />
       <Button fx:id="viewAllEmployeesbtn" layoutX="210.0" layoutY="200.0" mnemonicParsing="false" onAction="#viewAllEmployees" text="View All Employees" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" />
-      <Button fx:id="viewAllEmployeesbtn1" layoutX="210.0" layoutY="264.0" mnemonicParsing="false" onAction="#viewAllEmployees" text="View undelivered dishes" />
-      <Button fx:id="viewAllEmployeesbtn11" layoutX="210.0" layoutY="327.0" mnemonicParsing="false" onAction="#viewAllEmployees" text="View undelivered dishes" />
+      <Button fx:id="viewUndeliveredDishesbtn" layoutX="210.0" layoutY="264.0" mnemonicParsing="false" onAction="#viewUndeliveredDishes" text="View undelivered dishes" />
+      <Button fx:id="viewAllBillsbtn" layoutX="210.0" layoutY="327.0" mnemonicParsing="false" onAction="#viewAllBills" text="View today's bills" />
+
    </children>
 </AnchorPane>

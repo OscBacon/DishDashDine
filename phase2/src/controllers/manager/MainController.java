@@ -56,4 +56,10 @@ public class MainController extends Alerted {
         controller.setDialogStage(stage);
         stage.showAndWait();
     }
+
+    public void viewUndeliveredDishes(ActionEvent actionEvent) {
+    }
+
+    public void viewAllBills(ActionEvent actionEvent) {
+    }
 }

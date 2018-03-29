@@ -1,5 +1,7 @@
 package models;
 
+import controllers.Logging;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -132,6 +134,6 @@ public class Kitchen implements Listener {
     }
 
     public void printToScreen(String s) {
-        System.out.println("Kitchen: " + s);
+        Logging.message("Kitchen", s);
     }
 }
