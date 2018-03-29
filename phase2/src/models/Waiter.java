@@ -340,6 +340,18 @@ public class Waiter implements Listener {
 
 
     /**
+     * Create getter for billList
+     * @return The billList
+     */
+    public ArrayList<Bill> getBillList() {
+        ArrayList<Bill> billListList = new ArrayList<Bill>();
+        for(int i = 0; i < billList.size(); i++) {
+            billListList.add(billList.get(i));
+        }
+        return billListList;
+    }
+
+    /**
      * Method that standardizes the way we print messages to a waiter instance.
      *
      * @param s String to be printed.

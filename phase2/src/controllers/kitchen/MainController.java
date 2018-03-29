@@ -1,12 +1,31 @@
 package controllers.kitchen;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
 public class MainController {
-    public void showAllCooks(MouseEvent mouseEvent) {
+
+    @FXML
+    private ChoiceBox<?> NextDishtoAccept;
+
+    @FXML
+    private Button CookAcceptsDishbtn;
+
+    @FXML
+    private TableView<?> AcceptedDishesTable;
+
+    @FXML
+    void cookAcceptsCurrentDish(ActionEvent event) {
+
     }
 
-    public void cookAcceptsCurrentDish(ActionEvent actionEvent) {
+    @FXML
+    void showAllCooks(MouseEvent event) {
+
     }
+
 }
