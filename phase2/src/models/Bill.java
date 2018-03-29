@@ -17,6 +17,10 @@ public class Bill {
      */
     private int tableNumber;
     /**
+     * Whether this bill is for 8 persons or more
+     */
+    private boolean people8;
+    /**
      * This Bill's Waiter.
      */
     private Waiter waiter;
@@ -25,11 +29,12 @@ public class Bill {
      */
     private HashMap<Integer, Dish> dishList;
 
-    public Bill(int tableNumber, Waiter waiter) {
+    public Bill(int tableNumber, Waiter waiter, boolean people8) {
         this.tableNumber = tableNumber;
         this.waiter = waiter;
         this.dishList = new HashMap<>();
         this.billID = numOfBills;
+        this.people8 = people8;
         numOfBills++;
     }
 
@@ -90,7 +95,17 @@ public class Bill {
             String formattedPrice = String.format("%.2f",dishList.get(key).getPrice());
             billStrings.add("  " + dishList.get(key) + ": $" + formattedPrice);
         }
-        billStrings.add("TOTAL PRICE: $" + String.format("%.2f", getTotalBillPrice()));
+        billStrings.add("SUBTOTAL: $" + String.format("%.2f", getTotalBillPrice()));
+        billStrings.add("TAX: $" + String.format("%.2f", (getTotalBillPrice()*0.13)));
+
+        double gratuity = 0.0;
+
+        if(this.people8) {  // This bill contains 8 or more people
+            gratuity = (getTotalBillPrice()*0.15);
+            billStrings.add("GRATUITY: $" + String.format("%.2f", gratuity));
+        }
+
+        billStrings.add("\nTOTAL: $" + String.format("%.2f", (getTotalBillPrice()*0.13 + gratuity)));
         return System.lineSeparator() + String.join(System.lineSeparator(), billStrings);
     }
 }
