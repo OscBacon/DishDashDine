@@ -2,7 +2,7 @@ package controllers.waiter;
 
 import javafx.event.ActionEvent;
 
-public class CancelOderController {
+public class CancelOrderController {
     public void removeDishfromBill(ActionEvent actionEvent) {
     }
 

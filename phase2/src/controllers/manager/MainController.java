@@ -1,14 +1,43 @@
 package controllers.manager;
 
+
+import com.sun.deploy.util.FXLoader;
+import controllers.Restaurant;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+
+import java.io.IOException;
 
 public class MainController {
-    public void createNewEmployee(ActionEvent actionEvent) {
+
+    @FXML
+    private Button createEmployeebtn;
+
+    @FXML
+    private Button viewInventorybtn;
+
+    @FXML
+    private Button viewAllEmployeesbtn;
+
+    @FXML
+    void CreateNewEmployee(ActionEvent event) throws IOException {
+        Parent managerHomePage = FXMLLoader.load(Restaurant.class.getResource("../resources/views/ManagerCreateEmployee.fxml"));
+        Restaurant.stage.getScene().setRoot(managerHomePage);
+        Restaurant.stage.show();
     }
 
-    public void viewInventory(ActionEvent actionEvent) {
+    @FXML
+    void viewAllEmployees(ActionEvent event) {
+
     }
 
-    public void viewAllEmployees(ActionEvent actionEvent) {
+    @FXML
+    void viewInventory(ActionEvent event) {
+
     }
+
 }

@@ -26,7 +26,7 @@ public class CurrentOrderController {
         void initialize() {
             Bill bill = currWaiter.getActiveBill(tableNumber);
             ObservableList <Dish> dish = FXCollections.observableArrayList(bill.getDishList().values());
-           // currentBill.
+
         }
 
         @FXML

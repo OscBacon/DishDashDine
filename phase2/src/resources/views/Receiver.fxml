@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.receiver.MainController">
    <children>
       <Label layoutX="36.0" layoutY="25.0" text="Receiver">
@@ -15,9 +14,9 @@
          </font>
       </Label>
       <Button fx:id="addToInventorybtn" layoutX="171.0" layoutY="303.0" mnemonicParsing="false" onAction="#addIngredientToInventory" prefHeight="59.0" prefWidth="258.0" text="Add to Inventory" />
-      <TextField layoutX="41.0" layoutY="97.0" prefHeight="42.0" prefWidth="224.0" promptText="Type Ingredient Name" />
+      <TextField fx:id="ingredientName" layoutX="41.0" layoutY="97.0" prefHeight="42.0" prefWidth="224.0" promptText="Type Ingredient Name" />
       <Label layoutX="41.0" layoutY="79.0" prefHeight="18.0" prefWidth="224.0" text="Add Ingredient to Inventory:" />
       <Label layoutX="36.0" layoutY="192.0" text="Quantity added to Inventory" />
-      <TextField layoutX="41.0" layoutY="210.0" prefHeight="42.0" prefWidth="224.0" promptText="Number of Units of Ingredient" />
+      <TextField fx:id="quantityOfIngredient" layoutX="41.0" layoutY="210.0" prefHeight="42.0" prefWidth="224.0" promptText="Number of Units of Ingredient" />
    </children>
 </AnchorPane>

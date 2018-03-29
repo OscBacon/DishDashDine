@@ -116,4 +116,8 @@ public class Bill {
     public Waiter getWaiter() {
         return waiter;
     }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
 }
