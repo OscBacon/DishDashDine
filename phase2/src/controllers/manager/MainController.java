@@ -19,6 +19,9 @@ public class MainController extends Alerted {
         Restaurant.setAlertedController(this);
     }
 
+    /**
+     * This method handles the manager pressing the button to create a new employee.
+     */
     public void createNewEmployee() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerCreateEmployee.fxml"));
@@ -34,6 +37,9 @@ public class MainController extends Alerted {
         stage.showAndWait();
     }
 
+    /**
+     * This method handles the manager pressing the button to view the inventory.
+     */
     public void viewInventory() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerViewInventory.fxml"));
@@ -49,6 +55,9 @@ public class MainController extends Alerted {
         stage.showAndWait();
     }
 
+    /**
+     * This method handles the manager pressing the button to create a new employee.
+     */
     public void viewAllEmployees() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerViewEmployees.fxml"));
@@ -63,6 +72,9 @@ public class MainController extends Alerted {
         stage.showAndWait();
     }
 
+    /**
+     * This method handles the manager pressing the button to view the dishes that are yet to be delivered.
+     */
     public void viewUndeliveredDishes() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerViewUndeliveredDishes.fxml"));
@@ -80,6 +92,9 @@ public class MainController extends Alerted {
         stage.showAndWait();
     }
 
+    /**
+     * This method handles the manager pressing the button to see all payments done to the restaurant today.
+     */
     public void viewAllBills() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/ManagerViewBills.fxml"));

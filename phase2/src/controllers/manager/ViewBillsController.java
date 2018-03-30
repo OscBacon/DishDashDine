@@ -12,6 +12,9 @@ public class ViewBillsController {
     @FXML
     private ListView<?> todayBills;
 
+    /**
+     * Initializes the view and its contents.
+     */
     public void initialize() {
         ObservableList todaysPaidBills = FXCollections.observableArrayList(Restaurant.getPaidBills());
         todayBills.setItems(todaysPaidBills);

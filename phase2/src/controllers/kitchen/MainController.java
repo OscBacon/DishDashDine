@@ -58,7 +58,6 @@ public class MainController extends Alerted {
     @FXML
     private void createNextDishLabel() {
         if (!Kitchen.hasPendingDishes()) {
-            System.out.println("No dish pending.");
             nextDishLabel.setText("No dish pending.");
         } else {
 
@@ -77,6 +76,9 @@ public class MainController extends Alerted {
         }
     }
 
+    /**
+     * This function is called when a cook clicks on a dish that is ready for pick-up.
+     */
     public void readyDish() {
         Dish selectedDish = acceptedDishesTable.getSelectionModel().getSelectedItem();
         if (selectedDish != null) {
@@ -86,6 +88,9 @@ public class MainController extends Alerted {
         }
     }
 
+    /**
+     * This method updates the next pending dish.
+     */
     public void setPendingDishes() {
         createNextDishLabel();
     }

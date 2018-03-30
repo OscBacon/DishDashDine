@@ -12,6 +12,9 @@ public class ViewUndeliveredDishesController {
     @FXML
     private ListView<?> unDeliveredDishes;
 
+    /**
+     * Initializes the view and its contents.
+     */
     public void initialize() {
         ObservableList allUndeliveredDishes = FXCollections.observableArrayList(Restaurant.getUndeliveredDishes().values());
         unDeliveredDishes.setItems(allUndeliveredDishes);

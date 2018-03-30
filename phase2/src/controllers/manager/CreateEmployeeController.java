@@ -44,6 +44,10 @@ public class CreateEmployeeController {
         }
     }
 
+    /**
+     * Sets this controller's dialogStage
+     * @param stage the Stage dialogStage
+     */
     public void setDialogStage(Stage stage) {
         dialogStage = stage;
     }

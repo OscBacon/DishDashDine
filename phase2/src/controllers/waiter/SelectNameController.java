@@ -15,12 +15,18 @@ public class SelectNameController {
     private String name;
     private Stage dialogStage;
 
+    /**
+     * Initializes the view and its contents.
+     */
     @FXML
     public void initialize() {
         ObservableList<String> waiterNames = FXCollections.observableArrayList(Restaurant.getWaiterNameList());
         waiterNamesListView.setItems(waiterNames);
     }
 
+    /**
+     * Allows you to select a waiter name from a menu.
+     */
     @FXML
     public void selectWaiterName(ActionEvent actionEvent) {
         name = waiterNamesListView.getSelectionModel().getSelectedItem();

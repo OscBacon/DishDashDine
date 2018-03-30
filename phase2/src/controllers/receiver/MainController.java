@@ -19,11 +19,18 @@ public class MainController extends Alerted {
     @FXML
     private TextField quantityOfIngredient;
 
+    /**
+     * Initializes the view and its contents.
+     */
     @FXML
     void initialize() {
         Restaurant.setAlertedController(this);
     }
 
+    /**
+     * Keeps track of the inventory so that it could display it in this view.
+     * @param event not used
+     */
     @FXML
     void addIngredientToInventory(ActionEvent event) {
         String ingredient = ingredientName.getText();
