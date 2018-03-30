@@ -225,7 +225,13 @@ public class Restaurant extends Application {
      */
     public static void removeFromInventory(String ingredient, Integer quantity) {
         if (inventory.containsKey(ingredient) && inventory.get(ingredient).getQuantity() >= quantity) {
-            addToInventory(ingredient, -quantity);
+            InventoryItem inventoryItem = inventory.get(ingredient);
+
+            int currQuantity = inventoryItem.getQuantity();
+
+            inventory.get(ingredient).setQuantity(currQuantity - quantity);
+
+            inventoryModified = true;
         }
     }
 
