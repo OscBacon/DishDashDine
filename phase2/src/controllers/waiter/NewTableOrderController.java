@@ -21,14 +21,26 @@ public class NewTableOrderController {
     @FXML
     private Button createBillButton;
 
+    /**
+     * Sets this view's dialogStage.
+     * @param dialogStage the value to be stored in this.dialogStage
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Sets this.name to be the name parameter.
+     * @param name The String to be assigned to this.name.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Creates a bill to keep track the bill of the table whose tableNum is name.
+     * @param actionEvent not used
+     */
     @FXML
     public void createBill(javafx.event.ActionEvent actionEvent) {
         if (!TableNumberInput.getText().equals("")) {
@@ -41,10 +53,17 @@ public class NewTableOrderController {
         }
     }
 
+    /**
+     * Returns the table number inputted into the tableNum textField.
+     * @return a TextField containing the value.
+     */
     public TextField getTableNumberInput() {
         return TableNumberInput;
     }
 
+    /**
+     * Splits the bill if the checkbox is selected.
+     */
     public void splitCurrentBill() {
         Logging.splitBill(boolSplitBill.isSelected(), TableNumberInput.getText());
     }

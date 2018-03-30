@@ -25,7 +25,6 @@ public class Kitchen implements Listener {
      * @param dish The dish that has just been ordered.
      */
     public static void addDish(Dish dish) {
-        System.out.println("Dish added!");
 
         String id = String.valueOf(dish.getDishId());
 

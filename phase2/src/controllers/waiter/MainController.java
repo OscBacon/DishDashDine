@@ -34,21 +34,35 @@ public class MainController extends Alerted {
     @FXML
     private Button createNewOrderBtn;
 
-
+    /**
+     * Initializes the view and its contents.
+     */
     @FXML
     public void initialize() {
         Restaurant.setAlertedController(this);
     }
 
+    /**
+     * Returns the name of the waiter who's associated with this view.
+     * @return String the name of the waiter.
+     */
     public String getName() {
         return name;
     }
 
+
+    /**
+     * Sets the name of this.waiter to be the parameter name.
+     * @param name String; the name of the waiter.
+     */
     public void setName(String name) {
         this.name = name;
         currWaiter = (Waiter) Restaurant.getListenerList().get("Waiter " + name);
     }
 
+    /**
+     * Creates a list of this waiter's current, active bills.
+     */
     public void createList() {
         currentBills = (HashMap<String, Bill>) currWaiter.getFormattedBillList();
         currentTables = new ArrayList<>(currentBills.keySet());

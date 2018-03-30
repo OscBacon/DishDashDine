@@ -1,5 +1,6 @@
 package controllers.manager;
 
+import controllers.Logging;
 import controllers.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,9 @@ public class ViewBillsController {
     @FXML
     private ListView<?> todayBills;
 
+    /**
+     * Initializes the view and its contents.
+     */
     public void initialize() {
         ObservableList todaysPaidBills = FXCollections.observableArrayList(Restaurant.getPaidBills());
         todayBills.setItems(todaysPaidBills);
