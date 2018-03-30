@@ -70,7 +70,6 @@ public class TableDetailsController {
     void addDishToBill(ActionEvent event) {
         String dishName = menuList.getSelectionModel().getSelectedItem();
         if (dishName != null) {
-            createActiveDishesList();
             ArrayList<String> additions = new ArrayList<>(dishAddition.getSelectionModel().getSelectedItems());
             ArrayList<String> subtractions = new ArrayList<>(dishSubtraction.getSelectionModel().getSelectedItems());
 
@@ -87,11 +86,10 @@ public class TableDetailsController {
                 String subtractionsJoined = String.join(", ", subtractions);
                 Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber, name);
             }
-            createActiveDishesList();
         }
     }
 
-    void createActiveDishesList() {
+    public void createActiveDishesList() {
         ArrayList<Dish> dishList = new ArrayList<>(bill.getWaiter().getDishList().values());
         activeDishList = new ArrayList<>();
         for (Dish dish: dishList) {
