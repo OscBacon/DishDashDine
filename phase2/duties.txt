@@ -7,7 +7,8 @@ Duties.txt - each team member writes their name and a point form list of their c
 Name:             Michael Katilevsky
 Student Number:   1003803379
 
-    -
+    - backend
+    - implemented extra design, handling orders
 
 
 
@@ -15,9 +16,10 @@ Student Number:   1003803379
 
 
 Name:             Jennifer Liu
-Student Number:
+Student Number: 1004326696
 
-    -
+    - backend
+    - implemented extra design, created manager class and responsibilities
 
 
 
@@ -25,9 +27,8 @@ Student Number:
 
 
 Name:             Oscar Baracos
-Student Number:
 
-    -
+    - front end, GUI
 
 
 
@@ -35,9 +36,8 @@ Student Number:
 
 
 Name:             Shardul Bansal
-Student Number:
 
-    -
+    - front end, GUI
 
 
 
