@@ -147,7 +147,12 @@ public class TableDetailsController {
         billStage.showAndWait();
     }
 
-
+    public void confirmDishDelivered(ActionEvent event){
+        Dish dishToConfirm = activeDishesToBeDelivered.getSelectionModel().getSelectedItem();
+        Logging.confirmDelivery(bill.getWaiter().getName(), String.valueOf(dishToConfirm.getDishId()));
+        activeDishList.remove(dishToConfirm);
+        activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
+    }
 
 
     public void cancelActiveDish(ActionEvent event) {

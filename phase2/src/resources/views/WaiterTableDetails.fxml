@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.TableDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.TableDetailsController">
    <children>
       <ListView fx:id="menuList" layoutX="6.0" layoutY="35.0" onMouseClicked="#showAllowedSubstitutions" prefHeight="204.0" prefWidth="313.0" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0" />
       <Label layoutX="114.0" layoutY="7.0" text="MENU" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="7.0">
@@ -16,14 +16,15 @@
          </font>
       </Label>
       <Button fx:id="dish" layoutX="312.0" layoutY="350.0" mnemonicParsing="false" onAction="#addDishToBill" onMouseExited="#createActiveDishesList" prefHeight="50.0" prefWidth="286.0" text="Add Dish" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="2.0" />
-      <Button fx:id="currentOrder" layoutX="313.0" layoutY="300.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="50.0" prefWidth="286.0" text="Current Bill" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="300.0" />
+      <Button fx:id="currentOrder" layoutX="312.0" layoutY="301.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="28.0" prefWidth="286.0" text="View Current Bill (Delivered Items)" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="301.0" />
       <ListView fx:id="activeDishesToBeDelivered" layoutX="313.0" layoutY="35.0" prefHeight="204.0" prefWidth="286.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="35.0" />
-      <Label layoutX="367.0" layoutY="13.0" text="Active Dishes to be Delivered" />
+      <Label layoutX="382.0" layoutY="13.0" text="Dishes not yet delivered" />
       <Label layoutX="48.0" layoutY="248.0" text="Additions" />
       <Label layoutX="180.0" layoutY="248.0" text="Subtractions" />
       <ListView fx:id="dishAddition" layoutY="270.0" prefHeight="130.0" prefWidth="153.0" />
       <ListView fx:id="dishSubtraction" layoutX="153.0" layoutY="270.0" prefHeight="130.0" prefWidth="153.0" />
-      <TextField fx:id="uniquePersonBill" layoutX="313.0" layoutY="243.0" prefHeight="27.0" prefWidth="280.0" promptText="Unique Client I.D" />
-      <Button fx:id="cancelDish" layoutX="312.0" layoutY="274.0" mnemonicParsing="false" onAction="#cancelActiveDish" prefHeight="27.0" prefWidth="286.0" text="Cancel Dish" />
+      <TextField fx:id="uniquePersonBill" layoutX="313.0" layoutY="243.0" prefHeight="27.0" prefWidth="280.0" promptText="Customer" />
+      <Button fx:id="cancelDish" layoutX="312.0" layoutY="274.0" mnemonicParsing="false" onAction="#cancelActiveDish" prefHeight="17.0" prefWidth="286.0" text="Cancel Dish" />
+      <Button fx:id="confirmDeliveryButton" layoutX="312.0" layoutY="328.0" mnemonicParsing="false" onAction="#confirmDishDelivered" prefHeight="27.0" prefWidth="286.0" text="Confirm Dish Delivered" />
    </children>
 </AnchorPane>
