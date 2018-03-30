@@ -1,6 +1,7 @@
 package controllers.manager;
 
 import controllers.Alerted;
+import controllers.Logging;
 import controllers.Restaurant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,6 +71,9 @@ public class MainController extends Alerted {
         stage.setTitle("Undelivered Dishes");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(Restaurant.stage);
+
+        Logging.showUndeliveredDishes();
+
         Scene scene = new Scene(page);
         stage.setScene(scene);
         ViewUndeliveredDishesController controller = loader.getController();
@@ -84,6 +88,9 @@ public class MainController extends Alerted {
         stage.setTitle("Bills");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(Restaurant.stage);
+
+        Logging.showAllPayments();
+
         Scene scene = new Scene(page);
         stage.setScene(scene);
         ViewBillsController controller = loader.getController();

@@ -26,7 +26,7 @@ public class Manager implements Listener {
             case "requested undelivered dishes.":
                 showUndeliveredDishes();
                 break;
-            case "requested all payments":
+            case "requested all payments.":
                 showAllPayments();
                 break;
             case "get total sales":
@@ -77,11 +77,11 @@ public class Manager implements Listener {
     }
 
     private void showUndeliveredDishes() {
-        printToScreen("All undelivered dishes:\n" + Restaurant.getUndeliveredDishes().toString());
+        printToScreen("Here are all the undelivered dishes!");
     }
 
     private void showAllPayments() {
-        printToScreen("All paid bills of the day:\n" + Restaurant.getPaidBills().toString());
+        printToScreen("Here are all the paid bills of the day!");
     }
 
     public void printToScreen(String s) {
