@@ -1,5 +1,6 @@
 package controllers.waiter;
 
+import controllers.Logging;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,7 +42,6 @@ public class CurrentOrderController {
 
     @FXML
     void initialize() {
-
     }
 
     public void setCurrWaiter(Waiter waiter) {
@@ -53,16 +53,25 @@ public class CurrentOrderController {
     }
 
 
-    void createBill() {
+    public void createBill() {
         bill = currWaiter.getActiveBill(tableNumber);
         dishList = new ArrayList<>(bill.getDishList().values());
-
-        ObservableList<Dish> observableList = FXCollections.observableArrayList(dishList);
-        billView.setItems(observableList);
+        billView.setItems(FXCollections.observableArrayList(dishList));
     }
 
     @FXML
-    void RemoveCurrentDishFromBill(ActionEvent event) {
+    void removeCurrentDishFromBill(ActionEvent event) {
+        Dish dishToRemove = billView.getSelectionModel().getSelectedItem();
+        Logging.removeDish(bill.getWaiter().getName(), String.valueOf(dishToRemove.getDishId()));
+        dishList.remove(dishToRemove);
+        billView.setItems(FXCollections.observableArrayList(dishList));
+    }
 
+    @FXML
+    void recallCurrentDish(ActionEvent event){
+        Dish dishToRecall = billView.getSelectionModel().getSelectedItem();
+        Logging.dishRecall(bill.getWaiter().getName(), String.valueOf(dishToRecall.getDishId()));
+        dishList.remove(dishToRecall);
+        billView.setItems(FXCollections.observableArrayList(dishList));
     }
 }

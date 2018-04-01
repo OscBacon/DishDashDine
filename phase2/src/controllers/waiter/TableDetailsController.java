@@ -86,12 +86,12 @@ public class TableDetailsController {
                 String subtractionsJoined = String.join(", ", subtractions);
                 Logging.orderDish(bill.getWaiter().getName(), dishName, additionsJoined, subtractionsJoined, tableNumber, name);
             }
-            createActiveDishesList();
         }
     }
 
-    void createActiveDishesList() {
+    public void createActiveDishesList() {
         ArrayList<Dish> dishList = new ArrayList<>(bill.getWaiter().getDishList().values());
+        activeDishList = new ArrayList<>();
         for (Dish dish: dishList) {
             if (String.valueOf(dish.getTableNumber()).equals(tableNumber) && !dish.getDelivered()) {
                 activeDishList.add(dish);
@@ -147,7 +147,12 @@ public class TableDetailsController {
         billStage.showAndWait();
     }
 
-
+    public void confirmDishDelivered(ActionEvent event){
+        Dish dishToConfirm = activeDishesToBeDelivered.getSelectionModel().getSelectedItem();
+        Logging.confirmDelivery(bill.getWaiter().getName(), String.valueOf(dishToConfirm.getDishId()));
+        activeDishList.remove(dishToConfirm);
+        activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
+    }
 
 
     public void cancelActiveDish(ActionEvent event) {

@@ -9,6 +9,9 @@ public class ViewEmployeesController {
     public ListView<String> WaitersList;
     public ListView<String> CooksList;
 
+    /**
+     * Initializes the view and its contents.
+     */
     @FXML
     public void initialize() {
         WaitersList.setItems(FXCollections.observableArrayList(Restaurant.getWaiterNameList()));

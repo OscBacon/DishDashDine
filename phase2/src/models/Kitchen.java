@@ -25,7 +25,6 @@ public class Kitchen implements Listener {
      * @param dish The dish that has just been ordered.
      */
     public static void addDish(Dish dish) {
-        System.out.println("Dish added!");
 
         String id = String.valueOf(dish.getDishId());
 
@@ -50,7 +49,7 @@ public class Kitchen implements Listener {
      * <p>
      * Precondition: dishesToConfirm has been verified to not be empty.
      */
-    public static Dish getFirstDish() {
+    public static synchronized Dish getFirstDish() {
         return (Dish) dishesToConfirm.values().toArray()[0];
     }
 
@@ -59,7 +58,7 @@ public class Kitchen implements Listener {
      *
      * @return True if there are dishes to be confirmed in the kitchen.
      */
-    public static boolean hasPendingDishes() {
+    public static synchronized boolean hasPendingDishes() {
         return dishesToConfirm.values().toArray().length > 0;
     }
 
@@ -93,7 +92,6 @@ public class Kitchen implements Listener {
      * @param cook The cook that will cook the dish whose ID is dishID.
      */
     private void acceptDish(String cook) {
-
         if (dishesToConfirm.values().toArray().length > 0) {
 
             Dish dish = getFirstDish();   // Returns the oldest dish in dishesToConfirm
@@ -105,6 +103,13 @@ public class Kitchen implements Listener {
             dish.setCook(cook);
 
             dishesToConfirm.remove(id);
+
+            if (Restaurant.getCurrentUser().equals("Kitchen")) {
+                Platform.runLater(() -> {
+                    MainController controller = (MainController) Restaurant.alertedController;
+                    controller.setPendingDishes();
+                });
+            }
 
             printToScreen("Cook " + cook + " has accepted " + dish.getName() + " (Dish id " + id + ")!");
         }

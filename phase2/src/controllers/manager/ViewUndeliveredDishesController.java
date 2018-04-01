@@ -1,5 +1,6 @@
 package controllers.manager;
 
+import controllers.Logging;
 import controllers.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +12,13 @@ public class ViewUndeliveredDishesController {
     @FXML
     private ListView<?> unDeliveredDishes;
 
-    public void initializer() {
+    /**
+     * Initializes the view and its contents.
+     */
+    public void initialize() {
         ObservableList allUndeliveredDishes = FXCollections.observableArrayList(Restaurant.getUndeliveredDishes().values());
         unDeliveredDishes.setItems(allUndeliveredDishes);
+
     }
 
 }

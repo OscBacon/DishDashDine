@@ -23,6 +23,9 @@ public class ViewInventoryController {
     private Stage dialogStage;
     private HashMap<String, Integer> inventoryQuantityHashmap = new HashMap<>();
 
+    /**
+     * Initializes the view and its contents.
+     */
     public void initialize() {
         HashMap<String, InventoryItem> inventory = Restaurant.getInventory();
 

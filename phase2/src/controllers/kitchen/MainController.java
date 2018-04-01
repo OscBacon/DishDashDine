@@ -3,6 +3,7 @@ package controllers.kitchen;
 import controllers.Alerted;
 import controllers.Logging;
 import controllers.Restaurant;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,22 +60,26 @@ public class MainController extends Alerted {
         if (!Kitchen.hasPendingDishes()) {
             nextDishLabel.setText("No dish pending.");
         } else {
+
             nextDishLabel.setText(Kitchen.getFirstDish().toString());
         }
     }
 
     @FXML
-    void acceptCurrentDish(ActionEvent event) {
+    void acceptCurrentDish() {
         String acceptedDishCookName = cooksComboBox.getSelectionModel().getSelectedItem();
-        if (!nextDishLabel.getText().equals("No dish pending.") && acceptedDishCookName != null) {
+        if (Kitchen.hasPendingDishes() && acceptedDishCookName != null) {
             dishList.add(Kitchen.getFirstDish());
             Logging.acceptDish(acceptedDishCookName);
-            acceptedDishesTable.refresh();
             createNextDishLabel();
+            acceptedDishesTable.refresh();
         }
     }
 
-    public void readyDish(ActionEvent actionEvent) {
+    /**
+     * This function is called when a cook clicks on a dish that is ready for pick-up.
+     */
+    public void readyDish() {
         Dish selectedDish = acceptedDishesTable.getSelectionModel().getSelectedItem();
         if (selectedDish != null) {
             Logging.finishDish(String.valueOf(selectedDish.getDishId()));
@@ -83,6 +88,9 @@ public class MainController extends Alerted {
         }
     }
 
+    /**
+     * This method updates the next pending dish.
+     */
     public void setPendingDishes() {
         createNextDishLabel();
     }
