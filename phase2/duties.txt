@@ -35,9 +35,12 @@ Student Number:
 
 
 Name:             Shardul Bansal
-Student Number:
+Student Number:   1004080040
 
-    -
+    - Created FXML Files for GUI
+    - Created Design Mock-ups for GUI interface
+    - Created Controller classes
+    - Focussed on Front-end Development for GUI
 
 
 
