@@ -290,6 +290,8 @@ public class Waiter implements Listener {
             Restaurant.addToInventory(ingredient, quantity);
         }
 
+        Logging.dishCancelled();
+
         printToScreen("Dish " + dishID + " has been cancelled.");
     }
 

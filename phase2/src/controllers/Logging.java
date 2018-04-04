@@ -64,6 +64,8 @@ public abstract class Logging {
         eventWriter("Kitchen | has a new dish.");
     }
 
+    public static  void dishCancelled() { eventWriter("Kitchen | a dish was cancelled."); }
+
 
 // --------------------------------------------------------------------------------
     // Waiter inputs:
