@@ -7,8 +7,10 @@ Duties.txt - each team member writes their name and a point form list of their c
 Name:             Michael Katilevsky
 Student Number:   1003803379
 
-    - backend
-    - implemented extra design, handling orders
+    - worked on the backend
+    - implemented the new Phase2 features
+    - implemented the logging system/how different users get info
+    - wrote all javadocs
 
 
 
@@ -16,10 +18,12 @@ Student Number:   1003803379
 
 
 Name:             Jennifer Liu
-Student Number: 1004326696
+Student Number:   1004326696
 
-    - backend
-    - implemented extra design, created manager class and responsibilities
+    - worked on the backend
+    - implemented the new Phase2 features
+    - improved design based on feedback from P1, by creating a Manager class
+    - fixed some front-end bugs in the FXML/controller files
 
 
 
@@ -27,8 +31,13 @@ Student Number: 1004326696
 
 
 Name:             Oscar Baracos
+Student Number:   1004220862
 
-    - front end, GUI
+    - worked on the front end
+    - created FXML and controller files for the GUI
+    - linked controllers to views
+    - implemented multithreading handling (JavaFX + Java threads)
+    - implemented the alert system
 
 
 
