@@ -123,7 +123,16 @@ public class Kitchen implements Listener {
     public void handleEvent(String[] inputArray) {
         if (inputArray[0].equals("has a new dish.")) {
             if (Restaurant.getCurrentUser().equals("Kitchen")) {
-                printToScreen("new dish arrived!");
+                printToScreen("New dish arrived!");
+                Platform.runLater(() -> {
+                    MainController controller = (MainController) Restaurant.alertedController;
+                    controller.setPendingDishes();
+                });
+            }
+        }
+        if (inputArray[0].equals("a dish was cancelled.")) {
+            if (Restaurant.getCurrentUser().equals("Kitchen")) {
+                printToScreen("A dish was cancelled");
                 Platform.runLater(() -> {
                     MainController controller = (MainController) Restaurant.alertedController;
                     controller.setPendingDishes();
