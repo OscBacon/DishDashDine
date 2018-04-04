@@ -166,7 +166,7 @@ public class Bill {
             billStrings.add("GRATUITY: $" + String.format("%.2f", gratuity));
         }
 
-        billStrings.add("\nBILL TOTAL: $" + String.format("%.2f", (getTotalBillPrice() * 0.13 + gratuity)));
+        billStrings.add("\nBILL TOTAL: $" + String.format("%.2f", (getTotalBillPrice() * 1.13 + gratuity)));
         return System.lineSeparator() + String.join(System.lineSeparator(), billStrings);
     }
 
