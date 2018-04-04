@@ -123,13 +123,13 @@ public class TableDetailsController {
         }
     }
 
-    public void showAllowedSubstitutions(MouseEvent mouseEvent) {
+    public void showAllowedSubstitutions() {
         showAllowedSubtractions();
         showAllowedAdditions();
     }
 
     @FXML
-    void showCurrentBill(ActionEvent event) throws IOException {
+    void showCurrentBill() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterCurrentOrder.fxml"));
         AnchorPane billPage = loader.load();
@@ -140,18 +140,21 @@ public class TableDetailsController {
         Scene scene = new Scene(billPage);
         billStage.setScene(scene);
         CurrentOrderController billController = loader.getController();
-        billController.setDialogStage(billStage);
         billController.setCurrWaiter(bill.getWaiter());
         billController.setTableNumber(bill.getTableNumber());
         billController.createBill();
+        billController.setDialogStage(billStage);
         billStage.showAndWait();
+        dialogStage.close();
     }
 
-    public void confirmDishDelivered(ActionEvent event){
+    public void confirmDishDelivered(){
         Dish dishToConfirm = activeDishesToBeDelivered.getSelectionModel().getSelectedItem();
-        Logging.confirmDelivery(bill.getWaiter().getName(), String.valueOf(dishToConfirm.getDishId()));
-        activeDishList.remove(dishToConfirm);
-        activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
+        if (dishToConfirm != null) {
+            Logging.confirmDelivery(bill.getWaiter().getName(), String.valueOf(dishToConfirm.getDishId()));
+            activeDishList.remove(dishToConfirm);
+            activeDishesToBeDelivered.setItems(FXCollections.observableArrayList(activeDishList));
+        }
     }
 
 
