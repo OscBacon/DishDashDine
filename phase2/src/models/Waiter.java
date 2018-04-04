@@ -245,7 +245,6 @@ public class Waiter implements Listener {
      */
     private void payBill(int tableNum) {
         Bill bill = billList.get(tableNum); // Retrieve the bill object
-        printToScreen(bill.toString()); // Print the bill to the screen
 
         for (Integer key : bill.getDishList().keySet()) {
             dishList.remove(key);   // Remove all dishes that were on this bill from this waiter's dishList.
@@ -290,6 +289,8 @@ public class Waiter implements Listener {
             Integer quantity = dish.getIngredients().get(ingredient);
             Restaurant.addToInventory(ingredient, quantity);
         }
+
+        Logging.dishCancelled();
 
         printToScreen("Dish " + dishID + " has been cancelled.");
     }
