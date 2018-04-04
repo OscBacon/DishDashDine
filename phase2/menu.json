@@ -49,5 +49,28 @@
       "onions",
       "raw sauce"
     ]
+  },
+  "Burger McBurger": {
+    "price": 8.99,
+    "ingredients": {
+      "potatoes": 6,
+      "onions": 2,
+      "buns": 2,
+      "ketchup": 1,
+      "mayo": 1,
+      "beef": 1
+    },
+    "allowedAdditions": [
+      "pickles",
+      "mushrooms",
+      "chicken"
+    ],
+    "allowedSubtractions": [
+      "beef",
+      "onions",
+      "potatoes",
+      "mayo",
+      "ketchup"
+    ]
   }
 }
