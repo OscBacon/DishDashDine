@@ -2,6 +2,8 @@ package models;
 
 import controllers.Logging;
 import controllers.Restaurant;
+import controllers.waiter.MainController;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,7 +111,6 @@ public class Waiter implements Listener {
                 case "wishes to not split bill":    // The waiter wishes to not split the bill
                     this.splitBill(false, inputArray[1]);
                     break;
-
             }
         }
     }
@@ -244,7 +245,6 @@ public class Waiter implements Listener {
      */
     private void payBill(int tableNum) {
         Bill bill = billList.get(tableNum); // Retrieve the bill object
-        printToScreen(bill.toString()); // Print the bill to the screen
 
         for (Integer key : bill.getDishList().keySet()) {
             dishList.remove(key);   // Remove all dishes that were on this bill from this waiter's dishList.
@@ -290,6 +290,8 @@ public class Waiter implements Listener {
             Restaurant.addToInventory(ingredient, quantity);
         }
 
+        Logging.dishCancelled();
+
         printToScreen("Dish " + dishID + " has been cancelled.");
     }
 
@@ -314,12 +316,11 @@ public class Waiter implements Listener {
      */
     private void recallDish(int dishID) {
         Dish dish = dishList.get(dishID);
-        //orderDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()));
-        // Better to just call Kitchen.addDish?
-        Kitchen.addDish(dish);
         Bill bill = billList.get(dish.getTableNumber());
         bill.removeDish(dishID);
         printToScreen("Dish " + dishID + " recalled!");
+        orderDish(dish.getName(), dish.getAdditions(), dish.getSubtractions(), String.valueOf(dish.getTableNumber()),
+                dish.getPerson());
     }
 
 

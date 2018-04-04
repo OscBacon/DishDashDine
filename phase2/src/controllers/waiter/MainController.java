@@ -74,7 +74,7 @@ public class MainController extends Alerted {
      * <p>
      */
     @FXML
-    void createNewOrder(ActionEvent event) throws IOException {
+    void createNewOrder() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Restaurant.class.getResource("../resources/views/WaiterNewTableOrder.fxml"));
         AnchorPane orderPage = loader.load();
@@ -98,7 +98,7 @@ public class MainController extends Alerted {
      * <p>
      */
     @FXML
-    void selectTable(ActionEvent event) throws IOException {
+    void selectTable() throws IOException {
         String table = tablesList.getSelectionModel().getSelectedItem();
         if (table != null) {
             FXMLLoader loader = new FXMLLoader();
@@ -111,10 +111,11 @@ public class MainController extends Alerted {
             Scene scene = new Scene(detailsPage);
             detailsStage.setScene(scene);
             TableDetailsController detailsController = loader.getController();
-            detailsController.setDialogStage(detailsStage);
             detailsController.setBill(currentBills.get(table));
+            detailsController.setDialogStage(detailsStage);
             detailsController.createActiveDishesList();
             detailsStage.showAndWait();
+            createList();
         }
     }
 }

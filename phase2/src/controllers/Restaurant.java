@@ -274,22 +274,6 @@ public class Restaurant extends Application {
         return insufficientIngredients;
     }
 
-    /**
-     * Prints a string representation of the inventory.
-     *
-     * @return A string representation of the inventory
-     */
-    private static String printInventory() {
-        ArrayList<String> inventoryItems = new ArrayList<>();
-        for (Object key : inventory.keySet()) {
-            InventoryItem inventoryItem = inventory.get(key);
-            inventoryItems.add(key + ": " + System.lineSeparator() +
-                    "\t quantity: " + inventoryItem.getQuantity() + System.lineSeparator() +
-                    "\t threshold: " + inventoryItem.getThreshold()
-            );
-        }
-        return "INVENTORY: " + System.lineSeparator() + String.join(System.lineSeparator(), inventoryItems);
-    }
 
     /**
      * Writes a request for the given item in requests.txt

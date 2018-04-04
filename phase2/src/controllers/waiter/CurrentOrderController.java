@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -33,8 +34,6 @@ public class CurrentOrderController {
     private Stage dialogStage;
     @FXML
     private ListView<Dish> billView = new ListView<>();
-    @FXML
-    private Button RemoveDishbtn;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
@@ -57,10 +56,11 @@ public class CurrentOrderController {
         bill = currWaiter.getActiveBill(tableNumber);
         dishList = new ArrayList<>(bill.getDishList().values());
         billView.setItems(FXCollections.observableArrayList(dishList));
+
     }
 
     @FXML
-    void removeCurrentDishFromBill(ActionEvent event) {
+    void removeCurrentDishFromBill() {
         Dish dishToRemove = billView.getSelectionModel().getSelectedItem();
         Logging.removeDish(bill.getWaiter().getName(), String.valueOf(dishToRemove.getDishId()));
         dishList.remove(dishToRemove);
@@ -68,10 +68,20 @@ public class CurrentOrderController {
     }
 
     @FXML
-    void recallCurrentDish(ActionEvent event){
+    void recallCurrentDish() {
         Dish dishToRecall = billView.getSelectionModel().getSelectedItem();
         Logging.dishRecall(bill.getWaiter().getName(), String.valueOf(dishToRecall.getDishId()));
         dishList.remove(dishToRecall);
         billView.setItems(FXCollections.observableArrayList(dishList));
+    }
+
+    public void payBill() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("DishDashDine");
+        alert.setHeaderText("Bill for Table " + tableNumber);
+        alert.setContentText(bill.toString());
+        alert.showAndWait();
+        Logging.payBill(currWaiter.getName(), String.valueOf(tableNumber));
+        dialogStage.close();
     }
 }

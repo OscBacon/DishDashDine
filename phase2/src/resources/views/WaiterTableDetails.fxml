@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.TableDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.waiter.TableDetailsController">
    <children>
       <ListView fx:id="menuList" layoutX="6.0" layoutY="35.0" onMouseClicked="#showAllowedSubstitutions" prefHeight="204.0" prefWidth="313.0" AnchorPane.bottomAnchor="161.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0" />
       <Label layoutX="114.0" layoutY="7.0" text="MENU" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="7.0">
@@ -17,7 +17,7 @@
       </Label>
       <Button fx:id="dish" layoutX="312.0" layoutY="350.0" mnemonicParsing="false" onAction="#addDishToBill" onMouseExited="#createActiveDishesList" prefHeight="50.0" prefWidth="286.0" text="Add Dish" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="2.0" />
       <Button fx:id="currentOrder" layoutX="312.0" layoutY="301.0" mnemonicParsing="false" onAction="#showCurrentBill" prefHeight="28.0" prefWidth="286.0" text="View Current Bill (Delivered Items)" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="301.0" />
-      <ListView fx:id="activeDishesToBeDelivered" layoutX="313.0" layoutY="35.0" prefHeight="204.0" prefWidth="286.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="35.0" />
+      <ListView fx:id="activeDishesToBeDelivered" layoutX="313.0" layoutY="35.0" onMouseEntered="#createActiveDishesList" prefHeight="204.0" prefWidth="286.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="35.0" />
       <Label layoutX="382.0" layoutY="13.0" text="Dishes not yet delivered" />
       <Label layoutX="48.0" layoutY="248.0" text="Additions" />
       <Label layoutX="180.0" layoutY="248.0" text="Subtractions" />
