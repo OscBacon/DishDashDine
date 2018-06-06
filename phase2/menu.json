@@ -49,5 +49,53 @@
       "onions",
       "raw sauce"
     ]
+  },
+  "Burger McBurger": {
+    "price": 8.99,
+    "ingredients": {
+      "potatoes": 6,
+      "onions": 2,
+      "buns": 2,
+      "ketchup": 1,
+      "mayo": 1,
+      "beef": 1
+    },
+    "allowedAdditions": [
+      "pickles",
+      "mushrooms",
+      "chicken"
+    ],
+    "allowedSubtractions": [
+      "beef",
+      "onions",
+      "potatoes",
+      "mayo",
+      "ketchup"
+    ]
+  },
+  "Pizza": {
+    "price": 11.00,
+    "ingredients": {
+      "bread": 1,
+      "onions": 1,
+      "raw sauce": 1,
+      "ketchup": 1,
+      "mayo": 1,
+      "cheese": 1
+    },
+    "allowedAdditions": [
+      "pickles",
+      "mushrooms",
+      "chicken",
+      "onion",
+      "ham",
+      "garlic"
+    ],
+    "allowedSubtractions": [
+      "raw sauce",
+      "onions",
+      "mayo",
+      "cheese"
+    ]
   }
 }
