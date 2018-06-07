@@ -22,36 +22,36 @@ We have included several dishes in our Menu but to try a more extensive list, fe
 
 When running the application, your are presented with an menu to select your type of employee
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/employee-selection.png" alt="Employee selection" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/employee-selection.png" alt="Employee selection" width="400em"/>
 
 
 A manager, for example, will have the following commands accessible:
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/manager-homepage.png" alt="drawing" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/manager-homepage.png" alt="drawing" width="400em"/>
 
 
 On the other hand, a waiter, after selecting his name, can then manage his tables, or create new ones, as he did on the example:
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/table-selection.png" alt="drawing" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/table-selection.png" alt="drawing" width="400em"/>
 
 
 He can then order dishes for this table, selecting, if applicable to the client, additions and substitutions:
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/waiter-order.png" alt="drawing" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/waiter-order.png" alt="drawing" width="400em"/>
 
 
 The kitchen, unified under one screen, then has the choice to accept orders, an the cook accepting the dish identifies himself when doing so. As a note, dishes are presented in a First In First Out order, and a dish cannot be viewed until its previous dish has been accepted.
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/kitchen-homepage.png" alt="drawing" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/kitchen-homepage.png" alt="drawing" width="400em"/>
 
 Once the dish has been accepted, it is displayed on the right side of the screen:
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/kitchen-accept-dish.png" alt="drawing" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/kitchen-accept-dish.png" alt="drawing" width="400em"/>
 
 
 Once the cook is done with the dish, he selects the dish, and clicks on "Ready Dish". This then notifies the waiter to pick up the dish:
 
-<img src="https://github.com/OscBacon/DishDashDine/blob/master/images/waiter-ready-dish.png" alt="drawing" width="400em"/>
+<img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/waiter-ready-dish.png" alt="drawing" width="400em"/>
 
 ## Manual inputs to events.txt
 > Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a simple function call. Our GUI calls on these Actions methods. However, if you wish to bypass the GUI, you can type inputs to events.txt while the program is running. Below is the template to follow.
