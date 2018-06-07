@@ -1,5 +1,4 @@
 # DishDashDine, a student made restaurant management application
-----
 
 DishDashDine is a program that helps restaurants adapt to a dynamic industry. Many restaurants are giving their waiters tablets into which they can enter orders. DishDashDine aims to avoid the use of paper by automating a majority of the
 actions by waiters and cooks. This program aims to streamline interactions between the stakeholders in a restaurant.
@@ -19,7 +18,42 @@ A dish may be cancelled only before some cook confirms it. Once confirmed by a c
 
 We have included several dishes in our Menu but to try a more extensive list, feel free to follow the menu.json format and add dishes that you would like to order. Duly note however that you might have to update the inventory to include a wider range of ingredients!
 
-Manual imports to events.txt
+## Using the GUI
+
+When running the application, your are presented with an menu to select your type of employee
+
+<img src="images/employee-selection.png" alt="Employee selection" width="400em"/>
+
+
+A manager, for example, will have the following commands accessible:
+
+<img src="images/manager-homepage.png" alt="drawing" width="400em"/>
+
+
+On the other hand, a waiter, after selecting his name, can then manage his tables, or create new ones, as he did on the example:
+
+<img src="images/table-selection.png" alt="drawing" width="400em"/>
+
+
+He can then order dishes for this table, selecting, if applicable to the client, additions and substitutions:
+
+<img src="images/waiter-order.png" alt="drawing" width="400em"/>
+
+
+The kitchen, unified under one screen, then has the choice to accept orders, an the cook accepting the dish identifies himself when doing so. As a note, dishes are presented in a First In First Out order, and a dish cannot be viewed until its previous dish has been accepted.
+
+<img src="images/kitchen-homepage.png" alt="drawing" width="400em"/>
+
+Once the dish has been accepted, it is displayed on the right side of the screen:
+
+<img src="images/kitchen-accept-dish.png" alt="drawing" width="400em"/>
+
+
+Once the cook is done with the dish, he selects the dish, and clicks on "Ready Dish". This then notifies the waiter to pick up the dish:
+
+<img src="images/waiter-ready-dish.png" alt="drawing" width="400em"/>
+
+## Manual inputs to events.txt
 > Please note: We have a class called Actions that writes to events.txt the input you wish to simulate with a simple function call. Our GUI calls on these Actions methods. However, if you wish to bypass the GUI, you can type inputs to events.txt while the program is running. Below is the template to follow.
 
 
