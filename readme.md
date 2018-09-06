@@ -20,7 +20,7 @@ We have included several dishes in our Menu but to try a more extensive list, fe
 
 ## Using the GUI
 
-When running the application, your are presented with an menu to select your type of employee
+When running the application, your are presented with an menu to select your type of employee:
 
 <img src="https://raw.githubusercontent.com/OscBacon/DishDashDine/master/images/employee-selection.PNG" alt="Employee selection" width="400em"/>
 
